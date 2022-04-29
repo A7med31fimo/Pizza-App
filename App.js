@@ -3,12 +3,13 @@ import Login from "./Components/Users/Login";
 import Register from "./Components/Users/Register";
 import { auth } from "./db/Config";
 import { useState, useEffect } from "react";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {View,Text,Button} from "react-native"
-import Home from "./Components/Home";
-export default function App() {
 
+import Home from "./Components/Home";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { View, Text, Button } from "react-native";
+import drinks from "./Components/Categories/import_drinks";
+export default function App() {
   const Stack = createNativeStackNavigator();
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => setUser(user));
@@ -17,31 +18,42 @@ export default function App() {
       unsub();
     };
   }, []);
-function LogOrSign({navigation}){
-return(
-  <View>
-    <View style={{padding:20}}>
-    <Button title="Log In " onPress={()=>{ navigation.navigate('Log In')}}/>
-    </View>
-    <View style={{padding:20}}>
-    <Button  title="Register" onPress={()=>{ navigation.navigate('Register')}}/>
-    </View>
-  </View>
-
-);
-}
+  function LogOrSign({ navigation }) {
+    return (
+      <View>
+        <View style={{ padding: 20 }}>
+          <Button
+            title="Log In "
+            onPress={() => {
+              navigation.navigate("Log In");
+            }}
+          />
+        </View>
+        <View style={{ padding: 20 }}>
+          <Button
+            title="Register"
+            onPress={() => {
+              navigation.navigate("Register");
+            }}
+          />
+        </View>
+      </View>
+    );
+  }
   const [user, setUser] = useState(undefined);
   return (
- 
-<NavigationContainer>
-
-    <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home}           
-          options={{ title: 'Pizza 🍕' }} />
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={drinks}
+          options={{ title: "Pizza 🍕" }}
+        />
         <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Log In" component={Login} /> 
+        <Stack.Screen name="Log In" component={Login} />
+        <Stack.Screen name="Drinks" component={drinks} />
         <Stack.Screen name="Catagories" component={Home}/>
-      </Stack.Navigator> 
-  </NavigationContainer>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
