@@ -7,7 +7,7 @@ import cola from "../../assets/Drinks/cola.png";
 import fayrouz from "../../assets/Drinks/fayrouz.png";
 import moussy from "../../assets/Drinks/moussy.png";
 import schweppes from "../../assets/Drinks/schweppes.png";
-export default function drinks({ navigation }) {
+export default function Drinks({ navigation }) {
   const arrOfObjects = [
     { text1: "Pepsi", text2: "EGP 10.00", icon: pepsi },
     { text1: "Coca Cola", text2: "EGP 10.00", icon: cola },
@@ -32,7 +32,7 @@ export default function drinks({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E8EAED",
+    backgroundColor: "#F7F7F7",
     padding: 15,
   },
   title: {

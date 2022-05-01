@@ -9,6 +9,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Button } from "react-native";
 import Drinks from "./Components/Categories/import_drinks";
+import FirstPage from "./Components/FirstPage";
 export default function App() {
   const Stack = createNativeStackNavigator();
   useEffect(() => {
@@ -46,12 +47,13 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
-          component={Home}
+          component={FirstPage}
           options={{ title: "Pizza 🍕" }}
         />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Log In" component={Login} />
         <Stack.Screen name="Drinks" component={Drinks} />
+        <Stack.Screen name="FirstPage" component={FirstPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
