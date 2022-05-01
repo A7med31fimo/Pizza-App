@@ -3,44 +3,14 @@ import Login from "./Components/Users/Login";
 import Register from "./Components/Users/Register";
 import { auth } from "./db/Config";
 import { useState, useEffect } from "react";
-
 import Home from "./Components/Home";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text, Button } from "react-native";
-import Drinks from "./Components/Categories/import_drinks";
+import Log_Sign_Home from "./Components/Log_Sign_Home";
+import Drinks from "./Components/Categories/Drinks";
 export default function App() {
   const Stack = createNativeStackNavigator();
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => setUser(user));
 
-    return () => {
-      unsub();
-    };
-  }, []);
-  function LogOrSign({ navigation }) {
-    return (
-      <View>
-        <View style={{ padding: 20 }}>
-          <Button
-            title="Log In "
-            onPress={() => {
-              navigation.navigate("Log In");
-            }}
-          />
-        </View>
-        <View style={{ padding: 20 }}>
-          <Button
-            title="Register"
-            onPress={() => {
-              navigation.navigate("Register");
-            }}
-          />
-        </View>
-      </View>
-    );
-  }
-  const [user, setUser] = useState(undefined);
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
@@ -48,6 +18,11 @@ export default function App() {
           name="Home"
           component={Home}
           options={{ title: "Pizza 🍕" }}
+        />
+          <Stack.Screen
+          name="LogOrSign"
+          component={Log_Sign_Home}
+          options={{ title: "Getting Start" }}
         />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Log In" component={Login} />

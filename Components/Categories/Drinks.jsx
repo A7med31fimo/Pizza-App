@@ -1,56 +1,45 @@
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import { View,ScrollView,StyleSheet} from "react-native";
+import { useEffect, useState } from "react";
+import {
+  getphotos
+} from "../../db/pizzaEdit/editPizza";
+import Item from "./ItemOfDrink";
 
-export default function Item({ iconSrc, text1, text2 }) {
+ const Drinks = () => {
+  const getphotoslist = async () => {
+    const c = await getphotos();
+   
+    setphotos(c);
+    console.log("photos",c);
+  };
+
+  useEffect(() => {
+    getphotoslist();
+  }, []);
+
+  const [photos, setphotos] = useState([]);
+  const [photoName, setphotoName] = useState("");
   return (
-    <View style={styles.content}>
-      <Image source={iconSrc} style={styles.image} />
-      <View style={styles.itemText}>
-        <Text style={styles.itemText1}>{text1} </Text>
-        <Text style={styles.itemText2}>{text2} </Text>
-      </View>
-      <View style={styles.btn}>
-        <Button title="Add to Cart" color="#C10E03"></Button>
-      </View>
-    </View>
-  );
-}
+    <View style={styles.container}>
+      
+        <ScrollView >
 
+          {photos.map((a) => (
+          
+            <View key={a.id}>     
+              <Item iconSrc={a.ref} text1={a.name} text2={a.cost} />
+            </View>
+          ))}
+        </ScrollView>
+      
+    </View>
+  )
+}
 const styles = StyleSheet.create({
-  content: {
-    backgroundColor: "#FFF",
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: "#474745",
+  container: {
+    flex: 1,
+    backgroundColor: "#E8EAED",
     padding: 15,
-    paddingHorizontal:5,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 20,
   },
-  image: {
-    width: 70,
-    height: 130,
-  },
-  itemText: {
-    flexDirection: "column",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-  },
-  itemText1: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 45,
-  },
-  itemText2: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  btn: {
-    marginTop: 65,
-    borderWidth: 4,
-    borderRadius: 15,
-    borderColor: "#ABC0C9",
-    overflow: "hidden",
-  },
-});
+})
+export default Drinks;

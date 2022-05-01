@@ -49,7 +49,7 @@ export default function Login  ({navigation}){
             console.log(email, password);
             login(email,password)   
               .then(
-              ()=> { navigation.navigate('chat')} 
+              ()=> { navigation.navigate('Home')} 
               )
               .catch((e) => setError(e.message));
           }

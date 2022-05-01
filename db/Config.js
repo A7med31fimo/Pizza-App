@@ -2,13 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-// Follow this pattern to import other Firebase services
-// import { } from 'firebase/<service>';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyC97ARWu94jf1bd1Lx9VTdrccDjJF7v77U",
   authDomain: "task1-cs303.firebaseapp.com",
@@ -16,8 +10,8 @@ const firebaseConfig = {
   projectId: "task1-cs303",
   storageBucket: "task1-cs303.appspot.com",
   messagingSenderId: "429475062638",
-  appId: "1:429475062638:web:26916532e450f578a9977f",
-  measurementId: "G-HMM8KVVYNF"
+  appId: "1:429475062638:web:c81162630fe48aeda9977f",
+  measurementId: "G-PDPYPMT9K9"
 };
 
 // Initialize Firebase

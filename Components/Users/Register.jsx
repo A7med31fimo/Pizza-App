@@ -44,7 +44,10 @@ const Register = () => {
           onPress={() => {
             console.log(email, password);
             register(email,password)
-              .then()
+            .then(
+              ()=> {
+                navigation.navigate('Home')} 
+              )
               .catch((e) => setError(e.message));
           }}
         />
