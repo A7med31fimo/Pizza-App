@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="pizza">
+      <Stack.Navigator initialRouteName="FirstPage">
         <Stack.Screen
           name="Home"
           component={Home}
@@ -22,7 +22,7 @@ export default function App() {
         <Stack.Screen name="Log In" component={Login} />
         <Stack.Screen name="Drinks" component={Drinks} />
         <Stack.Screen name="FirstPage" component={FirstPage} options={{title:"Getting Start"}}/>
-        <Stack.Screen name="pizza" component={Pizza} options={{title:"Getting Start"}}/>
+        <Stack.Screen name="pizza" component={Pizza} />
       </Stack.Navigator>
     </NavigationContainer>
   );
