@@ -8,14 +8,14 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
-import pizza from "../assets/FirstPage/pizza.png";
-import back from "../assets/FirstPage/back.png";
+import logo from "../assets/FirstPage/logo.png";
+import Background from "../assets/FirstPage/back.png";
 
 export default function FirstPage() {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={{ uri: back }}
+        source={Background}
         resizeMode="cover"
         style={styles.Background}
       >
@@ -23,18 +23,17 @@ export default function FirstPage() {
           <TouchableOpacity>
             <Text style={styles.Skiptxt}>Skip {">>"}</Text>
           </TouchableOpacity>
-          <Text style={styles.Welcometxt}>
-            Welcome to {"\n"} Yummy Pizza {"\n"} Restaurante
-          </Text>
+          <Text style={styles.Welcometxt}>Welcome</Text>
         </View>
-
-        <Image style={styles.pizza} source={{ uri: pizza }} />
-        <View style={styles.btn}>
-          <Button title="Log in" color="#FB081F"></Button>
-        </View>
-        <Text style={styles.ORtxt}>OR</Text>
-        <View style={styles.btn}>
-          <Button title="Sign up" color="#FB081F"></Button>
+        <Image style={styles.logo} source={logo} />
+        <View style={styles.foot}>
+          <View style={styles.btn}>
+            <Button title="Log in" color="#FB081F"></Button>
+          </View>
+          <Text style={styles.ORtxt}>OR</Text>
+          <View style={styles.btn}>
+            <Button title="Sign up" color="#FB081F"></Button>
+          </View>
         </View>
       </ImageBackground>
       <StatusBar style="auto" />
@@ -47,41 +46,70 @@ const styles = StyleSheet.create({
   },
   Background: {
     flex: 1,
-    padding: 20,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     flexDirection: "column",
   },
   header: {
     flexDirection: "column",
   },
   Skiptxt: {
-    color: "black",
+    color: "#FB081F",
     fontSize: 15,
     marginLeft: 280,
   },
   Welcometxt: {
-    color: "black",
+    color: "#FB081F",
     fontSize: 30,
     fontWeight: "bold",
     margin: 4,
-    textAlign: "left",
-    marginLeft: 135,
+    textAlign: "center",
   },
-  pizza: {
-    width: 160,
-    height: 160,
+  logo: {
+    width: 370,
+    height: 320,
     marginTop: 260,
   },
+  foot: {
+    flexDirection: "row",
+    marginBottom: 30,
+  },
   ORtxt: {
+    marginHorizontal: 20,
     color: "black",
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",
   },
   btn: {
-    width: 250,
+    width: 130,
     borderRadius: 10,
     overflow: "hidden",
   },
 });
+
+{
+  /* <ImageBackground
+        source={{ uri: back }}
+        resizeMode="cover"
+        style={styles.Background}
+      >
+        <View style={styles.header}>
+          <TouchableOpacity>
+            <Text style={styles.Skiptxt}>Skip {">>"}</Text>
+          </TouchableOpacity>
+          <Text style={styles.Welcometxt}>Welcome</Text>
+        </View>
+
+        <Image style={styles.logo} source={{ uri: logo }} />
+        <View style={styles.foot}>
+          <View style={styles.btn}>
+            <Button title="Log in" color="#FB081F"></Button>
+          </View>
+          <Text style={styles.ORtxt}>OR</Text>
+          <View style={styles.btn}>
+            <Button title="Sign up" color="#FB081F"></Button>
+          </View>
+        </View>
+      </ImageBackground> */
+}
