@@ -1,15 +1,16 @@
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import { StyleSheet, Text, View, Image, Button, Pressable } from "react-native";
 
 export default function Item({ iconSrc, text1, text2 }) {
   return (
-    <View style={styles.content}>
+    <View style={[styles.content, styles.shadowProp]}>
       <Image source={{uri: iconSrc}} style={styles.image} />
+
       <View style={styles.itemText}>
         <Text style={styles.itemText1}>{text1} </Text>
         <Text style={styles.itemText2}>{text2} </Text>
       </View>
       <View style={styles.btn}>
-        <Button title="Add to Cart" color="#C10E03"></Button>
+        <Button title="+ Add" color="#FB081F"></Button>
       </View>
     </View>
   );
@@ -18,19 +19,22 @@ export default function Item({ iconSrc, text1, text2 }) {
 const styles = StyleSheet.create({
   content: {
     backgroundColor: "#FFF",
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: "#474745",
+    borderRadius: 15,
     padding: 15,
-    paddingHorizontal:5,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 20,
   },
+  shadowProp: {
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
   image: {
     width: 70,
-    height: 130,
+    height: 120,
   },
   itemText: {
     flexDirection: "column",
@@ -47,10 +51,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   btn: {
-    marginTop: 65,
-    borderWidth: 4,
-    borderRadius: 15,
-    borderColor: "#ABC0C9",
+    marginTop: 80,
+    width: 100,
+    borderRadius: 10,
     overflow: "hidden",
   },
 });
