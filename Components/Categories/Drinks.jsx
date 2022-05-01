@@ -1,59 +1,44 @@
-import { StyleSheet, Text, View, Image, Button, Pressable } from "react-native";
+import { View,ScrollView,StyleSheet} from "react-native";
+import { useEffect, useState } from "react";
+import {
+  getphotos
+} from "../../db/pizzaEdit/editPizza";
+import Item from "./ItemOfDrink";
 
-export default function Item({ iconSrc, text1, text2 }) {
+ const Drinks = () => {
+  const getphotoslist = async () => {
+    const c = await getphotos();
+   
+    setphotos(c);
+    //console.log("photos",c);
+  };
+
+  useEffect(() => {
+    getphotoslist();
+  }, []);
+
+  const [photos, setphotos] = useState([]);
+  const [photoName, setphotoName] = useState("");
   return (
-    <View style={[styles.content, styles.shadowProp]}>
-      <Image source={iconSrc} style={styles.image} />
+    <View style={styles.container}>
+      
+        <ScrollView >
 
-      <View style={styles.itemText}>
-        <Text style={styles.itemText1}>{text1} </Text>
-        <Text style={styles.itemText2}>{text2} </Text>
-      </View>
-      <View style={styles.btn}>
-        <Button title="+ Add" color="#FB081F"></Button>
-      </View>
+          {photos.map((a,index) => ( 
+            <View key={index}>     
+              <Item iconSrc={a.ref} text1={a.name} text2={a.cost} />
+            </View>
+          ))}
+        </ScrollView>
+      
     </View>
-  );
+  )
 }
-
 const styles = StyleSheet.create({
-  content: {
-    backgroundColor: "#FFF",
-    borderRadius: 15,
+  container: {
+    flex: 1,
+    backgroundColor: "#F7F7F7",
     padding: 15,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 20,
   },
-  shadowProp: {
-    shadowColor: "#000000",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-  },
-  image: {
-    width: 70,
-    height: 120,
-  },
-  itemText: {
-    flexDirection: "column",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-  },
-  itemText1: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 45,
-  },
-  itemText2: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  btn: {
-    marginTop: 80,
-    width: 100,
-    borderRadius: 10,
-    overflow: "hidden",
-  },
-});
+})
+export default Drinks;

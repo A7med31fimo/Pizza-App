@@ -1,15 +1,6 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-} from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Drinks from "./Categories/Drinks";
-import pepsi from "../assets/Drinks/pepsi.png";
-import cola from "../assets/Drinks/cola.png";
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import Drinks from './Categories/Drinks';
+
 const Home = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: "#DDE0D3" }}>
@@ -29,16 +20,12 @@ const Home = ({ navigation }) => {
       <View style={styles.txtAdditions}>
         <Text>Last Additions</Text>
       </View>
-      <View style={styles.container}>
-        <ScrollView style={{ backgroundColor: "#7A7671" }}>
-          <Drinks text1={"Pepsi"} text2={"EGP 10.00"} iconSrc={pepsi} />
-          <Drinks text1={"cola"} text2={"EGP 10.00"} iconSrc={cola} />
-          <Drinks text1={"cola"} text2={"EGP 10.00"} iconSrc={cola} />
-          <Drinks text1={"cola"} text2={"EGP 10.00"} iconSrc={cola} />
-          <Drinks text1={"cola"} text2={"EGP 10.00"} iconSrc={cola} />
-        </ScrollView>
-      </View>
-      <View style={styles.txtfooter}>
+     <View style={styles.container}>
+        <ScrollView style={{backgroundColor:"#7A7671"}} >
+        <Drinks/>
+        </ScrollView> 
+        </View>
+        <View style={styles.txtfooter} >
         <Text>Produced By Hanksha Group</Text>
       </View>
     </View>

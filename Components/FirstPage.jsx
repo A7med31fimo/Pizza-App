@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   ImageBackground,
   Image,
@@ -8,35 +7,44 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
-import logo from "../assets/FirstPage/logo.png";
-import Background from "../assets/FirstPage/back.png";
+import pizza from "../assets/FirstPage/pizza.png";
+import back from "../assets/FirstPage/back.png";
 
-export default function FirstPage() {
+export default function FirstPage({ navigation }) {
   return (
     <View style={styles.container}>
+
       <ImageBackground
-        source={Background}
+        source={{ uri: back }}
         resizeMode="cover"
         style={styles.Background}
       >
+        
         <View style={styles.header}>
-          <TouchableOpacity>
-            <Text style={styles.Skiptxt}>Skip {">>"}</Text>
+          <TouchableOpacity style={styles.item} onPress={() => {
+            navigation.navigate("Home");
+          }}>
+            <Text>Skip</Text>
           </TouchableOpacity>
-          <Text style={styles.Welcometxt}>Welcome</Text>
+          <Text style={styles.Welcometxt}>
+            Welcome to {"\n"} Yummy Pizza {"\n"} Restaurante
+          </Text>
         </View>
-        <Image style={styles.logo} source={logo} />
-        <View style={styles.foot}>
-          <View style={styles.btn}>
-            <Button title="Log in" color="#FB081F"></Button>
-          </View>
-          <Text style={styles.ORtxt}>OR</Text>
-          <View style={styles.btn}>
-            <Button title="Sign up" color="#FB081F"></Button>
-          </View>
+
+        <Image style={styles.pizza} source={{ uri: pizza }} />
+        <View style={styles.btn}>
+          <Button title="Log in" color="#FB081F" onPress={() => {
+            navigation.navigate("Log In");
+          }}></Button>
+        </View>
+        <Text style={styles.ORtxt}>OR</Text>
+        <View style={styles.btn}>
+          <Button title="Sign up" color="#FB081F" onPress={() => {
+            navigation.navigate("Register");
+          }}></Button>
         </View>
       </ImageBackground>
-      <StatusBar style="auto" />
+      
     </View>
   );
 }
@@ -46,44 +54,51 @@ const styles = StyleSheet.create({
   },
   Background: {
     flex: 1,
+    padding: 20,
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     flexDirection: "column",
   },
   header: {
     flexDirection: "column",
   },
   Skiptxt: {
-    color: "#FB081F",
+    color: "black",
     fontSize: 15,
     marginLeft: 280,
   },
   Welcometxt: {
-    color: "#FB081F",
+    color: "black",
     fontSize: 30,
     fontWeight: "bold",
     margin: 4,
-    textAlign: "center",
+    textAlign: "left",
+    marginLeft: 135,
   },
-  logo: {
-    width: 370,
-    height: 320,
+  pizza: {
+    width: 160,
+    height: 160,
     marginTop: 260,
   },
-  foot: {
-    flexDirection: "row",
-    marginBottom: 30,
-  },
   ORtxt: {
-    marginHorizontal: 20,
     color: "black",
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
   },
   btn: {
-    width: 130,
+    width: 250,
     borderRadius: 10,
     overflow: "hidden",
-  },
+  },item:{  
+    
+    borderWidth: 0.5,
+    borderColor: "#380401",
+    borderStyle: "solid",
+    paddingHorizontal: 10,
+    backgroundColor: "#FB081F",
+    borderBottomEndRadius: 6,
+    borderTopStartRadius: 6,
+    marginLeft: 260, 
+  }
 });
