@@ -6,12 +6,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Drinks from "./Components/Categories/Drinks";
 import FirstPage from "./Components/FirstPage";
+import Pizza from "./Components/Categories/pizza/importPizza"
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="FirstPage">
+      <Stack.Navigator initialRouteName="pizza">
         <Stack.Screen
           name="Home"
           component={Home}
@@ -21,6 +22,7 @@ export default function App() {
         <Stack.Screen name="Log In" component={Login} />
         <Stack.Screen name="Drinks" component={Drinks} />
         <Stack.Screen name="FirstPage" component={FirstPage} options={{title:"Getting Start"}}/>
+        <Stack.Screen name="pizza" component={Pizza} options={{title:"Getting Start"}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
