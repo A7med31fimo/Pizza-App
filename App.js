@@ -47,13 +47,12 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
-          component={FirstPage}
+          component={Home}
           options={{ title: "Pizza 🍕" }}
         />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Log In" component={Login} />
         <Stack.Screen name="Drinks" component={Drinks} />
-        <Stack.Screen name="FirstPage" component={FirstPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
