@@ -10,7 +10,7 @@ import Item from "./ItemOfDrink";
     const c = await getphotos();
    
     setphotos(c);
-    console.log("photos",c);
+    //console.log("photos",c);
   };
 
   useEffect(() => {
@@ -24,9 +24,8 @@ import Item from "./ItemOfDrink";
       
         <ScrollView >
 
-          {photos.map((a) => (
-          
-            <View key={a.id}>     
+          {photos.map((a,index) => ( 
+            <View key={index}>     
               <Item iconSrc={a.ref} text1={a.name} text2={a.cost} />
             </View>
           ))}

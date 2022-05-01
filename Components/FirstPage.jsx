@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   ImageBackground,
   Image,
@@ -11,17 +10,21 @@ import {
 import pizza from "../assets/FirstPage/pizza.png";
 import back from "../assets/FirstPage/back.png";
 
-export default function FirstPage() {
+export default function FirstPage({ navigation }) {
   return (
     <View style={styles.container}>
+
       <ImageBackground
         source={{ uri: back }}
         resizeMode="cover"
         style={styles.Background}
       >
+        
         <View style={styles.header}>
-          <TouchableOpacity>
-            <Text style={styles.Skiptxt}>Skip {">>"}</Text>
+          <TouchableOpacity style={styles.item} onPress={() => {
+            navigation.navigate("Home");
+          }}>
+            <Text>Skip</Text>
           </TouchableOpacity>
           <Text style={styles.Welcometxt}>
             Welcome to {"\n"} Yummy Pizza {"\n"} Restaurante
@@ -30,14 +33,18 @@ export default function FirstPage() {
 
         <Image style={styles.pizza} source={{ uri: pizza }} />
         <View style={styles.btn}>
-          <Button title="Log in" color="#FB081F"></Button>
+          <Button title="Log in" color="#FB081F" onPress={() => {
+            navigation.navigate("Log In");
+          }}></Button>
         </View>
         <Text style={styles.ORtxt}>OR</Text>
         <View style={styles.btn}>
-          <Button title="Sign up" color="#FB081F"></Button>
+          <Button title="Sign up" color="#FB081F" onPress={() => {
+            navigation.navigate("Register");
+          }}></Button>
         </View>
       </ImageBackground>
-      <StatusBar style="auto" />
+      
     </View>
   );
 }
@@ -83,5 +90,15 @@ const styles = StyleSheet.create({
     width: 250,
     borderRadius: 10,
     overflow: "hidden",
-  },
+  },item:{  
+    
+    borderWidth: 0.5,
+    borderColor: "#380401",
+    borderStyle: "solid",
+    paddingHorizontal: 10,
+    backgroundColor: "#FB081F",
+    borderBottomEndRadius: 6,
+    borderTopStartRadius: 6,
+    marginLeft: 260, 
+  }
 });

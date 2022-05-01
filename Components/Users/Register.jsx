@@ -50,6 +50,7 @@ const Register = () => {
               )
               .catch((e) => setError(e.message));
           }}
+          color="#FB081F"
         />
         <Text>{error}</Text>
       </View>

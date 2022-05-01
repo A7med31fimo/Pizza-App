@@ -52,9 +52,9 @@ export default function Login  ({navigation}){
               ()=> { navigation.navigate('Home')} 
               )
               .catch((e) => setError(e.message));
-          }
+          } 
         
-        }
+        }color="#FB081F"
         />
         <Text>{error}</Text>
       </View>
