@@ -1,15 +1,6 @@
-import {
-  ImageBackground,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-} from "react-native";
+import { Image, StyleSheet, Text, View, Button, TextInput } from "react-native";
 import { React, useState } from "react";
 import { register } from "../../db/auth/auth";
-import Background from "../../assets/pizza/logBack.jpg";
 import logo from "../../assets/FirstPage/logo.png";
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -18,47 +9,26 @@ const Register = () => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={Background}
-        resizeMode="cover"
-        style={styles.Background}
-      >
+      <View style={styles.logoback}>
         <Image style={styles.logo} source={logo} />
-
-        <View>
-          <TextInput
-            style={styles.inp}
-            placeholder="Name"
-            placeholderTextColor="#FFFFFF"
-          ></TextInput>
-
+      </View>
+      <View style={styles.body}>
+        <View style={styles.inps}>
+          <TextInput style={styles.inp} placeholder="Name"></TextInput>
           <TextInput
             onChangeText={setEmail}
             keyboardType="email-address"
             style={styles.inp}
             placeholder="Email@Example.com"
-            placeholderTextColor="#FFFFFF"
           ></TextInput>
-
-          <TextInput
-            style={styles.inp}
-            placeholder="Phone"
-            placeholderTextColor="#FFFFFF"
-          ></TextInput>
-
-          <TextInput
-            style={styles.inp}
-            placeholder="Addres"
-            placeholderTextColor="#FFFFFF"
-          ></TextInput>
-
+          <TextInput style={styles.inp} placeholder="Phone"></TextInput>
+          <TextInput style={styles.inp} placeholder="Addres"></TextInput>
           <TextInput
             onChangeText={setpassword}
             keyboardType="visible-password"
             secureTextEntry={true}
             style={styles.inp}
             placeholder="Password"
-            placeholderTextColor="#FFFFFF"
           ></TextInput>
         </View>
 
@@ -77,7 +47,7 @@ const Register = () => {
           ></Button>
           <Text>{error}</Text>
         </View>
-      </ImageBackground>
+      </View>
     </View>
   );
 };
@@ -87,16 +57,32 @@ export default Register;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
   },
   Background: {
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
   },
+  logoback: {
+    backgroundColor: "#e73636",
+  },
   logo: {
-    width: 350,
-    height: 350,
-    marginTop: -60,
+    width: 400,
+    height: 400,
+    marginTop: -80,
+    marginBottom: -40,
+  },
+  text: {
+    fontSize: 20,
+    textAlign: "center",
+    fontStyle: "italic",
+    color: "white",
+    marginTop: -50,
+  },
+  inps: {
+    marginTop: 30,
   },
   inp: {
     width: 300,
@@ -108,16 +94,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontStyle: "italic",
     padding: 6,
-    color: "#FFFFFF",
+    color: "#000000",
   },
   foot: {
     flexDirection: "column",
-    justifyContent: "center",
+    alignItems: "center",
     marginTop: 10,
   },
   btn: {
-    marginVertical: 20,
-    width: 250,
+    justifyContent: "center",
+    marginVertical: 5,
+    width: 300,
     borderRadius: 15,
     overflow: "hidden",
   },
