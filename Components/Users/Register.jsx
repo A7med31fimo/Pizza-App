@@ -60,11 +60,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
   },
-  Background: {
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-  },
   logoback: {
     backgroundColor: "#e73636",
   },
@@ -74,6 +69,7 @@ const styles = StyleSheet.create({
     marginTop: -80,
     marginBottom: -40,
   },
+  body:{},
   text: {
     fontSize: 20,
     textAlign: "center",

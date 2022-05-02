@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Drinks from "./Components/Categories/Drinks";
 import FirstPage from "./Components/FirstPage";
 import Pizza from "./Components/Categories/pizza/importPizza"
+import Cart from "./Components/Categories/Cart";
 export default function App() {
   const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export default function App() {
         <Stack.Screen name="Drinks" component={Drinks} />
         <Stack.Screen name="FirstPage" component={FirstPage} options={{title:"Getting Start"}}/>
         <Stack.Screen name="pizza" component={Pizza} />
+        <Stack.Screen name="Cart" component={Cart} />
       </Stack.Navigator>
     </NavigationContainer>
   );

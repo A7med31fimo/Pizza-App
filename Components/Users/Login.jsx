@@ -65,13 +65,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
   },
-  Background: {
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    alignContent: "space-between",
-  },
   logoback: {
     backgroundColor: "#e73636",
   },
