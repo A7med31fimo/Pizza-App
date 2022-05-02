@@ -2,6 +2,38 @@ import { StyleSheet, Text, View, Image, Button, Pressable } from "react-native";
 import Icon from 'react-native-vector-icons/Entypo';
 
 export default function Item({ image, label, price }) {
+
+  const [icon , seticon] = useState("heart-outlined");
+  const [small ,setsmall] = useState('checked');
+  const [large ,setlarge] = useState('unchecked');
+  const [pric , setprice] = useState(price);
+  
+  const clickHandler = () => {
+    if (icon === "heart-outlined")
+    seticon('heart');
+    else 
+    seticon("heart-outlined");
+  }
+
+  const clicksmall = () => {
+    if (small === "unchecked"){
+    setsmall('checked');
+    setlarge('unchecked');
+    setprice(price)  ;
+    }
+  }
+
+
+  const clicklarge = () => {
+    if (large === "unchecked"){
+    setsmall('unchecked');
+    setlarge('checked')
+    setprice(price+7)  ;
+    }
+  } 
+
+
+
   return (
     <View style={styles.content}>
         
@@ -40,9 +72,9 @@ export default function Item({ image, label, price }) {
     </View> 
  
  <View style = {styles.footer}>
- <Text style = {styles.label} > {price}.00 EGP </Text>
+ <Text style = {styles.label} > {pric}.00 EGP </Text>
  <View style={styles.button}>
-   <Button title="    + Add    " color = "crimson" />
+   <Button title="+ Add" color = "crimson" />
  </View>
  </View>
 
@@ -76,6 +108,7 @@ const styles = StyleSheet.create({
     paddingBottom : 10
   },
   button: {
+    width : '30%',
     borderRadius: 10,
     overflow: "hidden",
   },

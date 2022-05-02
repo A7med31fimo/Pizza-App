@@ -10,13 +10,13 @@ export default function Pizza() {
 
     const pizza_arr = [
     { label: "BBQ Chicken Ranch", desc: "RANCH base sause with girled checken pieces , topped with mushroom slices, onions ,and topped with tasty BBQ "  
-    , image: Pizza1 , price : '100' },
+    , image: Pizza1 , price : 100 },
     { label: "BBQ Chicken ", desc: "RANCH base sause with girled checken pieces ,and topped with tasty BBQ "  
-    , image: Pizza2 , price : '90' },
+    , image: Pizza2 , price : 90 },
     { label: "BBQ Chicken Ranch", desc: "RANCH base sause with girled checken pieces , topped with mushroom slices, onions ,and topped with tasty BBQ "  
-    , image: Pizza3 , price : '170' },
+    , image: Pizza3 , price : 170 },
     { label: "BBQ Chicken Ranch", desc: "RANCH base sause with girled checken pieces , topped with mushroom slices, onions ,and topped with tasty BBQ "  
-    , image: Pizza4 , price : '120' },
+    , image: Pizza4 , price : 120 },
     
   ];
 

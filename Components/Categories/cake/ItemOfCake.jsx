@@ -7,18 +7,32 @@ import Icon from 'react-native-vector-icons/Entypo';
 
 
 export default function Item({label , desc , image , price}) {
-  
+  const [icon , seticon] = useState("heart-outlined");
+
+  const clickHandler = () => {
+    if (icon === "heart-outlined")
+    seticon('heart');
+    else 
+    seticon("heart-outlined");
+  }
+
+
+  const buttonHandler = () => {
+
+    console.log('add');
+
+}
   return (
         <View style={styles.content}>
         <View style={{paddingHorizontal:7}} >
         <View style={styles.footer}>
         <Text style={styles.label}>{label}</Text>
         <Icon.Button 
-        name="heart"
+        name= {icon}
         size = {20}
         color = 'crimson'
         backgroundColor="white" 
-        onPress = {() => alert('hi')}
+        onPress = {clickHandler}
         />
 
         {/* <Image source={Love} style = {styles.icon} /> */}
@@ -30,7 +44,7 @@ export default function Item({label , desc , image , price}) {
       <View style = {styles.footer}>
       <Text style = {styles.label} > {price}.00 EGP </Text>
       <View style={styles.button}>
-        <Button title="    + Add    " color = "crimson" />
+        <Button title="+ Add" color = "crimson" onPress={buttonHandler} />
       </View>
       </View>
    
@@ -68,6 +82,7 @@ const styles = StyleSheet.create({
     paddingTop : 5
   },
   button: {
+    width : '30%',
     borderRadius: 10,
     overflow: "hidden",
   },
