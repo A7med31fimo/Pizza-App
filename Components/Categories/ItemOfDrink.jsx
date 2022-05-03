@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, Button, Pressable } from "react-native";
 import Icon from 'react-native-vector-icons/Entypo';
-
+import { useState } from "react";
+import {RadioButton} from "react-native-paper"
 export default function Item({ image, label, price }) {
 
   const [icon , seticon] = useState("heart-outlined");
@@ -98,8 +99,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   image: {
-    width: "99%",
-    height: 180,
+    width: 50,
+    height: 80,
   },
   label: {
     width : "97%",
