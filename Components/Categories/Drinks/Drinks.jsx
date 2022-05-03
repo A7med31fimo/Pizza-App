@@ -2,7 +2,7 @@ import { View,ScrollView,StyleSheet} from "react-native";
 import { useEffect, useState } from "react";
 import {
   getphotos
-} from "../../../db/pizzaEdit/editPizza";
+} from "../../../db/Edit/DrinksEdit";
 import Item from "./ItemOfDrink";
 
  const Drinks = () => {

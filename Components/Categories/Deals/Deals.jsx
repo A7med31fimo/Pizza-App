@@ -1,12 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
-
-import Deal from "../cake/ItemOfCake"
-
 import { useEffect, useState } from "react";
-import {
-  getItemDeals
-} from "../../../db/pizzaEdit/dealedit";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
+import Deal from "../cake/ItemOfCake"
+import {getItemDeals} from "../../../db/Edit/DealEdit";
 
  export default function Deals() {
     const getItemlist = async () => {
