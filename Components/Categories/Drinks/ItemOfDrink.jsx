@@ -73,7 +73,7 @@ export default function Item({ image, label, price }) {
     </View> 
  
  <View style = {styles.footer}>
- <Text style = {styles.label} > {pric}.00 EGP </Text>
+ <Text style = {styles.label} > {pric}EGP </Text>
  <View style={styles.button}>
    <Button title="+ Add" color = "crimson" />
  </View>

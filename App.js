@@ -4,7 +4,7 @@ import Register from "./Components/Users/Register";
 import Home from "./Components/Home";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Drinks from "./Components/Categories/Drinks";
+import Drinks from "./Components/Categories/Drinks/Drinks";
 import FirstPage from "./Components/FirstPage";
 import Pizza from "./Components/Categories/pizza/importPizza";
 import Cakes from "./Components/Categories/cake/Cakes"
@@ -15,7 +15,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Cart">
+      <Stack.Navigator initialRouteName="deals">
         <Stack.Screen
           name="Home"
           component={Home}
