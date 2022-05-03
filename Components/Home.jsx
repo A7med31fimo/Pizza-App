@@ -11,9 +11,12 @@ const Home = ({ navigation }) => {
             navigation.navigate("Drinks");
           }}
         >
+          
           <Text>Drinks</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.item}>
+        <TouchableOpacity style={styles.item}  onPress={() => {
+            navigation.navigate("pizza");
+          }}>
           <Text>Pizza</Text>
         </TouchableOpacity>
       </View>
