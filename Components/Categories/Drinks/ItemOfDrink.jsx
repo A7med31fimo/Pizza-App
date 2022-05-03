@@ -8,8 +8,11 @@ export default function Item({ image, label, price }) {
   const [small ,setsmall] = useState('checked');
   const [large ,setlarge] = useState('unchecked');
   const [pric , setprice] = useState(price);
+  const [visible , setvisible] = useState(true);
+  const [trash , settrash] = useState('trash');
+  const [number , setnumber] = useState(0);
   
-  const clickHandler = () => {
+  const clickHeart = () => {
     if (icon === "heart-outlined")
     seticon('heart');
     else 
@@ -33,6 +36,27 @@ export default function Item({ image, label, price }) {
     }
   } 
 
+  const buttonHandler = () => {
+    setvisible(false);
+    setnumber(number+1);
+  }
+
+  const plusHandler = () => {
+    setnumber(number+1);
+    settrash('minus');
+  }
+
+
+  const minusHandler = () => {
+    setnumber(number-1);
+    if (number === 2){
+    settrash('trash');
+    }
+    if (number === 1){
+      setvisible(true);
+      }
+  }
+
 
 
   return (
@@ -41,15 +65,13 @@ export default function Item({ image, label, price }) {
    <View style={{paddingHorizontal:7}} >
    <View style={styles.footer}>
    <Text style={styles.label}>{label}</Text>
-   <Icon.Button 
-        name="heart"
+   <Icon
+        name={icon}
         size = {20}
         color = 'crimson'
-        backgroundColor="white" 
-        onPress = {() => alert('hi')}
+        onPress = {clickHeart}
         />
 
-        {/* <Image source={Love} style = {styles.icon} /> */}
    </View>
  </View> 
  <Image source={{uri: image}} style = {styles.image} />
@@ -57,27 +79,53 @@ export default function Item({ image, label, price }) {
 
 <View style={styles.footer}>
    <RadioButton 
-       status = 'checked'
+       status = {small}
        color="red"
        value = 'Small'
        uncheckedColor="black"
+       onPress={clicksmall}
    />
    <Text style = {styles.radio}>330 ml</Text>
    <RadioButton 
+    status = {large} 
        color="red"
-       value = 'Medium'
+       value = 'Large'
        uncheckedColor="black"
+       onPress={clicklarge}
    />
    <Text style = {styles.radio}>1 Litre</Text>
 
     </View> 
  
- <View style = {styles.footer}>
- <Text style = {styles.label} > {pric}EGP </Text>
- <View style={styles.button}>
-   <Button title="+ Add" color = "crimson" />
- </View>
- </View>
+    <View style = {styles.footer}>
+<Text style = {styles.price} > {pric}.00 EGP </Text>
+{visible ? 
+   <View style={styles.button}> 
+   <Button  title = '+ add' color = "crimson" onPress={buttonHandler}/>
+   </View>
+   : 
+   <View style = {styles.footer}>
+     
+   <Icon
+        name={trash}
+        size = {25}
+        color = 'grey'
+        onPress = {minusHandler}
+        
+        />
+      <Text style = {styles.number} >{number}</Text>
+      <Icon 
+        name='plus'
+        size = {25}
+        color = 'crimson'
+        iconStyle={{borderRadius: 50}}
+        onPress = {plusHandler}
+        />
+      </View>
+      
+ }
+
+</View>   
 
  
 </View>
@@ -108,8 +156,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingBottom : 10
   },
+  price: {
+    width : '75%',
+    fontSize: 16,
+    fontWeight: "bold",
+    
+  },
   button: {
-    width : '30%',
+    width : '25%',
     borderRadius: 10,
     overflow: "hidden",
   },
@@ -119,8 +173,15 @@ const styles = StyleSheet.create({
     marginTop:15,
     flexDirection: "row",
   },
+  number : {
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor : "#f7eceb",
+    fontSize : 16,
+    paddingHorizontal : 12
+  },
   
   radio :{
-    width : "50%"
+    width : "45%"
   }
 });

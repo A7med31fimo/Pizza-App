@@ -13,12 +13,12 @@ export default function Item({label , desc , image , price}) {
   const [medium ,setmedium] = useState('unchecked');
   const [large ,setlarge] = useState('unchecked');
   const [pric , setprice] = useState(price);
-  const [visible1 , setvisible1] = useState(true);
+  const [visible , setvisible] = useState(true);
   const [trash , settrash] = useState('trash');
   const [number , setnumber] = useState(0);
   
   
-  const clickHandler = () => {
+  const clickHeart = () => {
     if (icon === "heart-outlined")
     seticon('heart');
     else 
@@ -55,7 +55,7 @@ export default function Item({label , desc , image , price}) {
 
 
   const buttonHandler = () => {
-    setvisible1(false);
+    setvisible(false);
     setnumber(number+1);
   }
 
@@ -67,11 +67,11 @@ export default function Item({label , desc , image , price}) {
 
   const minusHandler = () => {
     setnumber(number-1);
-    if (number <= 2){
+    if (number === 2){
     settrash('trash');
     }
-    if (number <= 1){
-      setvisible1(true);
+    if (number === 1){
+      setvisible(true);
       }
   }
 
@@ -86,11 +86,8 @@ export default function Item({label , desc , image , price}) {
         name={icon}
         size = {20}
         color = 'crimson'
-        backgroundColor="white" 
-        onPress = {clickHandler}
+        onPress = {clickHeart}
         />
-
-        {/* <Image source={Love} style = {styles.icon} /> */}
 
         </View>
         <Text style={styles.desc}>{desc}</Text>
@@ -132,7 +129,7 @@ export default function Item({label , desc , image , price}) {
 
 <View style = {styles.footer}>
 <Text style = {styles.price} > {pric}.00 EGP </Text>
-{visible1 ? 
+{visible ? 
    <View style={styles.button}> 
    <Button  title = '+ add' color = "crimson" onPress={buttonHandler}/>
    </View>
@@ -150,7 +147,7 @@ export default function Item({label , desc , image , price}) {
       <Icon 
         name='plus'
         size = {25}
-        color = 'red'
+        color = 'crimson'
         iconStyle={{borderRadius: 50}}
         onPress = {plusHandler}
         />
