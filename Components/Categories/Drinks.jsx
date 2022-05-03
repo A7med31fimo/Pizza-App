@@ -23,10 +23,10 @@ import Item from "./ItemOfDrink";
     <View style={styles.container}>
       
         <ScrollView >
-
+        
           {photos.map((a,index) => ( 
             <View key={index}>     
-              <Item iconSrc={a.ref} text1={a.name} text2={a.cost} />
+              <Item image={a.ref} label={a.name} price={a.cost} />
             </View>
           ))}
         </ScrollView>
@@ -37,7 +37,7 @@ import Item from "./ItemOfDrink";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F7F7F7",
+    //backgroundColor: "#F7F7F7",
     padding: 15,
   },
 })

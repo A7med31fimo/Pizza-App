@@ -4,9 +4,6 @@ import Pizza1 from "../../../assets/pizza/pizza.png" ;
 import { RadioButton } from 'react-native-paper';
 
 import Icon from 'react-native-vector-icons/Entypo';
-import Blank from "../../../assets/draft/blank_heart.png";
-import Love from "../../../assets/draft/love.png";
-
 
 export default function Item({label , desc , image , price}) {
 
@@ -76,17 +73,15 @@ export default function Item({label , desc , image , price}) {
 
         {/* <Image source={Love} style = {styles.icon} /> */}
 
-        <TouchableOpacity >
-        <Image source={Love} style = {styles.icon} />
-        </TouchableOpacity>
         </View>
         <Text style={styles.desc}>{desc}</Text>
       </View> 
-      <Image source={image} style = {styles.image} />
+    
+    <Image source={image} style = {styles.image} />
 
 
     <View style={styles.footer}>
-
+       
         <RadioButton 
             status = {small}
             color="red"
@@ -94,7 +89,7 @@ export default function Item({label , desc , image , price}) {
             uncheckedColor="black"
             onPress={clicksmall}
         />
-        <Text>Small               </Text>
+        <Text style = {styles.radio}>Small</Text>
         <RadioButton 
              status = {medium}
             color="red"
@@ -102,7 +97,7 @@ export default function Item({label , desc , image , price}) {
             uncheckedColor="black"
             onPress={clickmedium}
         />
-        <Text>Medium              </Text>
+         <Text style = {styles.radio}>Medium</Text>
 
         <RadioButton 
           status = {large}
@@ -141,10 +136,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   image: {
-    width: 375,
+    width: '99%',
     height: 180,
   },
   label: {
+    width : '97%',
     fontSize: 16,
     fontWeight: "bold",
   },
@@ -155,14 +151,8 @@ const styles = StyleSheet.create({
   },
   button: {
     width : '30%',
-    marginLeft:180,
     borderRadius: 10,
     overflow: "hidden",
-  },
-
-  price :{
-    fontSize: 18,
-    fontWeight: "bold",
   },
 
   footer : {
@@ -174,11 +164,5 @@ const styles = StyleSheet.create({
   
   radio :{
     width : '33%'
-  },
-  icon : {
-      marginLeft : 180,
-      width : 30 ,
-      height : 30
-  },
+  }
 });
-
