@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import Drinks from './Categories/Drinks';
+import Drinks from './Categories/Drinks/Drinks';
 
 const Home = ({ navigation }) => {
   return (

@@ -7,23 +7,23 @@ import {
   collection,
 } from "firebase/firestore";
 // Get a list of cities from your database
-async function getphotos() {
-  const photosCol = collection(db, "photos");
+async function getItemDeals() {
+  const photosCol = collection(db, "deals");
   const photoSnapshot = await getDocs(photosCol);
-  const photoList = photoSnapshot.docs.map((doc) => {
+  const ItemList = photoSnapshot.docs.map((doc) => {
     return { id: doc.id, ...doc.data() };
   });
-return photoList;
+return ItemList;
 }
 
-async function deletePhoto(id) {
-  try {
-  await deleteDoc(doc(db, "photos", id));
-  console.log("Document deleted with ID: ", id);
-} catch (error) {
-  console.error("Error deleting document: ", error);
-}
-}
+// async function deletePhoto(id) {
+//   try {
+//   await deleteDoc(doc(db, "photos", id));
+//   console.log("Document deleted with ID: ", id);
+// } catch (error) {
+//   console.error("Error deleting document: ", error);
+// }
+// }
 
 // async function addphoto(photo) {
 //   try {
@@ -36,4 +36,4 @@ async function deletePhoto(id) {
 // }
 // , deletePhoto, addphoto 
 
-export { getphotos};
+export { getItemDeals};

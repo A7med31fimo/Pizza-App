@@ -2,13 +2,12 @@ import { View,ScrollView,StyleSheet} from "react-native";
 import { useEffect, useState } from "react";
 import {
   getphotos
-} from "../../db/pizzaEdit/editPizza";
+} from "../../../db/pizzaEdit/editPizza";
 import Item from "./ItemOfDrink";
 
  const Drinks = () => {
   const getphotoslist = async () => {
     const c = await getphotos();
-   
     setphotos(c);
     //console.log("photos",c);
   };
