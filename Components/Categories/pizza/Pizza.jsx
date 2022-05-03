@@ -2,8 +2,14 @@ import { useState } from "react";
 import { StyleSheet, Text, View, Image, Button ,CheckBox , TouchableOpacity } from "react-native";
 import Pizza1 from "../../../assets/pizza/pizza.png" ;
 import { RadioButton } from 'react-native-paper';
+<<<<<<< HEAD
 
 import Icon from 'react-native-vector-icons/Entypo';
+=======
+import Blank from "../../../assets/draft/blank_heart.png";
+import Love from "../../../assets/draft/love.png";
+
+>>>>>>> 8a9da98a5c07688bfcf7ffb42422d66613a4121a
 
 export default function Item({label , desc , image , price}) {
 
@@ -63,6 +69,7 @@ export default function Item({label , desc , image , price}) {
         <View style={{paddingHorizontal:7}} >
         <View style={styles.footer}>
         <Text style={styles.label}>{label}</Text>
+<<<<<<< HEAD
         <Icon.Button 
         name={icon}
         size = {20}
@@ -73,15 +80,19 @@ export default function Item({label , desc , image , price}) {
 
         {/* <Image source={Love} style = {styles.icon} /> */}
 
+=======
+        <TouchableOpacity >
+        <Image source={Love} style = {styles.icon} />
+        </TouchableOpacity>
+>>>>>>> 8a9da98a5c07688bfcf7ffb42422d66613a4121a
         </View>
         <Text style={styles.desc}>{desc}</Text>
       </View> 
-    
-    <Image source={image} style = {styles.image} />
+      <Image source={image} style = {styles.image} />
 
 
     <View style={styles.footer}>
-       
+
         <RadioButton 
             status = {small}
             color="red"
@@ -89,7 +100,7 @@ export default function Item({label , desc , image , price}) {
             uncheckedColor="black"
             onPress={clicksmall}
         />
-        <Text style = {styles.radio}>Small</Text>
+        <Text>Small               </Text>
         <RadioButton 
              status = {medium}
             color="red"
@@ -97,7 +108,7 @@ export default function Item({label , desc , image , price}) {
             uncheckedColor="black"
             onPress={clickmedium}
         />
-         <Text style = {styles.radio}>Medium</Text>
+        <Text>Medium              </Text>
 
         <RadioButton 
           status = {large}
@@ -106,16 +117,26 @@ export default function Item({label , desc , image , price}) {
           uncheckedColor="black"
           onPress={clicklarge}
         />
+<<<<<<< HEAD
         <Text style = {styles.radio}>Large</Text>
         
         </View> 
+=======
+        <Text> Large </Text>
+
+         </View> 
+>>>>>>> 8a9da98a5c07688bfcf7ffb42422d66613a4121a
       
       <View style = {styles.footer}>
       <Text style = {styles.label} > {pric}.00 EGP </Text>
       <View style={styles.button}>
         <Button title = "+ Add" color = "crimson" onPress={buttonHandler}/>
       </View>
+<<<<<<< HEAD
       </View> 
+=======
+   
+>>>>>>> 8a9da98a5c07688bfcf7ffb42422d66613a4121a
       
     </View>
   );
@@ -136,11 +157,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   image: {
-    width: '99%',
+    width: 375,
     height: 180,
   },
   label: {
-    width : '97%',
     fontSize: 16,
     fontWeight: "bold",
   },
@@ -150,9 +170,18 @@ const styles = StyleSheet.create({
     paddingTop : 5
   },
   button: {
+<<<<<<< HEAD
     width : '30%',
+=======
+    marginLeft:180,
+>>>>>>> 8a9da98a5c07688bfcf7ffb42422d66613a4121a
     borderRadius: 10,
     overflow: "hidden",
+  },
+
+  price :{
+    fontSize: 18,
+    fontWeight: "bold",
   },
 
   footer : {
@@ -161,9 +190,17 @@ const styles = StyleSheet.create({
     marginTop:15,
     flexDirection: "row",
   },
+<<<<<<< HEAD
   
   radio :{
     width : '33%'
   }
+=======
+  icon : {
+      marginLeft : 180,
+      width : 30 ,
+      height : 30
+  },
+>>>>>>> 8a9da98a5c07688bfcf7ffb42422d66613a4121a
 });
 
