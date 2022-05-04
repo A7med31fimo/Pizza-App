@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View, Button,ScrollView } from "react-native";
 import logo from "../../../assets/FirstPage/logo.png";
 import {
   AddItemsCards,deleteItemsCards,getCardItems
-} from "../../../db/pizzaEdit/CartItems";
+} from "../../../db/Edit/CartItems";
 import { useEffect, useState } from "react";
 export default function Cart() {
   const getCardslist = async () => {
