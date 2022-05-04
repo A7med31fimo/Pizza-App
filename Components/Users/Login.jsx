@@ -7,7 +7,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../db/Config";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import logo from "../../assets/FirstPage/logo.png";
+// import logo from "../../assets/FirstPage/logo.png";
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
@@ -15,7 +15,10 @@ export default function Login({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.logoback}>
-        <Image style={styles.logo} source={logo} />
+        <Image
+          style={styles.logo}
+          source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
+        />
       </View>
       <View style={styles.body}>
         <View style={styles.inps}>

@@ -7,14 +7,11 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
-import logo from "../../../assets/FirstPage/logo.png";
-import Background from "../../../assets/FirstPage/back.png";
-
 export default function FirstPage({ navigation }) {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={Background}
+        source={{ uri: "https://i.ibb.co/6YYNnXn/back.png" }}
         resizeMode="cover"
         style={styles.Background}
       >
@@ -30,7 +27,10 @@ export default function FirstPage({ navigation }) {
           <Text style={styles.Welcometxt}>Welcome</Text>
         </View>
 
-        <Image style={styles.logo} source={logo} />
+        <Image
+          style={styles.logo}
+          source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
+        />
         <View style={styles.foot}>
           <View style={styles.btn}>
             <Button

@@ -7,13 +7,13 @@ import {
   collection,
 } from "firebase/firestore";
 // Get a list of cities from your database
-async function getItemPizza() {
-  const photosCol = collection(db, "Pizza");
+async function getItemCakes() {
+  const photosCol = collection(db, "Cakes");
   const photoSnapshot = await getDocs(photosCol);
   const ItemList = photoSnapshot.docs.map((doc) => {
     return { id: doc.id, ...doc.data() };
   });
-  return ItemList;
+return ItemList;
 }
 
 // async function deletePhoto(id) {
@@ -34,6 +34,6 @@ async function getItemPizza() {
 //     console.error("Error adding document: ", e);
 //   }
 // }
-// , deletePhoto, addphoto
+// , deletePhoto, addphoto 
 
-export { getItemPizza };
+export { getItemCakes};

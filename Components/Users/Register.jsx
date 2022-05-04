@@ -1,7 +1,6 @@
 import { Image, StyleSheet, Text, View, Button, TextInput } from "react-native";
 import { React, useState } from "react";
 import { register } from "../../db/auth/auth";
-import logo from "../../assets/FirstPage/logo.png";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
@@ -10,7 +9,10 @@ const Register = () => {
   return (
     <View style={styles.container}>
       <View style={styles.logoback}>
-        <Image style={styles.logo} source={logo} />
+        <Image
+          style={styles.logo}
+          source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
+        />
       </View>
       <View style={styles.body}>
         <View style={styles.inps}>
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     marginTop: -80,
     marginBottom: -40,
   },
-  body:{},
+  body: {},
   text: {
     fontSize: 20,
     textAlign: "center",
