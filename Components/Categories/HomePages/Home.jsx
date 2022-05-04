@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import Drinks from './Categories/Drinks/Drinks';
+import Drinks from "../../Categories/Drinks/Drinks";
 
 const Home = ({ navigation }) => {
   return (
@@ -19,7 +19,13 @@ const Home = ({ navigation }) => {
           }}>
           <Text>Pizza</Text>
         </TouchableOpacity>
-      </View>
+
+        <TouchableOpacity style={styles.item}  onPress={() => {
+            navigation.navigate("Card");
+          }}>
+          <Text>Card</Text>
+        </TouchableOpacity>
+     </View>
       <View style={styles.txtAdditions}>
         <Text>Last Additions</Text>
       </View>

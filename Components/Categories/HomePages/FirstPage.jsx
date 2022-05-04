@@ -7,8 +7,8 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
-import logo from "../assets/FirstPage/logo.png";
-import Background from "../assets/FirstPage/back.png";
+import logo from "../../../assets/FirstPage/logo.png";
+import Background from "../../../assets/FirstPage/back.png";
 
 export default function FirstPage({ navigation }) {
   return (

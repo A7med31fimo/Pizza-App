@@ -7,7 +7,7 @@ import {
   collection,
 } from "firebase/firestore";
 // Get a list of cities from your database
-async function getphotos() {
+async function getItemsDrinks() {
   const photosCol = collection(db, "photos");
   const photoSnapshot = await getDocs(photosCol);
   const photoList = photoSnapshot.docs.map((doc) => {
@@ -16,7 +16,7 @@ async function getphotos() {
 return photoList;
 }
 
-async function deletePhoto(id) {
+async function deleteItemsDrinks(id) {
   try {
   await deleteDoc(doc(db, "photos", id));
   console.log("Document deleted with ID: ", id);
@@ -25,15 +25,17 @@ async function deletePhoto(id) {
 }
 }
 
-// async function addphoto(photo) {
-//   try {
+async function AddItemsDrinks(photo) {
+  try {
 
-//     const docRef = await addDoc(collection(db, "photos"), photo);
-//     console.log("Document written with ID: ", docRef.id);
-//   } catch (e) {
-//     console.error("Error adding document: ", e);
-//   }
-// }
-// , deletePhoto, addphoto 
+    const docRef = await addDoc(collection(db, "photos"), photo);
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+async function editDrink(Drink) {
+  await setDoc(doc(db, "photos", Drink.id), Drink);
+}
 
-export { getphotos};
+export { getItemsDrinks,deleteItemsDrinks,AddItemsDrinks,editDrink};
