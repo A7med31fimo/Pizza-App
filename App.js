@@ -15,7 +15,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Card">
 
 
         <Stack.Screen name="Home" component={Home} options={{ title: "Pizza 🍕" }} />
