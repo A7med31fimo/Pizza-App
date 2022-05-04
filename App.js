@@ -15,10 +15,10 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="FirstPage">
 
 
-        <Stack.Screen name="Home" component={Home} options={{ title: "Pizza 🍕" }} />
+        <Stack.Screen name="Home" component={Home} options={{ title: "Explore Menu" }} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Log In" component={Login} />
         <Stack.Screen name="Drinks" component={Drinks} />
