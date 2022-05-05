@@ -14,22 +14,54 @@ import DrinksPage from "../Drinks/Drinks";
 import CartPage from "../CardItems/Card";
 import Icon from "react-native-vector-icons/AntDesign";
 
+
+
 export default function Home() {
   const [Page, setPage] = useState(0);
+  const [ColorDeal , setColorDeal] = useState('crimson');
+  const [ColorPizza , setColorPizza] = useState('black');
+  const [ColorCake , setColorCake] = useState('black');
+  const [ColorDrinks , setColorDrinks] = useState('black');
+  const [ColorCard , setColorCard ]= useState('black');
   const clickDeals = () => {
     setPage(0);
+    setColorDeal('crimson');
+    setColorPizza('black');
+    setColorCake('black');
+    setColorDrinks('black');
+    setColorCard('black');
   };
   const clickPizza = () => {
     setPage(1);
+    setColorDeal('black');
+    setColorPizza('crimson');
+    setColorCake('black');
+    setColorDrinks('black');
+    setColorCard('black');
   };
   const clickCakes = () => {
     setPage(2);
+    setColorDeal('black');
+    setColorPizza('black');
+    setColorCake('crimson');
+    setColorDrinks('black');
+    setColorCard('black');
   };
   const clickDrinks = () => {
     setPage(3);
+    setColorDeal('black');
+    setColorPizza('black');
+    setColorCake('black');
+    setColorDrinks('crimson');
+    setColorCard('black');
   };
   const clickCart = () => {
     setPage(4);
+    setColorDeal('black');
+    setColorPizza('black');
+    setColorCake('black');
+    setColorDrinks('black');
+    setColorCard('crimson');
   };
   return (
     <View style={{ flex: 1 }}>
@@ -41,7 +73,7 @@ export default function Home() {
               source={{ uri: "https://i.ibb.co/kSf9cpQ/deal4.jpg" }}
             />
           </View>
-          <Text style={styles.text}>Deals</Text>
+          <Text style={{color : ColorDeal , marginLeft : 10}}>Deals</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={clickPizza}>
@@ -51,7 +83,7 @@ export default function Home() {
               source={{ uri: "https://i.ibb.co/yWZHMDv/pizza.png" }}
             />
           </View>
-          <Text style={styles.text}>pizza</Text>
+          <Text style={{color : ColorPizza , marginLeft : 10}}>pizza</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={clickCakes}>
@@ -61,7 +93,7 @@ export default function Home() {
               source={{ uri: "https://i.ibb.co/FVM5YnL/cake.jpg" }}
             />
           </View>
-          <Text style={styles.text}>Cakes</Text>
+          <Text style={{color : ColorCake , marginLeft : 10}}>Cakes</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={clickDrinks}>
@@ -71,13 +103,13 @@ export default function Home() {
               source={{ uri: "https://i.ibb.co/nn7v6MP/images-1.jpg" }}
             />
           </View>
-          <Text style={styles.text}>Drinks</Text>
+          <Text style={{color : ColorDrinks , marginLeft : 10}}>Drinks</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={clickCart}>
           <View style={styles.imageview}>
-            <Icon name="shoppingcart" size={50} color="red" />
+            <Icon name="shoppingcart" size={50} color="crimson" />
           </View>
-          <Text style={styles.text}>Cart</Text>
+          <Text style={{color : ColorCard , marginLeft : 10}}>Cart</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.container}>
@@ -141,12 +173,13 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
   },
-  text: {
-    width: "100%",
-    fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
+  // text: {
+  //   width: "100%",
+  //   fontSize: 16,
+  //   // fontWeight: "bold",
+  //   textAlign: "center",
+    
+  // },
   container: {
     flex: 12,
     flexDirection: "column",
