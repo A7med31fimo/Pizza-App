@@ -1,4 +1,12 @@
-import { Image, StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+} from "react-native";
 import { React, useState } from "react";
 import { register } from "../../db/auth/auth";
 const Register = () => {
@@ -8,48 +16,49 @@ const Register = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.logoback}>
-        <Image
-          style={styles.logo}
-          source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
-        />
-      </View>
-      <View style={styles.body}>
-        <View style={styles.inps}>
-          <TextInput style={styles.inp} placeholder="Name"></TextInput>
-          <TextInput
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            style={styles.inp}
-            placeholder="Email@Example.com"
-          ></TextInput>
-          <TextInput style={styles.inp} placeholder="Phone"></TextInput>
-          <TextInput style={styles.inp} placeholder="Addres"></TextInput>
-          <TextInput
-            onChangeText={setpassword}
-            keyboardType="visible-password"
-            secureTextEntry={true}
-            style={styles.inp}
-            placeholder="Password"
-          ></TextInput>
+      <ScrollView>
+        <View style={styles.logoback}>
+          <Image
+            style={styles.logo}
+            source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
+          />
         </View>
-
-        <View style={styles.btn}>
-          <Button
-            title="Register"
-            onPress={() => {
-              console.log(email, password);
-              register(email, password)
-                .then(() => {
-                  navigation.navigate("Home");
-                })
-                .catch((e) => setError(e.message));
-            }}
-            color="#FB081F"
-          ></Button>
-          <Text>{error}</Text>
+        <View style={styles.body}>
+          <View style={styles.inps}>
+            <TextInput style={styles.inp} placeholder="Name"></TextInput>
+            <TextInput
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              style={styles.inp}
+              placeholder="Email@Example.com"
+            ></TextInput>
+            <TextInput style={styles.inp} placeholder="Phone"></TextInput>
+            <TextInput style={styles.inp} placeholder="Addres"></TextInput>
+            <TextInput
+              onChangeText={setpassword}
+              keyboardType="visible-password"
+              secureTextEntry={true}
+              style={styles.inp}
+              placeholder="Password"
+            ></TextInput>
+            <View style={styles.btn}>
+              <Button
+                title="Register"
+                onPress={() => {
+                  console.log(email, password);
+                  register(email, password)
+                    .then(() => {
+                      navigation.navigate("Home");
+                    })
+                    .catch((e) => setError(e.message));
+                }}
+                color="#FB081F"
+              ></Button>
+              <Text>{error}</Text>
+            </View>
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -59,10 +68,9 @@ export default Register;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
   },
   logoback: {
+    alignItems: "center",
     backgroundColor: "#e73636",
   },
   logo: {
@@ -71,19 +79,12 @@ const styles = StyleSheet.create({
     marginTop: -80,
     marginBottom: -40,
   },
-  body: {},
-  text: {
-    fontSize: 20,
-    textAlign: "center",
-    fontStyle: "italic",
-    color: "white",
-    marginTop: -50,
-  },
   inps: {
+    alignItems: "center",
     marginTop: 30,
   },
   inp: {
-    width: 300,
+    width: "90%",
     height: 40,
     borderWidth: 2,
     borderColor: "#FB081F",
@@ -94,15 +95,9 @@ const styles = StyleSheet.create({
     padding: 6,
     color: "#000000",
   },
-  foot: {
-    flexDirection: "column",
-    alignItems: "center",
-    marginTop: 10,
-  },
   btn: {
-    justifyContent: "center",
     marginVertical: 5,
-    width: 300,
+    width: "90%",
     borderRadius: 15,
     overflow: "hidden",
   },

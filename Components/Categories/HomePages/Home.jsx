@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
+// import Drinks from "../../Categories/Drinks/Drinks";
 import { useState } from "react";
 import Pizza from "../../../assets/Pizza/pizza7.png";
 import Cakes from "../../../assets/desserts/cake.png";
@@ -30,58 +31,61 @@ export default function Home() {
     setPage(3);
   };
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.imagePosition}>
-          <TouchableOpacity onPress={clickDeals} >
-            <Image style={styles.image} source={Deals} />
-            <Text style={styles.text}>Deals</Text>
-          </TouchableOpacity>
+    <View style={{ flex: 1 }}>
+      <View style={styles.categories}>
+        <TouchableOpacity onPress={clickDeals}>
+          <Image style={styles.image} source={Deals} />
+          <Text style={styles.text}>Deals</Text>
+        </TouchableOpacity>
 
-          <TouchableOpacity onPress={clickPizza}>
-            <Image style={styles.image} source={Pizza} />
-            <Text style={styles.text}>pizza</Text>
-          </TouchableOpacity>
+        <TouchableOpacity onPress={clickPizza}>
+          <Image style={styles.image} source={Pizza} />
+          <Text style={styles.text}>pizza</Text>
+        </TouchableOpacity>
 
-          <TouchableOpacity onPress={clickCakes}>
-            <Image style={styles.image} source={Cakes} />
-            <Text style={styles.text}>Cakes</Text>
-          </TouchableOpacity>
+        <TouchableOpacity onPress={clickCakes}>
+          <Image style={styles.image} source={Cakes} />
+          <Text style={styles.text}>Cakes</Text>
+        </TouchableOpacity>
 
-          <TouchableOpacity onPress={clickDrinks}>
-            <Image style={styles.image} source={Drinks} />
-            <Text style={styles.text}>Drinks</Text>
-          </TouchableOpacity>
-        </View>
-        {Page === 0 ? (
-          <View>
-            <DealsPage />
-          </View>
-        ) : Page === 1 ? (
-          <View>
-            <PizzaPage />
-          </View>
-        ) : Page === 2 ? (
-          <View>
-            <CakesPage />
-          </View>
-        ) : (
-          <View>
-            <DrinksPage />
-          </View>
-        )}
-      </ScrollView>
+        <TouchableOpacity onPress={clickDrinks}>
+          <Image style={styles.image} source={Drinks} />
+          <Text style={styles.text}>Drinks</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.container}>
+        <ScrollView style={{ backgroundColor: "#FFF" }}>
+          {Page === 0 ? (
+            <View>
+              <DealsPage />
+            </View>
+          ) : Page === 1 ? (
+            <View>
+              <PizzaPage />
+            </View>
+          ) : Page === 2 ? (
+            <View>
+              <CakesPage />
+            </View>
+          ) : (
+            <View>
+              <DrinksPage />
+            </View>
+          )}
+        </ScrollView>
+      </View>
     </View>
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FFF",
-  },
-  imagePosition: {
-    backgroundColor: "#FFFFFF",
+  categories: {
+    flex: 2,
+    alignContent: "center",
+    alignItems: "center",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-around",
+    backgroundColor: "#FFFFFF",
     borderWidth: 1,
     borderRadius: 10,
     borderColor: "#f7eceb",
@@ -99,7 +103,7 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: "50%",
     borderWidth: 1,
-    borderColor:"red",
+    borderColor: "red",
     shadowColor: "red",
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.3,
@@ -111,5 +115,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  container: {
+    flex: 15,
+    flexDirection: "column",
+    backgroundColor: "#FFF",
   },
 });

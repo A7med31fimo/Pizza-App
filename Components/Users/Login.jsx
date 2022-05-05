@@ -1,4 +1,12 @@
-import { Image, StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+} from "react-native";
 import { login } from "../../db/auth/auth";
 // import Register from "./Register";
 // import CitiesList from "../Cities/CitiesList";
@@ -14,50 +22,52 @@ export default function Login({ navigation }) {
   const [error, setError] = useState("");
   return (
     <View style={styles.container}>
-      <View style={styles.logoback}>
-        <Image
-          style={styles.logo}
-          source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
-        />
-      </View>
-      <View style={styles.body}>
-        <View style={styles.inps}>
-          <TextInput
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            style={styles.inp}
-            placeholder="Email@Example.com"
-          ></TextInput>
-          <TextInput
-            onChangeText={setpassword}
-            keyboardType="visible-password"
-            secureTextEntry={true}
-            style={styles.inp}
-            placeholder="Password"
-          ></TextInput>
+      <ScrollView>
+        <View style={styles.logoback}>
+          <Image
+            style={styles.logo}
+            source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
+          />
         </View>
-        <View style={styles.foot}>
-          <View style={styles.btn}>
-            <Button
-              title="Log in"
-              onPress={() => {
-                console.log(email, password);
-                login(email, password)
-                  .then(() => {
-                    navigation.navigate("Home");
-                  })
-                  .catch((e) => setError(e.message));
-              }}
-              color="#FB081F"
-            ></Button>
-            <Text>{error}</Text>
+        <View style={styles.body}>
+          <View style={styles.inps}>
+            <TextInput
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              style={styles.inp}
+              placeholder="Email@Example.com"
+            ></TextInput>
+            <TextInput
+              onChangeText={setpassword}
+              keyboardType="visible-password"
+              secureTextEntry={true}
+              style={styles.inp}
+              placeholder="Password"
+            ></TextInput>
           </View>
-          <Text style={styles.ORtxt}>OR</Text>
-          <View style={styles.btn}>
-            <Button title="Sign up" color="#FB081F"></Button>
+          <View style={styles.foot}>
+            <View style={styles.btn}>
+              <Button
+                title="Log in"
+                onPress={() => {
+                  console.log(email, password);
+                  login(email, password)
+                    .then(() => {
+                      navigation.navigate("Home");
+                    })
+                    .catch((e) => setError(e.message));
+                }}
+                color="#FB081F"
+              ></Button>
+              <Text>{error}</Text>
+            </View>
+            <Text style={styles.ORtxt}>OR</Text>
+            <View style={styles.btn}>
+              <Button title="Sign up" color="#FB081F"></Button>
+            </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -65,10 +75,9 @@ export default function Login({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
   },
   logoback: {
+    alignItems: "center",
     backgroundColor: "#e73636",
   },
   logo: {
@@ -78,10 +87,11 @@ const styles = StyleSheet.create({
     marginBottom: -20,
   },
   inps: {
+    alignItems: "center",
     marginTop: 30,
   },
   inp: {
-    width: 300,
+    width: "90%",
     height: 40,
     borderWidth: 2,
     borderColor: "#FB081F",
@@ -104,7 +114,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   btn: {
-    width: 280,
+    width: "90%",
     borderRadius: 15,
     overflow: "hidden",
   },

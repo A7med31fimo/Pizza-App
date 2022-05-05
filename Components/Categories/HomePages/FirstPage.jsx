@@ -6,16 +6,19 @@ import {
   View,
   Button,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
+import back from "../../../assets/FirstPage/chef.png";
 export default function FirstPage({ navigation }) {
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={{ uri: "https://i.ibb.co/6YYNnXn/back.png" }}
-        resizeMode="cover"
-        style={styles.Background}
-      >
-        <View style={styles.header}>
+      
+      <View style={styles.header}>
+        <ImageBackground
+          source={back}
+          resizeMode="center"
+          style={styles.Background}
+        >
           <TouchableOpacity
             style={styles.item}
             onPress={() => {
@@ -24,14 +27,19 @@ export default function FirstPage({ navigation }) {
           >
             <Text style={styles.Skiptxt}>Skip {">>"}</Text>
           </TouchableOpacity>
-          <Text style={styles.Welcometxt}>Welcome</Text>
-        </View>
+        </ImageBackground>
+      </View>
 
-        <Image
-          style={styles.logo}
-          source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
-        />
-        <View style={styles.foot}>
+      <View style={styles.foot}>
+        <Text style={styles.Welcometxt}>WELCOME TO</Text>
+
+        <View style={styles.logoview}>
+          <Image
+            style={styles.logo}
+            source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
+          />
+        </View>
+        <View style={styles.btns}>
           <View style={styles.btn}>
             <Button
               title="Log in"
@@ -52,7 +60,7 @@ export default function FirstPage({ navigation }) {
             ></Button>
           </View>
         </View>
-      </ImageBackground>
+      </View>
     </View>
   );
 }
@@ -62,43 +70,49 @@ const styles = StyleSheet.create({
   },
   Background: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    flexDirection: "column",
   },
   header: {
-    flexDirection: "column",
+    flex: 2,
   },
   Skiptxt: {
     color: "#FB081F",
     fontSize: 15,
-    marginLeft: 280,
+    margin: 5,
+    fontWeight: "bold",
+    textAlign: "right",
+  },
+  foot: {
+    flex: 3,
+    backgroundColor: "#FFECD4",
   },
   Welcometxt: {
     color: "#FB081F",
-    fontSize: 30,
+    fontSize: 20,
+    margin: 5,
     fontWeight: "bold",
-    margin: 4,
     textAlign: "center",
   },
-  logo: {
-    width: 370,
-    height: 320,
-    marginTop: 260,
+  logoview: {
+    alignItems: "center",
+    marginTop: -50,
   },
-  foot: {
-    flexDirection: "row",
-    marginBottom: 30,
+  logo: {
+    width: 350,
+    height: 300,
   },
   ORtxt: {
-    marginHorizontal: 20,
+    marginHorizontal: 15,
     color: "black",
     fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",
   },
+  btns: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
   btn: {
-    width: 130,
+    width: 100,
     borderRadius: 10,
     overflow: "hidden",
   },
