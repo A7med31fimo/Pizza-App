@@ -161,8 +161,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   image: {
-    width: 50,
-    height: 80,
+    width: "100%",
+    height: 200,
   },
   label: {
     width : "90%",

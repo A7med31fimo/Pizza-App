@@ -63,7 +63,11 @@ export default function Login({ navigation }) {
             </View>
             <Text style={styles.ORtxt}>OR</Text>
             <View style={styles.btn}>
-              <Button title="Sign up" color="#FB081F"></Button>
+              <Button 
+              onPress={() => {
+                navigation.navigate("Register");
+              }}
+              title="Sign up" color="#FB081F"></Button>
             </View>
           </View>
         </View>

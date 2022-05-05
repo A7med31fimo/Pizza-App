@@ -8,14 +8,12 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import back from "../../../assets/FirstPage/chef.png";
 export default function FirstPage({ navigation }) {
   return (
     <View style={styles.container}>
-      
       <View style={styles.header}>
         <ImageBackground
-          source={back}
+          source={{ uri: "https://i.ibb.co/0KmHhp2/chef.png" }}
           resizeMode="center"
           style={styles.Background}
         >
@@ -69,7 +67,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   Background: {
-    flex: 1,
+    flex: 2,
   },
   header: {
     flex: 2,
@@ -82,8 +80,8 @@ const styles = StyleSheet.create({
     textAlign: "right",
   },
   foot: {
-    flex: 3,
     backgroundColor: "#FFECD4",
+    flex: 2,
   },
   Welcometxt: {
     color: "#FB081F",
@@ -93,26 +91,30 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   logoview: {
+    backgroundColor: "#FFECD4",
+    justifyContent: "center",
     alignItems: "center",
-    marginTop: -50,
   },
   logo: {
-    width: 350,
+    width: 300,
     height: 300,
+    marginTop: -50,
   },
   ORtxt: {
-    marginHorizontal: 15,
     color: "black",
     fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",
   },
   btns: {
-    flexDirection: "row",
-    justifyContent: "center",
+    marginTop: -40,
+    backgroundColor: "#FFECD4",
+    flexDirection: "column",
+    alignItems: "center",
+    paddingBottom: 30,
   },
   btn: {
-    width: 100,
+    width: "50%",
     borderRadius: 10,
     overflow: "hidden",
   },

@@ -6,16 +6,14 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-// import Drinks from "../../Categories/Drinks/Drinks";
 import { useState } from "react";
-import Pizza from "../../../assets/Pizza/pizza7.png";
-import Cakes from "../../../assets/desserts/cake.png";
-import Drinks from "../../../assets/Drinks/pepsi3.png";
-import Deals from "../../../assets/Deals/deal8.png";
 import DealsPage from "../Deals/Deals";
 import PizzaPage from "../pizza/importPizza";
 import CakesPage from "../cake/Cakes";
 import DrinksPage from "../Drinks/Drinks";
+import CartPage from "../CardItems/Card";
+import Icon from "react-native-vector-icons/AntDesign";
+
 export default function Home() {
   const [Page, setPage] = useState(0);
   const clickDeals = () => {
@@ -30,30 +28,58 @@ export default function Home() {
   const clickDrinks = () => {
     setPage(3);
   };
+  const clickCart = () => {
+    setPage(4);
+  };
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.categories}>
         <TouchableOpacity onPress={clickDeals}>
-          <Image style={styles.image} source={Deals} />
+          <View style={styles.imageview}>
+            <Image
+              style={styles.image}
+              source={{ uri: "https://i.ibb.co/kSf9cpQ/deal4.jpg" }}
+            />
+          </View>
           <Text style={styles.text}>Deals</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={clickPizza}>
-          <Image style={styles.image} source={Pizza} />
+          <View style={styles.imageview}>
+            <Image
+              style={styles.image}
+              source={{ uri: "https://i.ibb.co/yWZHMDv/pizza.png" }}
+            />
+          </View>
           <Text style={styles.text}>pizza</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={clickCakes}>
-          <Image style={styles.image} source={Cakes} />
+          <View style={styles.imageview}>
+            <Image
+              style={styles.image}
+              source={{ uri: "https://i.ibb.co/FVM5YnL/cake.jpg" }}
+            />
+          </View>
           <Text style={styles.text}>Cakes</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={clickDrinks}>
-          <Image style={styles.image} source={Drinks} />
+          <View style={styles.imageview}>
+            <Image
+              style={styles.image}
+              source={{ uri: "https://i.ibb.co/nn7v6MP/images-1.jpg" }}
+            />
+          </View>
           <Text style={styles.text}>Drinks</Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={clickCart}>
+          <View style={styles.imageview}>
+            <Icon name="shoppingcart" size={50} color="red" />
+          </View>
+          <Text style={styles.text}>Cart</Text>
+        </TouchableOpacity>
       </View>
-
       <View style={styles.container}>
         <ScrollView style={{ backgroundColor: "#FFF" }}>
           {Page === 0 ? (
@@ -68,9 +94,13 @@ export default function Home() {
             <View>
               <CakesPage />
             </View>
-          ) : (
+          ) : Page === 3 ? (
             <View>
               <DrinksPage />
+            </View>
+          ) : (
+            <View>
+              <CartPage />
             </View>
           )}
         </ScrollView>
@@ -97,18 +127,19 @@ const styles = StyleSheet.create({
     padding: 7,
     marginBottom: 10,
   },
-  image: {
-    marginHorizontal: 5,
-    width: 60,
-    height: 60,
+  imageview: {
     borderRadius: "50%",
-    borderWidth: 1,
     borderColor: "red",
     shadowColor: "red",
-    shadowOffset: { width: 2, height: 2 },
+    shadowOffset: { width: 3, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
+    overflow: "hidden",
+  },
+  image: {
+    width: 50,
+    height: 50,
   },
   text: {
     width: "100%",
@@ -117,7 +148,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   container: {
-    flex: 15,
+    flex: 12,
     flexDirection: "column",
     backgroundColor: "#FFF",
   },
