@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Deal from "../cake/ItemOfCake"
 import {getItemDeals} from "../../../db/Edit/DealEdit";
-
+import {AddItemsCards} from "../../../db/Edit/CartItems";
  export default function Deals() {
     const getItemlist = async () => {
       const c = await getItemDeals();

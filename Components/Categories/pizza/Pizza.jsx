@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, Button , TouchableOpacity } from "react-
 import { RadioButton } from 'react-native-paper';
 import Cake from "../cake/Cakes"
 import Icon from 'react-native-vector-icons/Entypo';
-
+import {AddItemsCards} from "../../../db/Edit/CartItems";
 
 export default function Item({label , desc , image , price}) {
 
@@ -57,6 +57,7 @@ export default function Item({label , desc , image , price}) {
   const buttonHandler = () => {
     setvisible(false);
     setnumber(number+1);
+    AddItemsCards({ Name: label, Number: 1, Price: price })
   }
 
   const plusHandler = () => {

@@ -2,9 +2,13 @@ import { db } from "../Config";
 import {
   getDocs,
   doc,
+  setDoc,
   addDoc,
   deleteDoc,
-  collection,setDoc
+  collection,
+  query,
+  where,
+  onSnapshot,
 } from "firebase/firestore";
 // Get a list of cities from your database
 async function getCardItems() {
@@ -34,8 +38,23 @@ async function AddItemsCards(ItemCard) {
     console.error("Error adding document: ", e);
   }
 }
-async function editCard(Card) {
-  await setDoc(doc(db, "CartItems", Card.id), Card);
+// async function editCard(Card) {
+//   await setDoc(doc(db, "CartItems", Card.id), Card);
+// }
+
+
+function subscribe(callback) {
+  const unsubscribe = onSnapshot(
+    query(collection(db, "CartItems")),
+    (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        
+        if (callback) callback({ change, snapshot});
+      });
+     
+    }
+  );
+  return unsubscribe;
 }
 
-export {getCardItems,deleteItemsCards,AddItemsCards,editCard};
+export {getCardItems,deleteItemsCards,AddItemsCards,subscribe};

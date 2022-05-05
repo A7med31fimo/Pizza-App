@@ -37,6 +37,7 @@ export default function Cakes() {
             desc={e.desc}
             image={e.image}
             price={e.price}
+            ID={e.id}
           />
         ))}
       </ScrollView>

@@ -56,7 +56,6 @@ export default function Item({ image, label, price}) {
     setvisible(false);
     setnumber(number+1);
     AddItemsCards({ Name: label, Number: 1, Price: pric })
-
   }
 
   const plusHandler = () => {

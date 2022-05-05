@@ -8,9 +8,8 @@ import {
   ScrollView,
 } from "react-native";
 import {
-  AddItemsCards,
   deleteItemsCards,
-  getCardItems,
+  getCardItems,subscribe
 } from "../../../db/Edit/CartItems";
 import Icon from "react-native-vector-icons/Entypo";
 
@@ -43,6 +42,16 @@ export default function Cart({ navigation }) {
     getCardslist();
   }, []);
 
+  useEffect(() => {
+    const unsubscribe = subscribe(({ change, snapshot }) => {
+        getCardslist(); 
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+
   return (
     <View style={styles.container}>
       {total == 0 ? (
@@ -73,7 +82,7 @@ export default function Cart({ navigation }) {
               <Text style={{ fontSize: "16", fontWeight: "normal" }}>
                 {a.Number} {a.Name} cost: {a.Price}{" "}
               </Text>
-              <Icon name="trash" size={25} color="grey" />
+              <Icon name="trash" size={25} color="grey" onPress={()=>{deleteItemsCards(a.id)}}/>
             </View>
           ))}
           <Text style={styles.texttotal}>Total Cost {total}</Text>

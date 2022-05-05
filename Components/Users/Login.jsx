@@ -8,8 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import { login } from "../../db/auth/auth";
-// import Register from "./Register";
-// import CitiesList from "../Cities/CitiesList";
+
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../db/Config";
