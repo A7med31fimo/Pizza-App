@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { React, useState } from "react";
 import { register } from "../../db/auth/auth";
-const Register = () => {
+const Register = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [Name, setName] = useState("");

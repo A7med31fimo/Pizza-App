@@ -31,9 +31,7 @@ export default function Cart({ navigation }) {
     }
 
     c.sort(compare);
-    c.map((a) => {
-      sum = sum + parseInt(a.Price*a.Number);
-    });
+   
     let x=0;
     c.map((a)=>{
        if(x==0)
@@ -41,13 +39,17 @@ export default function Cart({ navigation }) {
       else{
          if(a.Name==x.Name)
        {
-         editCard({id:a.id, Name: a.Name, Number:( x.Number+1), Price: a.Price })
+         editCard({id:a.id, Name: a.Name, Number:( x.Number+1), Price: a.Price+x.Price})
          deleteItemsCards(x.id)      
       }
        x=a
       }
        
     })
+
+    c.map((a) => {
+      sum = sum + parseInt(a.Price);
+    });
     setCards(c);
 
     settotal(sum);

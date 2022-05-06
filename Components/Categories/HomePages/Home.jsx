@@ -6,7 +6,7 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import { useState } from "react";
+
 import DealsPage from "../Deals/Deals";
 import PizzaPage from "../pizza/importPizza";
 import CakesPage from "../cake/Cakes";
@@ -20,11 +20,11 @@ import { SignOut } from "../../../db/auth/auth";
 
 export default function Home({ navigation }) {
   const [Page, setPage] = useState(0);
-  const [ColorDeal , setColorDeal] = useState('crimson');
-  const [ColorPizza , setColorPizza] = useState('black');
-  const [ColorCake , setColorCake] = useState('black');
-  const [ColorDrinks , setColorDrinks] = useState('black');
-  const [ColorCard , setColorCard ]= useState('black');
+  const [ColorDeal, setColorDeal] = useState('crimson');
+  const [ColorPizza, setColorPizza] = useState('black');
+  const [ColorCake, setColorCake] = useState('black');
+  const [ColorDrinks, setColorDrinks] = useState('black');
+  const [ColorCard, setColorCard] = useState('black');
   const clickDeals = () => {
     setPage(0);
     setColorDeal('crimson');
@@ -75,7 +75,7 @@ export default function Home({ navigation }) {
               source={{ uri: "https://i.ibb.co/kSf9cpQ/deal4.jpg" }}
             />
           </View>
-          <Text style={{color : ColorDeal , marginLeft : 10}}>Deals</Text>
+          <Text style={{ color: ColorDeal, marginLeft: 10 }}>Deals</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={clickPizza}>
@@ -85,7 +85,7 @@ export default function Home({ navigation }) {
               source={{ uri: "https://i.ibb.co/yWZHMDv/pizza.png" }}
             />
           </View>
-          <Text style={{color : ColorPizza , marginLeft : 10}}>pizza</Text>
+          <Text style={{ color: ColorPizza, marginLeft: 10 }}>pizza</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={clickCakes}>
@@ -95,7 +95,7 @@ export default function Home({ navigation }) {
               source={{ uri: "https://i.ibb.co/FVM5YnL/cake.jpg" }}
             />
           </View>
-          <Text style={{color : ColorCake , marginLeft : 10}}>Cakes</Text>
+          <Text style={{ color: ColorCake, marginLeft: 10 }}>Cakes</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={clickDrinks}>
@@ -105,26 +105,39 @@ export default function Home({ navigation }) {
               source={{ uri: "https://i.ibb.co/nn7v6MP/images-1.jpg" }}
             />
           </View>
-          <Text style={{color : ColorDrinks , marginLeft : 10}}>Drinks</Text>
+          <Text style={{ color: ColorDrinks, marginLeft: 10 }}>Drinks</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={clickCart}>
           <View style={styles.imageview}>
             <Icon name="shoppingcart" size={50} color="crimson" />
           </View>
-          <Text style={{color : ColorCard , marginLeft : 10}}>Cart</Text>
+          <Text style={{ color: ColorCard, marginLeft: 10 }}>Cart</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={SignOut}>
+        <TouchableOpacity onPress={() => {
+          {
+            SignOut()
+              .then(() => {
+                console.log("sign out")
+                navigation.navigate("FirstPage");
+              }).catch((err) => {
+                setError(err.message)
+              });
+          }
+        }}
+
+
+        >
           <View style={styles.imageview}>
             <Icon2 name="sign-out" size={50} color="crimson" />
           </View>
-          <Text style={{color : ColorCard , marginLeft : 10}}>sign-out</Text>
+          <Text style={{ color: ColorCard, marginLeft: 10 }}>sign-out</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={()=>(navigation.navigate("INFO"))}>
+        <TouchableOpacity onPress={() => (navigation.navigate("INFO"))}>
           <View style={styles.imageview}>
             <Icon name="user" size={50} color="crimson" />
           </View>
-          <Text style={{color : ColorCard , marginLeft : 10}}>Info</Text>
+          <Text style={{ color: ColorCard, marginLeft: 10 }}>Info</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.container}>
@@ -193,7 +206,7 @@ const styles = StyleSheet.create({
   //   fontSize: 16,
   //   // fontWeight: "bold",
   //   textAlign: "center",
-    
+
   // },
   container: {
     flex: 12,
