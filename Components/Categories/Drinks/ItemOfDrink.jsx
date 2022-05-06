@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image ,Button } from "react-native";
 import Icon from 'react-native-vector-icons/Entypo';
 import { useState,useEffect } from "react";
 import { RadioButton } from "react-native-paper"
@@ -25,8 +25,6 @@ export default function Item({ ID,image, label, price}) {
   const [small ,setsmall] = useState('checked');
   const [large ,setlarge] = useState('unchecked');
   const [pric , setprice] = useState(price);
-  //const [visible , setvisible] = useState(true);
-  // const [trash , settrash] = useState('trash');
   const [number , setnumber] = useState(0);
  // const [Cards, setCards] = useState([]);
  const [user, setuser] = useState("");
@@ -36,22 +34,13 @@ export default function Item({ ID,image, label, price}) {
     else 
     seticon("heart-outlined");
   }
-const handleRemove=()=>{
-  deleteItemsDrinks(ID);
-}
+
   const clicksmall = () => {
     if (small === "unchecked"){
     setsmall('checked');
     setlarge('unchecked');
     setprice(price)  ;
     }
-  }
-
-  const clickHandler = () => {
-    if (icon === "heart-outlined")
-      seticon('heart');
-    else
-      seticon("heart-outlined");
   }
 
   const clicklarge = () => {
@@ -62,33 +51,23 @@ const handleRemove=()=>{
     }
   } 
 
-  // const buttonHandler = () => {
-  //   setvisible(false);  
-  //   Cards.map((a)=>{
-  //     console.log(a)
-  //     if(a.Name===label)
-  //     setnumber(a.Number);
-  //   })
-  //   AddItemsCards({ Name: label, Number: number+1, Price: pric })
-  // }
-
-  const plusHandler = () => {
-  number ==0?AddItemsCards({ Name: label, Number: number+1, Price: pric })
-  :AddItemsCards({ Name: label, Number: number, Price: pric })
-    setnumber(number+1)
+  const buttonHandler = () => {
+    AddItemsCards({ Name: label, Number: number+1, Price: pric , Image : image , Size : 'small'});
+    setnumber(number+1);
+    
   }
 
 
-  // const minusHandler = () => {
-  //   setnumber(number-1);
-  //   if (number === 2){
-  //   settrash('trash');
-  //   }
-  //   if (number === 1){
-  //     setvisible(true);
-  //     }
-     
-  // }
+  const plusHandler = () => {
+    
+    AddItemsCards({ Name: label, Number: number, Price: pric , Image : image , Size : 'small' });
+      setnumber(number+1);
+    }
+
+
+  const minusHandler = () => {
+    setnumber(number-1);
+  }
 
 
 
@@ -144,31 +123,46 @@ const handleRemove=()=>{
  
     <View style = {styles.footer}>
 <Text style = {styles.price} > {pric} EGP </Text>
-{/* {visible ? 
+{number === 0 ? 
    <View style={styles.button}> 
    <Button  title = '+ add' color = "crimson" onPress={buttonHandler}/>
    </View>
-   :  */}
+   : number === 1 ?
    <View style = {styles.footer}>
      
-   {/* <Icon
-        name={trash}
+   <Icon
+        name='trash'
         size = {25}
         color = 'grey'
         onPress = {minusHandler}
         
-        /> */}
+        />
       <Text style = {styles.number} >{number}</Text>
       <Icon 
         name='plus'
         size = {25}
         color = 'crimson'
-        iconStyle={{borderRadius: 50}}
         onPress = {plusHandler}
         />
       </View>
-       
- {/* } */}
+      :
+      <View style = {styles.footer}>
+      <Icon
+      name='minus'
+      size = {25}
+      color = 'grey'
+      onPress = {minusHandler}
+      
+      />
+    <Text style = {styles.number} >{number}</Text>
+    <Icon 
+      name='plus'
+      size = {25}
+      color = 'crimson'
+      onPress = {plusHandler}
+      />
+    </View>
+ }
  </View></View>
  )
 }

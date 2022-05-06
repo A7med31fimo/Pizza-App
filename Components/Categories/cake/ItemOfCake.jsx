@@ -10,8 +10,7 @@ import {deleteItemscake} from  "../../../db/Edit/CakesEdit"
 import {deleteItemsDeals} from  "../../../db/Edit/DealEdit"
 export default function Item({str,ID,label , desc , image , price}) {
   const [icon , seticon] = useState("heart-outlined");
-  const [visible , setvisible] = useState(true);
-  // const [trash , settrash] = useState('trash');
+
   const [number , setnumber] = useState(0);
 
   const getCardslist = async () => {
@@ -35,36 +34,24 @@ export default function Item({str,ID,label , desc , image , price}) {
     seticon("heart-outlined");
   }
 
-  const handleRemove=()=>{
-   str==="cake"? deleteItemscake(ID):deleteItemsDeals(ID);
-  }
+ 
   const [user, setuser] = useState("");
-  // const buttonHandler = () => {
-  //   setvisible(false);
-  //   setnumber(number+1);
-  //   AddItemsCards({ Name: label, Number: 1, Price: price })
-  // }
+  const buttonHandler = () => {
+    AddItemsCards({ Name: label, Number: number+1, Price: price  , Image : image , Size : 'small'});
+    setnumber(number+1);
+    
+  }
 
-  // const plusHandler = () => {
-  //   setnumber(number+1);
-  //   settrash('minus');
-  //   AddItemsCards({ Name: label, Number: 1, Price: price })
-  // }
+
   const plusHandler = () => {
-    number ==0?AddItemsCards({ Name: label, Number: number+1, Price: price })
-    :AddItemsCards({ Name: label, Number: number, Price: price })
-      setnumber(number+1)
+    
+    AddItemsCards({ Name: label, Number: number, Price: price , Image : image , Size : 'small' });
+      setnumber(number+1);
     }
 
-  // const minusHandler = () => {
-  //   setnumber(number-1);
-  //   if (number === 2){
-  //   settrash('trash');
-  //   }
-  //   if (number === 1){
-  //     setvisible(true);
-  //     }
-  // }
+  const minusHandler = () => {
+    setnumber(number-1);
+  }
   return (
         <View style={styles.content}>
         <View style={{paddingHorizontal:7}} >
@@ -94,31 +81,47 @@ export default function Item({str,ID,label , desc , image , price}) {
       
       <View style = {styles.footer}>
 <Text style = {styles.price} > {price}.00 EGP </Text>
-{/* {visible ? 
+{number === 0 ? 
    <View style={styles.button}> 
    <Button  title = '+ add' color = "crimson" onPress={buttonHandler}/>
    </View>
-   :  */}
+   : number === 1 ?
    <View style = {styles.footer}>
      
-   {/* <Icon
-        name={trash}
+   <Icon
+        name='trash'
         size = {25}
         color = 'grey'
         onPress = {minusHandler}
         
-        /> */}
+        />
       <Text style = {styles.number} >{number}</Text>
       <Icon 
         name='plus'
         size = {25}
         color = 'crimson'
-        iconStyle={{borderRadius: 50}}
         onPress = {plusHandler}
         />
       </View>
+      :
+      <View style = {styles.footer}>
+      <Icon
+      name='minus'
+      size = {25}
+      color = 'grey'
+      onPress = {minusHandler}
       
- {/* } */}
+      />
+    <Text style = {styles.number} >{number}</Text>
+    <Icon 
+      name='plus'
+      size = {25}
+      color = 'crimson'
+      onPress = {plusHandler}
+      />
+    </View>
+ }
+
 
 </View>   
 

@@ -73,7 +73,7 @@ export default function Item({ID,label , desc , image , price}) {
   // }
 
   const buttonHandler = () => {
-    AddItemsCards({ Name: label, Number: number+1, Price: price  , Image : image , Size : 'small'});
+    AddItemsCards({ Name: label, Number: number+1, Price: pric , Image : image , Size : 'small'});
     setnumber(number+1);
     
   }
