@@ -2,12 +2,15 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Deal from "../cake/ItemOfCake"
-import {getItemDeals} from "../../../db/Edit/DealEdit";
-import {AddItemsCards} from "../../../db/Edit/CartItems";
+import {getItemDeals,subscribe} from "../../../db/Edit/DealEdit";
+import { auth } from "../../../db/Config";
+import AddItem from"../../AdminManagement/Add"
  export default function Deals() {
     const getItemlist = async () => {
       const c = await getItemDeals();
       setItem(c);
+      if(auth.currentUser!==null)
+      setuser(auth.currentUser.displayName)
     };
   
     useEffect(() => {
@@ -15,22 +18,26 @@ import {AddItemsCards} from "../../../db/Edit/CartItems";
     }, []);
   
     const [Items, setItem] = useState([]);
-  //   const deal_arr = [
-  //   { label: "Family Meal", desc: "2 Medium BBQ Checken pizza + 1 Liter Pepsi "  
-  //   , image: Deal1 , price : '250' },
-  //   { label: "Hut Saver Pan Offer", desc: "1 Medium Chicken Superme pizza + 1 Medium Classic peppperoni"  
-  //   , image: Deal3 , price : '285' }, 
-  //   { label: "Hut Saver Stuffed Crust Offer", desc: "1 Medium Chesse Stuffed Crust pizza + 1 Medium Beef & Cheddar Stuffed Crust + 1 liter Pepsi"  
-  //   , image: Deal4 , price : '256' }, 
-  //   { label: "Solo Meal", desc: "1 Medium pizza + potato wedges + Duetto Salad"  
-  //   , image: Deal5 , price : '115' }, 
-  // ];
+    const [user, setuser] = useState("");
+    useEffect(() => {
+      const unsubscribe = subscribe(({ change, snapshot }) => {
+        getItemlist(); 
+      });
+      return () => {
+        unsubscribe();
+      };
+    }, []);
 
   return (
     <View style={styles.container}>
+          {
+      user==="admin"?
+       <AddItem name={"deal"}/>
+    :<View></View>  
+    }
       <ScrollView>
         {Items.map((e , index) => (
-          <Deal key = {index} label={e.label} desc={e.desc} image={e.image} price = {e.price} />
+          <Deal str={"deal"} ID={e.id} key = {index} label={e.label} desc={e.desc} image={e.image} price = {e.price} />
         ))}
       </ScrollView>
       <StatusBar style="auto" />

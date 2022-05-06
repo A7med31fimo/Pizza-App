@@ -12,6 +12,7 @@ import { register } from "../../db/auth/auth";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
+  const [Name, setName] = useState("");
   const [error, setError] = useState("");
 
   return (
@@ -25,15 +26,15 @@ const Register = () => {
         </View>
         <View style={styles.body}>
           <View style={styles.inps}>
-            <TextInput style={styles.inp} placeholder="Name"></TextInput>
+            <TextInput style={styles.inp} placeholder="Name"  onChangeText={setName}></TextInput>
             <TextInput
               onChangeText={setEmail}
               keyboardType="email-address"
               style={styles.inp}
               placeholder="Email@Example.com"
             ></TextInput>
-            <TextInput style={styles.inp} placeholder="Phone"></TextInput>
-            <TextInput style={styles.inp} placeholder="Addres"></TextInput>
+            {/* <TextInput style={styles.inp} placeholder="Phone"></TextInput>
+            <TextInput style={styles.inp} placeholder="Addres"></TextInput> */}
             <TextInput
               onChangeText={setpassword}
               keyboardType="visible-password"
@@ -45,12 +46,17 @@ const Register = () => {
               <Button
                 title="Register"
                 onPress={() => {
-                  console.log(email, password);
-                  register(email, password)
+                {  
+                  
+                  // console.log(email, password,Name);
+                  register(email, password,Name)
                     .then(() => {
+                      console.log("registerd")
                       navigation.navigate("Home");
-                    })
-                    .catch((e) => setError(e.message));
+                    }).catch((err) => {
+                      setError(err.message)
+                    });
+            }
                 }}
                 color="#FB081F"
               ></Button>

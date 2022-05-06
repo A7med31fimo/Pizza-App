@@ -38,9 +38,9 @@ async function AddItemsCards(ItemCard) {
     console.error("Error adding document: ", e);
   }
 }
-// async function editCard(Card) {
-//   await setDoc(doc(db, "CartItems", Card.id), Card);
-// }
+async function editCard(Card) {
+  await setDoc(doc(db, "CartItems", Card.id), Card);
+}
 
 
 function subscribe(callback) {
@@ -57,4 +57,4 @@ function subscribe(callback) {
   return unsubscribe;
 }
 
-export {getCardItems,deleteItemsCards,AddItemsCards,subscribe};
+export {getCardItems,deleteItemsCards,AddItemsCards,subscribe,editCard};

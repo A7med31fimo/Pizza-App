@@ -1,18 +1,33 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { StyleSheet, Text, View, Image, Button ,CheckBox , TouchableOpacity } from "react-native";
 import { RadioButton } from 'react-native-paper';
 import Blank from "../../../assets/draft/blank_heart.png";
 import Love from "../../../assets/draft/love.png"
 import Icon from 'react-native-vector-icons/Entypo';
-import {AddItemsCards,deleteItemsCards} from "../../../db/Edit/CartItems";
-
-export default function Item({ID,label , desc , image , price}) {
+import {AddItemsCards,getCardItems} from "../../../db/Edit/CartItems";
+import { auth } from "../../../db/Config";
+import {deleteItemscake} from  "../../../db/Edit/CakesEdit"
+import {deleteItemsDeals} from  "../../../db/Edit/DealEdit"
+export default function Item({str,ID,label , desc , image , price}) {
   const [icon , seticon] = useState("heart-outlined");
   const [visible , setvisible] = useState(true);
-  const [trash , settrash] = useState('trash');
+  // const [trash , settrash] = useState('trash');
   const [number , setnumber] = useState(0);
 
-
+  const getCardslist = async () => {
+    const c = await getCardItems();
+    c.map((a)=>{
+      //console.log(a)
+      if(a.Name===label)
+      setnumber(a.Number)
+    })
+    if(auth.currentUser!==null)
+    setuser(auth.currentUser.displayName);
+  };
+ 
+  useEffect(() => {
+    getCardslist();
+  }, []);
   const clickHeart = () => {
     if (icon === "heart-outlined")
     seticon('heart');
@@ -20,42 +35,57 @@ export default function Item({ID,label , desc , image , price}) {
     seticon("heart-outlined");
   }
 
-
-  
-  const buttonHandler = () => {
-    setvisible(false);
-    setnumber(number+1);
-    AddItemsCards({ Name: label, Number: 1, Price: price })
+  const handleRemove=()=>{
+   str==="cake"? deleteItemscake(ID):deleteItemsDeals(ID);
   }
+  const [user, setuser] = useState("");
+  // const buttonHandler = () => {
+  //   setvisible(false);
+  //   setnumber(number+1);
+  //   AddItemsCards({ Name: label, Number: 1, Price: price })
+  // }
 
+  // const plusHandler = () => {
+  //   setnumber(number+1);
+  //   settrash('minus');
+  //   AddItemsCards({ Name: label, Number: 1, Price: price })
+  // }
   const plusHandler = () => {
-    setnumber(number+1);
-    settrash('minus');
-    AddItemsCards({ Name: label, Number: 1, Price: price })
-  }
-
-
-  const minusHandler = () => {
-    setnumber(number-1);
-    if (number === 2){
-    settrash('trash');
+    number ==0?AddItemsCards({ Name: label, Number: number+1, Price: price })
+    :AddItemsCards({ Name: label, Number: number, Price: price })
+      setnumber(number+1)
     }
-    if (number === 1){
-      setvisible(true);
-      }
-      deleteItemsCards(ID)
-  }
+
+  // const minusHandler = () => {
+  //   setnumber(number-1);
+  //   if (number === 2){
+  //   settrash('trash');
+  //   }
+  //   if (number === 1){
+  //     setvisible(true);
+  //     }
+  // }
   return (
         <View style={styles.content}>
         <View style={{paddingHorizontal:7}} >
         <View style={styles.footer}>
         <Text style={styles.label}>{label}</Text>
-        <Icon 
-        name= {icon}
+        { user==="admin"?
+       <Icon
+        name='circle-with-minus'
+        size = {20}
+        color = 'crimson'
+        onPress = {handleRemove}
+        /> :
+        
+        <Icon
+        name={icon}
         size = {20}
         color = 'crimson'
         onPress = {clickHeart}
         />
+
+}
 
         </View>
         <Text style={styles.desc}>{desc} </Text>
@@ -64,20 +94,20 @@ export default function Item({ID,label , desc , image , price}) {
       
       <View style = {styles.footer}>
 <Text style = {styles.price} > {price}.00 EGP </Text>
-{visible ? 
+{/* {visible ? 
    <View style={styles.button}> 
    <Button  title = '+ add' color = "crimson" onPress={buttonHandler}/>
    </View>
-   : 
+   :  */}
    <View style = {styles.footer}>
      
-   <Icon
+   {/* <Icon
         name={trash}
         size = {25}
         color = 'grey'
         onPress = {minusHandler}
         
-        />
+        /> */}
       <Text style = {styles.number} >{number}</Text>
       <Icon 
         name='plus'
@@ -88,7 +118,7 @@ export default function Item({ID,label , desc , image , price}) {
         />
       </View>
       
- }
+ {/* } */}
 
 </View>   
 

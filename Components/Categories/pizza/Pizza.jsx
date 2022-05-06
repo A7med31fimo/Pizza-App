@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { StyleSheet, Text, View, Image, Button , TouchableOpacity } from "react-native";
 import { RadioButton } from 'react-native-paper';
-import Cake from "../cake/Cakes"
+import { auth } from "../../../db/Config";
 import Icon from 'react-native-vector-icons/Entypo';
-import {AddItemsCards} from "../../../db/Edit/CartItems";
-
-export default function Item({label , desc , image , price}) {
+import {deleteItemsPizza}from "../../../db/Edit/PizzaEdit"
+import {AddItemsCards,getCardItems} from "../../../db/Edit/CartItems";
+export default function Item({ID,label , desc , image , price}) {
 
   
   const [icon , seticon] = useState("heart-outlined");
@@ -16,7 +16,21 @@ export default function Item({label , desc , image , price}) {
   const [visible , setvisible] = useState(true);
   const [trash , settrash] = useState('trash');
   const [number , setnumber] = useState(0);
-  
+  const [user, setuser] = useState("");
+  const getCardslist = async () => {
+    const c = await getCardItems();
+    if(auth.currentUser!==null)
+    setuser(auth.currentUser.displayName)
+    c.map((a)=>{
+      //console.log(a)
+      if(a.Name===label)
+      setnumber(a.Number)
+    })
+  };
+ 
+  useEffect(() => {
+    getCardslist();
+  }, []);
   
   const clickHeart = () => {
     if (icon === "heart-outlined")
@@ -52,29 +66,35 @@ export default function Item({label , desc , image , price}) {
     setprice(price+70)  ;
     }
   }
-
-
-  const buttonHandler = () => {
-    setvisible(false);
-    setnumber(number+1);
-    AddItemsCards({ Name: label, Number: 1, Price: price })
+  const handleRemove=()=>{
+    deleteItemsPizza(ID);
   }
 
+  // const buttonHandler = () => {
+  //   setvisible(false);
+  //   setnumber(number+1);
+  //   AddItemsCards({ Name: label, Number: 1, Price: price })
+  // }
+
+  // const plusHandler = () => {
+  //   setnumber(number+1);
+  //   settrash('minus');
+  // }
   const plusHandler = () => {
-    setnumber(number+1);
-    settrash('minus');
-  }
-
-
-  const minusHandler = () => {
-    setnumber(number-1);
-    if (number === 2){
-    settrash('trash');
+    number ==0?AddItemsCards({ Name: label, Number: number+1, Price: price })
+    :AddItemsCards({ Name: label, Number: number, Price: price })
+      setnumber(number+1)
     }
-    if (number === 1){
-      setvisible(true);
-      }
-  }
+
+  // const minusHandler = () => {
+  //   setnumber(number-1);
+  //   if (number === 2){
+  //   settrash('trash');
+  //   }
+  //   if (number === 1){
+  //     setvisible(true);
+  //     }
+  // }
 
 
   return (
@@ -83,12 +103,23 @@ export default function Item({label , desc , image , price}) {
         <View style={styles.footer}>
         <Text style={styles.label}>{label}</Text>
         
-        <Icon 
+        
+  { user==="admin"?
+  <Icon
+        name='circle-with-minus'
+        size = {20}
+        color = 'crimson'
+        onPress = {handleRemove}
+        /> :
+        
+        <Icon
         name={icon}
         size = {20}
         color = 'crimson'
         onPress = {clickHeart}
         />
+
+}
 
         </View>
         <Text style={styles.desc}>{desc}</Text>
@@ -130,20 +161,20 @@ export default function Item({label , desc , image , price}) {
 
 <View style = {styles.footer}>
 <Text style = {styles.price} > {pric}.00 EGP </Text>
-{visible ? 
+{/* {visible ? 
    <View style={styles.button}> 
    <Button  title = '+ add' color = "crimson" onPress={buttonHandler}/>
    </View>
-   : 
+   :  */}
    <View style = {styles.footer}>
      
-   <Icon
+   {/* <Icon
         name={trash}
         size = {25}
         color = 'grey'
         onPress = {minusHandler}
         
-        />
+        /> */}
       <Text style = {styles.number} >{number}</Text>
       <Icon 
         name='plus'
@@ -154,7 +185,7 @@ export default function Item({label , desc , image , price}) {
         />
       </View>
       
- }
+ {/* } */}
 
 </View>   
 

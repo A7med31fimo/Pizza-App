@@ -7,22 +7,45 @@ import {
   confirmPasswordReset,
   signInWithCredential,
   FacebookAuthProvider,
+  updateProfile,signOut
 } from "firebase/auth";
 // Listen for authentication state to change.
 onAuthStateChanged(auth, (user) => {
   if (user != null) {
-    console.log("We are authenticated now!");
+    user.providerData.forEach((profile) => {
+      console.log("Sign-in provider: " + profile.providerId);
+      console.log("  Provider-specific UID: " + profile.uid);
+      console.log("  Name: " + profile.displayName);
+      console.log("  Email: " + profile.email);
+      console.log("  Photo URL: " + profile.photoURL);
+    });
+
   }
 
   // Do other things
 });
 
-async function register(email, password) {
-  await createUserWithEmailAndPassword(auth, email, password);
+function register(email, password,Name) {
+ return  createUserWithEmailAndPassword(auth, email, password,Name).then(
+(res)=>{updateProfile(res.user,{displayName:Name}).then(() => {
+  console.log("updated")
+}).catch((error) => {
+});}   
+   )
 }
 
 async function login(email, password) {
   await signInWithEmailAndPassword(auth, email, password);
 }
 
-export { register, login };
+function SignOut(){
+
+return signOut(auth).then(() => {
+  console.log("sign out success")
+}).catch((error) => {
+  // An error happened.
+});
+
+}
+
+export { register, login,SignOut };

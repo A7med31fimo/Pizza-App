@@ -13,10 +13,12 @@ import CakesPage from "../cake/Cakes";
 import DrinksPage from "../Drinks/Drinks";
 import CartPage from "../CardItems/Card";
 import Icon from "react-native-vector-icons/AntDesign";
+import Icon2 from "react-native-vector-icons/Octicons"
+import { SignOut } from "../../../db/auth/auth";
 
 
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [Page, setPage] = useState(0);
   const [ColorDeal , setColorDeal] = useState('crimson');
   const [ColorPizza , setColorPizza] = useState('black');
@@ -110,6 +112,19 @@ export default function Home() {
             <Icon name="shoppingcart" size={50} color="crimson" />
           </View>
           <Text style={{color : ColorCard , marginLeft : 10}}>Cart</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={SignOut}>
+          <View style={styles.imageview}>
+            <Icon2 name="sign-out" size={50} color="crimson" />
+          </View>
+          <Text style={{color : ColorCard , marginLeft : 10}}>sign-out</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={()=>(navigation.navigate("INFO"))}>
+          <View style={styles.imageview}>
+            <Icon name="user" size={50} color="crimson" />
+          </View>
+          <Text style={{color : ColorCard , marginLeft : 10}}>Info</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.container}>

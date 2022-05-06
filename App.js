@@ -10,6 +10,7 @@ import Pizza from "./Components/Categories/pizza/importPizza";
 import Cakes from "./Components/Categories/cake/Cakes"
 import Deals from "./Components/Categories/Deals/Deals"
 import Card from "./Components/Categories/CardItems/Card";
+import INFO from "./Components/Users/UserInfo";
 export default function App() {
   const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,7 @@ export default function App() {
         <Stack.Screen name="cakes" component={Cakes} options={{title:"Getting Start"}}/>
         <Stack.Screen name="deals" component={Deals} options={{title:"Getting Start"}}/>
         <Stack.Screen name="Card" component={Card} />
+        <Stack.Screen name="INFO" component={INFO}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

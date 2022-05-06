@@ -49,7 +49,7 @@ export default function Login({ navigation }) {
               <Button
                 title="Log in"
                 onPress={() => {
-                  console.log(email, password);
+                  // console.log(email, password);
                   login(email, password)
                     .then(() => {
                       navigation.navigate("Home");

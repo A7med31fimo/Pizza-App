@@ -2,15 +2,15 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Cake from "./ItemOfCake";
-import { getItemCakes } from "../../../db/Edit/CakesEdit";
-// import Cake1 from "../../../assets/desserts/cake5.png" ;
-// import Cake2 from "../../../assets/desserts/cake2.png" ;
-// import Cake3 from "../../../assets/desserts/cake4.png" ;
-
+import { getItemCakes,subscribe } from "../../../db/Edit/CakesEdit";
+import { auth } from "../../../db/Config";
+import AddItem from "../../AdminManagement/Add"
 export default function Cakes() {
   const getItemlist = async () => {
     const c = await getItemCakes();
     setItem(c);
+    if(auth.currentUser!==null)
+    setuser(auth.currentUser.displayName)
   };
 
   useEffect(() => {
@@ -18,17 +18,24 @@ export default function Cakes() {
   }, []);
 
   const [Items, setItem] = useState([]);
-  //   const cake_arr = [
-  //   { label: "Chessecake", desc: "Creamy chessecake topped with strawbery sauce"
-  //   , image: Cake1 , price : '60' },
-  //   { label: "potluck desserts ", desc: "Fudge ,Potluck Cheesecake Dessert ,Oreo Cookie Balls, Ambrosia Salad ,Magic Monster Layer Bars "
-  //   , image: Cake2 , price : '50' },
-  //   { label: "Cocolate Cake", desc: "A rish, soft, dark chocolate cake. A must for chocolaters lovers "
-  //   , image: Cake3 , price : '55' },
-  // ];
-
+  const [user, setuser] = useState("");
+  useEffect(() => {
+    const unsubscribe = subscribe(({ change, snapshot }) => {
+      getItemlist(); 
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
   return (
     <View style={styles.container}>
+       {
+      user==="admin"?
+       <AddItem name={"cake"}/>
+    
+    
+    :<View></View>  
+    }
       <ScrollView>
         {Items.map((e, index) => (
           <Cake
@@ -38,6 +45,7 @@ export default function Cakes() {
             image={e.image}
             price={e.price}
             ID={e.id}
+            str={"cake"}
           />
         ))}
       </ScrollView>

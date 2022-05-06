@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import {
   deleteItemsCards,
+  editCard,
   getCardItems,subscribe
 } from "../../../db/Edit/CartItems";
 import Icon from "react-native-vector-icons/Entypo";
@@ -17,7 +18,7 @@ import { useEffect, useState } from "react";
 export default function Cart({ navigation }) {
   const getCardslist = async () => {
     const c = await getCardItems();
-
+   
     let sum = 0.0;
     function compare(a, b) {
       if (a.Name < b.Name) {
@@ -31,9 +32,24 @@ export default function Cart({ navigation }) {
 
     c.sort(compare);
     c.map((a) => {
-      sum = sum + parseInt(a.Price);
+      sum = sum + parseInt(a.Price*a.Number);
     });
+    let x=0;
+    c.map((a)=>{
+       if(x==0)
+       x=a;
+      else{
+         if(a.Name==x.Name)
+       {
+         editCard({id:a.id, Name: a.Name, Number:( x.Number+1), Price: a.Price })
+         deleteItemsCards(x.id)      
+      }
+       x=a
+      }
+       
+    })
     setCards(c);
+
     settotal(sum);
   };
   const [Cards, setCards] = useState([]);
