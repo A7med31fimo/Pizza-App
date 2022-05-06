@@ -17,6 +17,7 @@ export default function Item({ID,label , desc , image , price}) {
   const [trash , settrash] = useState('trash');
   const [number , setnumber] = useState(0);
   const [user, setuser] = useState("");
+  
   const getCardslist = async () => {
     const c = await getCardItems();
     if(auth.currentUser!==null)
@@ -44,7 +45,8 @@ export default function Item({ID,label , desc , image , price}) {
     setsmall('checked');
     setmedium('unchecked');
     setlarge('unchecked');
-    setprice(price)  ;
+    setprice(price);
+
     }
   }
 
@@ -66,35 +68,27 @@ export default function Item({ID,label , desc , image , price}) {
     setprice(price+70)  ;
     }
   }
-  const handleRemove=()=>{
-    deleteItemsPizza(ID);
+  // const handleRemove=()=>{
+  //   deleteItemsPizza(ID);
+  // }
+
+  const buttonHandler = () => {
+    AddItemsCards({ Name: label, Number: number+1, Price: price  , Image : image , Size : 'small'});
+    setnumber(number+1);
+    
   }
 
-  // const buttonHandler = () => {
-  //   setvisible(false);
-  //   setnumber(number+1);
-  //   AddItemsCards({ Name: label, Number: 1, Price: price })
-  // }
 
-  // const plusHandler = () => {
-  //   setnumber(number+1);
-  //   settrash('minus');
-  // }
   const plusHandler = () => {
-    number ==0?AddItemsCards({ Name: label, Number: number+1, Price: price })
-    :AddItemsCards({ Name: label, Number: number, Price: price })
-      setnumber(number+1)
+    
+    AddItemsCards({ Name: label, Number: number, Price: pric , Image : image , Size : 'small' });
+      setnumber(number+1);
     }
 
-  // const minusHandler = () => {
-  //   setnumber(number-1);
-  //   if (number === 2){
-  //   settrash('trash');
-  //   }
-  //   if (number === 1){
-  //     setvisible(true);
-  //     }
-  // }
+  const minusHandler = () => {
+    setnumber(number-1);
+
+  }
 
 
   return (
@@ -161,20 +155,20 @@ export default function Item({ID,label , desc , image , price}) {
 
 <View style = {styles.footer}>
 <Text style = {styles.price} > {pric}.00 EGP </Text>
-{/* {visible ? 
+{number === 0 ? 
    <View style={styles.button}> 
    <Button  title = '+ add' color = "crimson" onPress={buttonHandler}/>
    </View>
-   :  */}
+   : number === 1 ?
    <View style = {styles.footer}>
      
-   {/* <Icon
-        name={trash}
+   <Icon
+        name='trash'
         size = {25}
         color = 'grey'
         onPress = {minusHandler}
         
-        /> */}
+        />
       <Text style = {styles.number} >{number}</Text>
       <Icon 
         name='plus'
@@ -184,8 +178,25 @@ export default function Item({ID,label , desc , image , price}) {
         onPress = {plusHandler}
         />
       </View>
+      :
+      <View style = {styles.footer}>
+      <Icon
+      name='minus'
+      size = {25}
+      color = 'grey'
+      onPress = {minusHandler}
       
- {/* } */}
+      />
+    <Text style = {styles.number} >{number}</Text>
+    <Icon 
+      name='plus'
+      size = {25}
+      color = 'crimson'
+      iconStyle={{borderRadius: 50}}
+      onPress = {plusHandler}
+      />
+    </View>
+ }
 
 </View>   
 

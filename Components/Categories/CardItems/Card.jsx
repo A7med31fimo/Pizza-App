@@ -13,6 +13,7 @@ import {
   getCardItems,subscribe
 } from "../../../db/Edit/CartItems";
 import Icon from "react-native-vector-icons/Entypo";
+import Carditem from "./ItemOfCard";
 
 import { useEffect, useState } from "react";
 export default function Cart({ navigation }) {
@@ -39,7 +40,7 @@ export default function Cart({ navigation }) {
       else{
          if(a.Name==x.Name)
        {
-         editCard({id:a.id, Name: a.Name, Number:( x.Number+1), Price: a.Price+x.Price})
+         editCard({id:a.id, Name: a.Name, Number:( x.Number+1), Price: a.Price + x.Price , Size : a.Size , Image : a.Image})
          deleteItemsCards(x.id)      
       }
        x=a
@@ -96,11 +97,8 @@ export default function Cart({ navigation }) {
       ) : (
         <ScrollView style={{ flex: 1 }}>
           {Cards.map((a, index) => (
-            <View key={index} style={styles.texticon}>
-              <Text style={{ fontSize: "16", fontWeight: "normal" }}>
-                {a.Number} {a.Name} cost: {a.Price}{" "}
-              </Text>
-              <Icon name="trash" size={25} color="grey" onPress={()=>{deleteItemsCards(a.id)}}/>
+            <View key={index} style={styles.container}>
+              <Carditem id = {a.id} label = {a.Name} price = {a.Price} size = {a.Size} image = {a.Image} number ={a.Number}/>
             </View>
           ))}
           <Text style={styles.texttotal}>Total Cost {total}</Text>
@@ -119,7 +117,7 @@ export default function Cart({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F7F7F7",
+
   },
   logoview: {
     alignItems: "center",
