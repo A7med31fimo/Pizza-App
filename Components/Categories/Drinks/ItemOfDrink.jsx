@@ -6,15 +6,20 @@ import { AddItemsCards, getCardItems} from "../../../db/Edit/CartItems"
 import {deleteItemsDrinks} from  "../../../db/Edit/DrinksEdit"
 import { auth } from "../../../db/Config";
 export default function Item({ ID,image, label, price}) {
- 
+ let x = 0 , y = 0 ;
     const getCardslist = async () => {
       const c = await getCardItems();
       if(auth.currentUser!==null)
       setuser(auth.currentUser.displayName)
+      
       c.map((a)=>{
         //console.log(a)
-        if(a.Name===label)
-        setnumber(a.Number)
+        if(a.Name===label){
+          a.Size === '330 ml' ? x = a.Number : y = a.Number ; 
+            setnumber(x+y);
+        }
+
+        
       })
     };
    
@@ -26,6 +31,9 @@ export default function Item({ ID,image, label, price}) {
   const [large ,setlarge] = useState('unchecked');
   const [pric , setprice] = useState(price);
   const [number , setnumber] = useState(0);
+  const [size ,setsize] = useState('330 ml');
+  const [smallNumber , setsmallNumber] = useState(0);
+  const [largeNumber , setlargeNumber] = useState(0);
  // const [Cards, setCards] = useState([]);
  const [user, setuser] = useState("");
   const clickHeart = () => {
@@ -40,6 +48,7 @@ export default function Item({ ID,image, label, price}) {
     setsmall('checked');
     setlarge('unchecked');
     setprice(price)  ;
+    setsize('330 ml');
     }
   }
 
@@ -48,20 +57,34 @@ export default function Item({ ID,image, label, price}) {
     setsmall('unchecked');
     setlarge('checked')
     setprice(price+7)  ;
+    setsize('1 Litre');
     }
   } 
 
   const buttonHandler = () => {
-    AddItemsCards({ Name: label, Number: number+1, Price: pric , Image : image , Size : 'small'});
+    if (size === '330 ml'){
+      AddItemsCards({ Name: label, Number: smallNumber+1, Price: pric  , Image : image , Size : size});
+      setsmallNumber(smallNumber+1);
+    }
+    else {
+    AddItemsCards({ Name: label, Number: largeNumber+1, Price: pric  , Image : image , Size : size});
+    setlargeNumber(largeNumber+1);
+    }
     setnumber(number+1);
-    
   }
 
 
   const plusHandler = () => {
     
-    AddItemsCards({ Name: label, Number: number, Price: pric , Image : image , Size : 'small' });
-      setnumber(number+1);
+    if (size === '330 ml'){
+      setsmallNumber(smallNumber+1);
+      AddItemsCards({ Name: label, Number: smallNumber, Price: pric  , Image : image , Size : size});
+    }
+    else {
+      setlargeNumber(largeNumber+1);
+    AddItemsCards({ Name: label, Number: largeNumber, Price: pric  , Image : image , Size : size});
+    }
+    setnumber(number+1);
     }
 
 

@@ -33,25 +33,37 @@ export default function Cart({ navigation }) {
 
     c.sort(compare);
    
-    let x=0;
-    c.map((a)=>{
-       if(x==0)
-       x=a;
-      else{
-         if(a.Name==x.Name)
-       {
-         editCard({id:a.id, Name: a.Name, Number:( x.Number+1), Price: a.Price + x.Price , Size : a.Size , Image : a.Image})
-         deleteItemsCards(x.id)      
+    // let x=0;
+    // c.map((a)=>{
+    //    if(x==0)
+    //    x=a;
+    //   else{
+    //      if(a.Name==x.Name && a.Size === x.Size)
+    //    {
+    //      editCard({id:a.id, Name: a.Name, Number:( x.Number+1), Price: a.Price + x.Price , Size : a.Size , Image : a.Image})
+    //      deleteItemsCards(x.id)      
+    //   }
+    //    x=a
+    //   }
+    // })
+
+
+    const scan = ()=> {
+      for (let i = 0 ; i < c.length ; i++){
+        for (let j = i+1 ; j< c.length ; j++){
+          if(c[i].Name === c[j].Name && c[i].Size === c[j].Size){
+            editCard({id:c[i].id, Name: c[i].Name, Number:( c[i].Number+1), Price: c[i].Price + c[j].Price , Size : c[i].Size , Image : c[i].Image});
+            deleteItemsCards(c[j].id) ; 
+          }
+        }
       }
-       x=a
-      }
-       
-    })
+      return c ;
+    }
 
     c.map((a) => {
       sum = sum + parseInt(a.Price);
     });
-    setCards(c);
+    setCards(scan);
 
     settotal(sum);
   };
