@@ -27,6 +27,14 @@ export default function Item({str,ID,label , desc , image , price}) {
   useEffect(() => {
     getCardslist();
   }, []);
+
+
+  const handleRemove=()=>{
+    str === 'deal' ? 
+    deleteItemsDeals(ID)
+    : deleteItemscake(ID);
+  }
+
   const clickHeart = () => {
     if (icon === "heart-outlined")
     seticon('heart');

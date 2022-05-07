@@ -3,7 +3,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { useState,useEffect } from "react";
 import { RadioButton } from "react-native-paper"
 import { AddItemsCards, getCardItems} from "../../../db/Edit/CartItems"
-import {deleteItemsDrinks} from  "../../../db/Edit/DrinksEdit"
+import {deleteItemsDrinks } from  "../../../db/Edit/DrinksEdit"
 import { auth } from "../../../db/Config";
 export default function Item({ ID,image, label, price}) {
   let x = 0 , y = 0 ;
@@ -37,6 +37,8 @@ export default function Item({ ID,image, label, price}) {
     useEffect(() => {
       getCardslist();
     }, []);
+
+
   const [icon , seticon] = useState("heart-outlined");
   const [small ,setsmall] = useState('checked');
   const [large ,setlarge] = useState('unchecked');
@@ -47,6 +49,12 @@ export default function Item({ ID,image, label, price}) {
   const [largeNumber , setlargeNumber] = useState(0);
  // const [Cards, setCards] = useState([]);
  const [user, setuser] = useState("");
+
+
+ const handleRemove=()=>{
+  deleteItemsDrinks(ID);
+}
+
   const clickHeart = () => {
     if (icon === "heart-outlined")
     seticon('heart');

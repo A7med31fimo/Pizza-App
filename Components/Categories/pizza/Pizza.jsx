@@ -86,9 +86,9 @@ export default function Item({ID,label , desc , image , price}) {
     setsize('large')
     }
   }
-  // const handleRemove=()=>{
-  //   deleteItemsPizza(ID);
-  // }
+  const handleRemove=()=>{
+    deleteItemsPizza(ID);
+  }
 
   const buttonHandler = () => {
     if (size === 'small'){
