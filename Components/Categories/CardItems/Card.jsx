@@ -22,48 +22,43 @@ export default function Cart({ navigation }) {
    
     let sum = 0.0;
     function compare(a, b) {
-      if (a.Name < b.Name) {
+      if (a.Name < b.Name ) {
         return -1;
       }
-      if (a.Name > b.Name) {
+      else if (a.Name > b.Name ) {
         return 1;
       }
-      return 0;
+      else {
+        if (a.Size < b.Size)
+          return -1 ;
+        else if (a.Size > b.Size) 
+          return 1  ;
+        else 
+          return 0 ;
+      }
     }
 
     c.sort(compare);
-   
-    // let x=0;
-    // c.map((a)=>{
-    //    if(x==0)
-    //    x=a;
-    //   else{
-    //      if(a.Name==x.Name && a.Size === x.Size)
-    //    {
-    //      editCard({id:a.id, Name: a.Name, Number:( x.Number+1), Price: a.Price + x.Price , Size : a.Size , Image : a.Image})
-    //      deleteItemsCards(x.id)      
-    //   }
-    //    x=a
-    //   }
-    // })
-
-
-    const scan = ()=> {
-      for (let i = 0 ; i < c.length ; i++){
-        for (let j = i+1 ; j< c.length ; j++){
-          if(c[i].Name === c[j].Name && c[i].Size === c[j].Size){
-            editCard({id:c[i].id, Name: c[i].Name, Number:( c[i].Number+1), Price: c[i].Price + c[j].Price , Size : c[i].Size , Image : c[i].Image});
-            deleteItemsCards(c[j].id) ; 
-          }
-        }
+    
+    let x=0;
+    c.map((a)=>{
+       if(x==0)
+       x=a;
+      else{
+         if(a.Name === x.Name && a.Size === x.Size)
+       {
+         editCard({id:a.id, Name: a.Name, Number:( x.Number+1), Price: a.Price + x.Price , Size : a.Size , Image : a.Image})
+         deleteItemsCards(x.id)      
       }
-      return c ;
-    }
+       x=a
+      }
+    })
+
 
     c.map((a) => {
       sum = sum + parseInt(a.Price);
     });
-    setCards(scan);
+    setCards(c);
 
     settotal(sum);
   };

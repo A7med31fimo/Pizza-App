@@ -37,7 +37,7 @@ export default function Item({str,ID,label , desc , image , price}) {
  
   const [user, setuser] = useState("");
   const buttonHandler = () => {
-    AddItemsCards({ Name: label, Number: number+1, Price: price  , Image : image , Size : 'small'});
+    AddItemsCards({ Name: label, Number: number+1, Price: price  , Image : image , Size : ''});
     setnumber(number+1);
     
   }
@@ -45,7 +45,7 @@ export default function Item({str,ID,label , desc , image , price}) {
 
   const plusHandler = () => {
     
-    AddItemsCards({ Name: label, Number: number, Price: price , Image : image , Size : 'small' });
+    AddItemsCards({ Name: label, Number: number, Price: price , Image : image , Size : '' });
       setnumber(number+1);
     }
 

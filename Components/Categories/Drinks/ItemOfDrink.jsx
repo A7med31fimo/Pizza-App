@@ -6,17 +6,28 @@ import { AddItemsCards, getCardItems} from "../../../db/Edit/CartItems"
 import {deleteItemsDrinks} from  "../../../db/Edit/DrinksEdit"
 import { auth } from "../../../db/Config";
 export default function Item({ ID,image, label, price}) {
- let x = 0 , y = 0 ;
+  let x = 0 , y = 0 ;
     const getCardslist = async () => {
+      
       const c = await getCardItems();
       if(auth.currentUser!==null)
       setuser(auth.currentUser.displayName)
       
+      
       c.map((a)=>{
         //console.log(a)
         if(a.Name===label){
-          a.Size === '330 ml' ? x = a.Number : y = a.Number ; 
+          if (a.Size === '330 ml') {
+            x = a.Number;
+            setsmallNumber(a.Number);
+          }else {
+            y = a.Number ;
+            setlargeNumber(a.Number);
+          }  
+            
             setnumber(x+y);
+           
+
         }
 
         
@@ -63,12 +74,12 @@ export default function Item({ ID,image, label, price}) {
 
   const buttonHandler = () => {
     if (size === '330 ml'){
-      AddItemsCards({ Name: label, Number: smallNumber+1, Price: pric  , Image : image , Size : size});
       setsmallNumber(smallNumber+1);
+      AddItemsCards({ Name: label, Number: smallNumber+1, Price: pric  , Image : image , Size : size});
     }
     else {
-    AddItemsCards({ Name: label, Number: largeNumber+1, Price: pric  , Image : image , Size : size});
     setlargeNumber(largeNumber+1);
+    AddItemsCards({ Name: label, Number: largeNumber+1, Price: pric  , Image : image , Size : size});
     }
     setnumber(number+1);
   }

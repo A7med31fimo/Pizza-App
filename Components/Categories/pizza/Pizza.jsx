@@ -13,19 +13,35 @@ export default function Item({ID,label , desc , image , price}) {
   const [medium ,setmedium] = useState('unchecked');
   const [large ,setlarge] = useState('unchecked');
   const [pric , setprice] = useState(price);
-  const [visible , setvisible] = useState(true);
-  const [trash , settrash] = useState('trash');
+  const [size ,setsize] = useState('small');
+  const [smallNumber , setsmallNumber] = useState(0);
+  const [mediumNumber  , setmediumNumber ] = useState(0);
+  const [largeNumber , setlargeNumber] = useState(0);
   const [number , setnumber] = useState(0);
   const [user, setuser] = useState("");
-  
+  let x = 0 , y = 0  ,z = 0;
   const getCardslist = async () => {
     const c = await getCardItems();
     if(auth.currentUser!==null)
     setuser(auth.currentUser.displayName)
     c.map((a)=>{
       //console.log(a)
-      if(a.Name===label)
-      setnumber(a.Number)
+      if(a.Name===label){
+        if (a.Size === 'small') {
+          x = a.Number;
+          setsmallNumber(a.Number);
+        }else if (a.Size === 'medium'){
+          y = a.Number ;
+          setmediumNumber(a.Number);
+        }else {
+          z = a.Number ;
+          setlargeNumber(a.Number);
+        }  
+          
+          setnumber(x+y+z);
+         
+
+      }
     })
   };
  
@@ -46,7 +62,7 @@ export default function Item({ID,label , desc , image , price}) {
     setmedium('unchecked');
     setlarge('unchecked');
     setprice(price);
-
+    setsize('small');
     }
   }
 
@@ -56,6 +72,7 @@ export default function Item({ID,label , desc , image , price}) {
     setmedium('checked');
     setlarge('unchecked');
     setprice(price+50)  ;
+    setsize('medium');
     
     }
   }
@@ -66,6 +83,7 @@ export default function Item({ID,label , desc , image , price}) {
     setmedium('unchecked')
     setlarge('checked')
     setprice(price+70)  ;
+    setsize('large')
     }
   }
   // const handleRemove=()=>{
@@ -73,7 +91,18 @@ export default function Item({ID,label , desc , image , price}) {
   // }
 
   const buttonHandler = () => {
-    AddItemsCards({ Name: label, Number: number+1, Price: pric , Image : image , Size : 'small'});
+    if (size === 'small'){
+      setsmallNumber(smallNumber+1);
+      AddItemsCards({ Name: label, Number: smallNumber+1, Price: pric  , Image : image , Size : size});
+    }
+    else if (size === 'medium') {
+    setmediumNumber(mediumNumber+1);
+    AddItemsCards({ Name: label, Number: mediumNumber+1, Price: pric  , Image : image , Size : size});
+    }
+    else {
+      setlargeNumber(largeNumber+1);
+    AddItemsCards({ Name: label, Number: largeNumber+1, Price: pric  , Image : image , Size : size});
+    }
     setnumber(number+1);
     
   }
@@ -81,9 +110,22 @@ export default function Item({ID,label , desc , image , price}) {
 
   const plusHandler = () => {
     
-    AddItemsCards({ Name: label, Number: number, Price: pric , Image : image , Size : 'small' });
-      setnumber(number+1);
+    if (size === 'small'){
+      setsmallNumber(smallNumber+1);
+      AddItemsCards({ Name: label, Number: smallNumber, Price: pric  , Image : image , Size : size});
     }
+    else if (size === 'medium') {
+    setmediumNumber(mediumNumber+1);
+    AddItemsCards({ Name: label, Number: mediumNumber, Price: pric  , Image : image , Size : size});
+    }
+    else {
+      setlargeNumber(largeNumber+1);
+    AddItemsCards({ Name: label, Number: largeNumber, Price: pric  , Image : image , Size : size});
+    }
+    setnumber(number+1);
+    
+  }
+    
 
   const minusHandler = () => {
     setnumber(number-1);
