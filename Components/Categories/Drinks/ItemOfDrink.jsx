@@ -145,7 +145,7 @@ export default function Item({ ID,image, label, price}) {
     </View> 
  
     <View style = {styles.footer}>
-<Text style = {styles.price} > {pric} EGP </Text>
+<Text style = {styles.price} > {pric}.00 EGP </Text>
 {number === 0 ? 
    <View style={styles.button}> 
    <Button  title = '+ add' color = "crimson" onPress={buttonHandler}/>
