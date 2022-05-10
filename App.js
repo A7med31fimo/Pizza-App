@@ -11,14 +11,13 @@ import Cakes from "./Components/Categories/cake/Cakes"
 import Deals from "./Components/Categories/Deals/Deals"
 import Card from "./Components/Categories/CardItems/Card";
 import INFO from "./Components/Users/UserInfo";
+import { auth } from "./db/Config";
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="FirstPage">
-
-
         <Stack.Screen name="Home" component={Home} options={{ title: "Explore Menu" }} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Log In" component={Login} />

@@ -114,6 +114,9 @@ export default function Cart({ navigation }) {
               style={styles.Confirmbtn}
               title="Confirm"
               color="#FB081F"
+              onPress={
+           ()=>{ Cards.map((a)=>{deleteItemsCards(a.id)})
+              }}
             ></Button>
           </View>
         </ScrollView>

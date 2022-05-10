@@ -9,6 +9,9 @@ import {
   FacebookAuthProvider,
   updateProfile,signOut
 } from "firebase/auth";
+
+import {deleteItemsCards,getCardItems} from "../Edit/CartItems";
+import { async } from "@firebase/util";
 // Listen for authentication state to change.
 onAuthStateChanged(auth, (user) => {
   if (user != null) {
@@ -38,14 +41,22 @@ async function login(email, password) {
   await signInWithEmailAndPassword(auth, email, password);
 }
 
-function SignOut(){
-
+async function SignOut(){
 return signOut(auth).then(() => {
-  console.log("sign out success")
+
 }).catch((error) => {
-  // An error happened.
+  
 });
 
 }
 
-export { register, login,SignOut };
+async function getUserUId() {
+  if (auth.currentUser != null) {
+      return auth.currentUser.uid;
+  } else {
+      return null;
+  }
+}
+
+
+export { register, login,SignOut ,getUserUId};

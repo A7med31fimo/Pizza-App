@@ -14,7 +14,9 @@ import DrinksPage from "../Drinks/Drinks";
 import CartPage from "../CardItems/Card";
 import UserInfo from "../../Users/UserInfo";
 import Icon from "react-native-vector-icons/AntDesign";
-
+import Icon2 from "react-native-vector-icons/Octicons"
+import { SignOut } from "../../../db/auth/auth";
+import { auth } from "../../../db/Config";
 export default function Home({ navigation }) {
   const [Page, setPage] = useState(0);
   const [ColorDeal, setColorDeal] = useState("crimson");
@@ -55,12 +57,16 @@ export default function Home({ navigation }) {
     setColorCard("black");
   };
   const clickCart = () => {
+    if(auth.currentUser==null)
+    {alert("please login ")}
+    else{
     setPage(4);
     setColorDeal("black");
     setColorPizza("black");
     setColorCake("black");
     setColorDrinks("black");
     setColorCard("crimson");
+    }
   };
   return (
     <View style={{ flex: 1 }}>
@@ -118,7 +124,9 @@ export default function Home({ navigation }) {
             </View>
             <Text style={{ color: ColorCard, textAlign: "center" }}>Cart</Text>
           </TouchableOpacity>
-          <TouchableOpacity
+
+
+        {auth.currentUser!==null?   <TouchableOpacity
             onPress={() => {
               navigation.navigate("INFO");
             }}
@@ -131,6 +139,29 @@ export default function Home({ navigation }) {
             </View>
             <Text style={{ textAlign: "center" }}>Profile</Text>
           </TouchableOpacity>
+      :null
+          }
+
+     {auth.currentUser!==null?     <TouchableOpacity onPress={() => {
+          {
+            SignOut()
+              .then(() => {
+                console.log("sign out")
+                navigation.navigate("FirstPage");
+              }).catch((err) => {
+                setError(err.message)
+              });
+          }
+        }}
+
+
+        >
+          <View style={styles.imageview}>
+            <Icon2 name="sign-out" size={50} color="crimson" />
+          </View>
+          <Text style={{ color: ColorCard, marginLeft: 10 }}>sign-out</Text>
+        </TouchableOpacity>:null
+}
         </ScrollView>
       </View>
       <View style={styles.container}>

@@ -17,14 +17,14 @@ export default function FirstPage({ navigation }) {
           resizeMode="center"
           style={styles.Background}
         >
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.item}
             onPress={() => {
               navigation.navigate("Home");
             }}
           >
             <Text style={styles.Skiptxt}>Skip {">>"}</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </ImageBackground>
       </View>
 
