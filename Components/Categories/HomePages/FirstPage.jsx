@@ -14,7 +14,7 @@ export default function FirstPage({ navigation }) {
       <View style={styles.header}>
         <ImageBackground
           source={{ uri: "https://i.ibb.co/0KmHhp2/chef.png" }}
-          resizeMode="center"
+          resizeMode="contain"
           style={styles.Background}
         >
           {/* <TouchableOpacity
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   btn: {
-    width: "50%",
+    width: 250,
     borderRadius: 10,
     overflow: "hidden",
   },

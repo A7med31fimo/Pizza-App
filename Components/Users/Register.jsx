@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { React, useState } from "react";
 import { register } from "../../db/auth/auth";
-import { Addusers } from "../../db/Edit/Info"
+import { Addusers } from "../../db/Edit/Info";
 import { getUserUId } from "../../db/auth/auth";
 const Register = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -32,11 +32,31 @@ const Register = ({ navigation }) => {
         </View>
         <View style={styles.body}>
           <View style={styles.inps}>
-            <TextInput style={styles.inp} placeholder="First Name" onChangeText={setfName}></TextInput>
-            <TextInput style={styles.inp} placeholder="last Name" onChangeText={setlName}></TextInput>
-            <TextInput style={styles.inp} placeholder="phone" onChangeText={setphone}></TextInput>
-            <TextInput style={styles.inp} placeholder="age" onChangeText={setage}></TextInput>
-            <TextInput style={styles.inp} placeholder="address" onChangeText={setaddress}></TextInput>
+            <TextInput
+              style={styles.inp}
+              placeholder="First Name"
+              onChangeText={setfName}
+            ></TextInput>
+            <TextInput
+              style={styles.inp}
+              placeholder="last Name"
+              onChangeText={setlName}
+            ></TextInput>
+            <TextInput
+              style={styles.inp}
+              placeholder="phone"
+              onChangeText={setphone}
+            ></TextInput>
+            <TextInput
+              style={styles.inp}
+              placeholder="age"
+              onChangeText={setage}
+            ></TextInput>
+            <TextInput
+              style={styles.inp}
+              placeholder="address"
+              onChangeText={setaddress}
+            ></TextInput>
             <TextInput
               onChangeText={setEmail}
               keyboardType="email-address"
@@ -46,38 +66,40 @@ const Register = ({ navigation }) => {
             {/* <TextInput style={styles.inp} placeholder="Phone"></TextInput>
             <TextInput style={styles.inp} placeholder="Addres"></TextInput> */}
             <TextInput
-              onChangeText={setpassword}
-              keyboardType="visible-password"
-              secureTextEntry={true}
+              placeholder="password"
+              autoCapitalize="none"
+              autoCorrect={false}
+              textContentType="newPassword"
+              secureTextEntry
+              onChangeText={(text) => setpassword(text)}
               style={styles.inp}
-              placeholder="Password"
             ></TextInput>
             <View style={styles.btn}>
               <Button
                 title="Register"
                 onPress={() => {
                   {
-
                     // console.log(email, password,Name);
                     register(email, password, fName)
                       .then(() => {
-                        console.log("registerd")
+                        console.log("registerd");
                         navigation.navigate("Home");
-
+                        alert("Register Success!");
                         getUserUId().then((id) => {
                           Addusers({
-                            id: id, fName: fName,
+                            id: id,
+                            fName: fName,
                             lName: lName,
                             phone: phone,
                             age: age,
                             email: email,
                             address: address,
-                            password: password
+                            password: password,
                           });
                         });
-
-                      }).catch((err) => {
-                        setError(err.message)
+                      })
+                      .catch((err) => {
+                        setError(err.message, alert("Register failed!"));
                       });
                   }
                 }}

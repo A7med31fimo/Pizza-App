@@ -14,7 +14,7 @@ import DrinksPage from "../Drinks/Drinks";
 import CartPage from "../CardItems/Card";
 import UserInfo from "../../Users/UserInfo";
 import Icon from "react-native-vector-icons/AntDesign";
-import Icon2 from "react-native-vector-icons/Octicons"
+import Icon2 from "react-native-vector-icons/Octicons";
 import { SignOut } from "../../../db/auth/auth";
 import { auth } from "../../../db/Config";
 export default function Home({ navigation }) {
@@ -57,19 +57,15 @@ export default function Home({ navigation }) {
     setColorCard("black");
   };
   const clickCart = () => {
-  
     // setPage(4);
     // setColorDeal("black");
     // setColorPizza("black");
     // setColorCake("black");
     // setColorDrinks("black");
     // setColorCard("crimson");
-   if(auth.currentUser.displayName==="admin")
-  
-   navigation.navigate("ChatAdmin")
-   else
-   navigation.navigate("Card")
-
+    if (auth.currentUser.displayName === "admin")
+      navigation.navigate("ChatAdmin");
+    else navigation.navigate("Card");
   };
   return (
     <View style={{ flex: 1 }}>
@@ -128,43 +124,43 @@ export default function Home({ navigation }) {
             <Text style={{ color: ColorCard, textAlign: "center" }}>Cart</Text>
           </TouchableOpacity>
 
-
-        {auth.currentUser!==null?   <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("INFO");
-            }}
-          >
-            <View style={styles.imageview}>
-              <Image
-                style={styles.image}
-                source={{ uri: "https://i.ibb.co/1q25n5P/profile1.png" }}
-              ></Image>
-            </View>
-            <Text style={{ textAlign: "center" }}>Profile</Text>
-          </TouchableOpacity>
-      :null
-          }
-
-     {auth.currentUser!==null?     <TouchableOpacity onPress={() => {
-          {
-            SignOut()
-              .then(() => {
-                console.log("sign out")
-                navigation.navigate("FirstPage");
-              }).catch((err) => {
-                setError(err.message)
-              });
-          }
-        }}
-
-
-        >
-          <View style={styles.imageview}>
-            <Icon2 name="sign-out" size={50} color="crimson" />
-          </View>
-          <Text style={{ color: ColorCard, marginLeft: 10 }}>sign-out</Text>
-        </TouchableOpacity>:null
-}
+          {auth.currentUser !== null ? (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("INFO");
+              }}
+            >
+              <View style={styles.imageview}>
+                <Image
+                  style={styles.image}
+                  source={{ uri: "https://i.ibb.co/1q25n5P/profile1.png" }}
+                ></Image>
+              </View>
+              <Text style={{ textAlign: "center" }}>Profile</Text>
+            </TouchableOpacity>
+          ) : null}
+          {/* 
+          {auth.currentUser !== null ? (
+            <TouchableOpacity
+              onPress={() => {
+                {
+                  SignOut()
+                    .then(() => {
+                      console.log("sign out");
+                      navigation.navigate("FirstPage");
+                    })
+                    .catch((err) => {
+                      setError(err.message);
+                    });
+                }
+              }}
+            >
+              <View style={styles.imageview}>
+                <Icon2 name="sign-out" size={50} color="crimson" />
+              </View>
+              <Text style={{ color: ColorCard, marginLeft: 10 }}>sign-out</Text>
+            </TouchableOpacity>
+          ) : null} */}
         </ScrollView>
       </View>
       <View style={styles.container}>
@@ -213,7 +209,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   imageview: {
-    borderRadius: "50%",
+    borderRadius: 50,
     borderColor: "red",
     shadowColor: "red",
     shadowOffset: { width: 3, height: 4 },

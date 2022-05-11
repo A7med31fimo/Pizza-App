@@ -2,8 +2,8 @@ import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
 import { React, useState, useEffect } from "react";
 import { auth } from "../../db/Config";
-import { SignOut,getUserUId } from "../../db/auth/auth";
-import {getUserById} from "../../db/Edit/Info"
+import { SignOut, getUserUId } from "../../db/auth/auth";
+import { getUserById } from "../../db/Edit/Info";
 const UserInfo = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [fName, setfName] = useState("");
@@ -13,25 +13,21 @@ const UserInfo = ({ navigation }) => {
   const [address, setaddress] = useState("");
   const [error, setError] = useState("");
 
-
   useEffect(() => {
-      getUserUId().then(
-        
-        (id) => {
-          //console.log(id);
-          if(id){
-          getUserById(id).then((user)=>{
-              setEmail(user[0].email);
-              setfName(user[0].fName);
-              setlName(user[0].lName);
-              setage(user[0].age);
-              setphone(user[0].phone)
-              setaddress(user[0].address)
-          })}
-      });
+    getUserUId().then((id) => {
+      //console.log(id);
+      if (id) {
+        getUserById(id).then((user) => {
+          setEmail(user[0].email);
+          setfName(user[0].fName);
+          setlName(user[0].lName);
+          setage(user[0].age);
+          setphone(user[0].phone);
+          setaddress(user[0].address);
+        });
+      }
+    });
   }, []);
-
-
 
   return (
     <View style={styles.container}>
@@ -40,11 +36,13 @@ const UserInfo = ({ navigation }) => {
           <Text style={styles.texticon}>{fName.charAt(0).toUpperCase()}</Text>
         </View>
         <View style={styles.Nameview}>
-          <Text style={styles.Name}>{fName}</Text>
+          <Text style={styles.Name}>
+            {fName} {lName}
+          </Text>
           <Icon name="edit" size={25} color="grey" />
         </View>
       </View>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <View style={styles.square}>
           <Text style={styles.texticon}>{lName.charAt(0).toUpperCase()}</Text>
         </View>
@@ -52,7 +50,7 @@ const UserInfo = ({ navigation }) => {
           <Text style={styles.Name}>{lName}</Text>
           <Icon name="edit" size={25} color="grey" />
         </View>
-      </View>
+      </View> */}
       <View style={styles.body}>
         <View style={styles.textView}>
           <Text style={styles.text}>Email:</Text>
