@@ -35,7 +35,6 @@ async function deleteItemsCards(id) {
 
 async function AddItemsCards(ItemCard) {
  if(s){ try {
-
     const docRef = await addDoc(collection(db, s), ItemCard);
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {

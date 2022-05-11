@@ -12,6 +12,8 @@ import Deals from "./Components/Categories/Deals/Deals"
 import Card from "./Components/Categories/CardItems/Card";
 import INFO from "./Components/Users/UserInfo";
 import { auth } from "./db/Config";
+import chatAdmin from "./Components/AdminManagement/chatAdmin";
+import confirmation from "./Components/Categories/CardItems/confirmation";
 export default function App() {
   const Stack = createNativeStackNavigator();
 
@@ -21,13 +23,12 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} options={{ title: "Explore Menu" }} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Log In" component={Login} />
-        <Stack.Screen name="Drinks" component={Drinks} />
-        <Stack.Screen name="FirstPage" component={FirstPage} options={{title:"Getting Start"}}/>
-        <Stack.Screen name="pizza" component={Pizza} options={{title:"Getting Start"}}/>
-        <Stack.Screen name="cakes" component={Cakes} options={{title:"Getting Start"}}/>
-        <Stack.Screen name="deals" component={Deals} options={{title:"Getting Start"}}/>
+        <Stack.Screen name="FirstPage" component={FirstPage} options={{title:"Getting Start"}}/>     
         <Stack.Screen name="Card" component={Card} />
+        <Stack.Screen name="Confirmation" component={confirmation}/>
         <Stack.Screen name="INFO" component={INFO}/>
+        <Stack.Screen name="ChatAdmin" component={chatAdmin}/>
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -12,10 +12,14 @@ import {
   editCard,
   getCardItems,subscribe
 } from "../../../db/Edit/CartItems";
-import Icon from "react-native-vector-icons/Entypo";
+
 import Carditem from "./ItemOfCard";
 
 import { useEffect, useState } from "react";
+
+import { auth } from "../../../db/Config";
+import { addConversation, getDocument, sendMessage } from "../../../db/Edit/chat";
+import {} from "../../../db/Edit/Info"
 export default function Cart({ navigation }) {
   const getCardslist = async () => {
     const c = await getCardItems();
@@ -54,16 +58,19 @@ export default function Cart({ navigation }) {
       }
     })
 
-
+    let s=0;
     c.map((a) => {
       sum = sum + parseInt(a.Price);
+      s+=a.Number;
     });
     setCards(c);
-
+    setItems(s);
     settotal(sum);
   };
   const [Cards, setCards] = useState([]);
   const [total, settotal] = useState(0);
+  const [numberOfItems, setItems] = useState(0);
+
   useEffect(() => {
     getCardslist();
   }, []);
@@ -96,7 +103,7 @@ export default function Cart({ navigation }) {
               title="Explore Menu"
               color="#FB081F"
               onPress={() => {
-                navigation.navigate("FirstPage");
+                navigation.navigate("Home");
               }}
             />
           </View>
@@ -115,8 +122,13 @@ export default function Cart({ navigation }) {
               title="Confirm"
               color="#FB081F"
               onPress={
-           ()=>{ Cards.map((a)=>{deleteItemsCards(a.id)})
-              }}
+           async ()=>{
+           const s= await auth.currentUser!=null?auth.currentUser.email.split("@")[0]:"guest";
+           let f="not Confirmed";
+            await  addConversation(s,total,numberOfItems,f)
+            navigation.navigate("Confirmation")
+            }
+            }
             ></Button>
           </View>
         </ScrollView>

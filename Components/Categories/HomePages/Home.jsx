@@ -57,16 +57,19 @@ export default function Home({ navigation }) {
     setColorCard("black");
   };
   const clickCart = () => {
-    if(auth.currentUser==null)
-    {alert("please login ")}
-    else{
-    setPage(4);
-    setColorDeal("black");
-    setColorPizza("black");
-    setColorCake("black");
-    setColorDrinks("black");
-    setColorCard("crimson");
-    }
+  
+    // setPage(4);
+    // setColorDeal("black");
+    // setColorPizza("black");
+    // setColorCake("black");
+    // setColorDrinks("black");
+    // setColorCard("crimson");
+   if(auth.currentUser.displayName==="admin")
+  
+   navigation.navigate("ChatAdmin")
+   else
+   navigation.navigate("Card")
+
   };
   return (
     <View style={{ flex: 1 }}>
