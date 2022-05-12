@@ -31,19 +31,19 @@ const UserInfo = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-      <View style={styles.header}>
-        <View style={styles.square}>
-          <Text style={styles.texticon}>{fName.charAt(0).toUpperCase()}</Text>
+      <ScrollView contentContainerStyle={{ flex: 1 }}>
+        <View style={styles.header}>
+          <View style={styles.square}>
+            <Text style={styles.texticon}>{fName.charAt(0).toUpperCase()}</Text>
+          </View>
+          <View style={styles.Nameview}>
+            <Text style={styles.Name}>
+              {fName} {lName}
+            </Text>
+            <Icon name="edit" size={25} color="grey" />
+          </View>
         </View>
-        <View style={styles.Nameview}>
-          <Text style={styles.Name}>
-            {fName} {lName}
-          </Text>
-          <Icon name="edit" size={25} color="grey" />
-        </View>
-      </View>
-      {/* <View style={styles.header}>
+        {/* <View style={styles.header}>
         <View style={styles.square}>
           <Text style={styles.texticon}>{lName.charAt(0).toUpperCase()}</Text>
         </View>
@@ -52,59 +52,59 @@ const UserInfo = ({ navigation }) => {
           <Icon name="edit" size={25} color="grey" />
         </View>
       </View> */}
-      <View style={styles.body}>
-        <View style={styles.textView}>
-          <Text style={styles.text}>Email:</Text>
-          <Text style={styles.textVal}>{email}</Text>
-          <Icon name="edit" size={20} color="grey" />
-        </View>
-        <View style={styles.textView}>
-          <Text style={styles.text}>Number:</Text>
-          <Text style={styles.textVal}>{phone}</Text>
-          <Icon name="edit" size={20} color="grey" />
-        </View>
-        <View style={styles.textView}>
-          <Text style={styles.text}>Address:</Text>
-          <Text style={styles.textVal}>{address}</Text>
-          <Icon name="edit" size={20} color="grey" />
-        </View>
-        <View style={styles.textView}>
-          <Text style={styles.text}>Age:</Text>
-          <Text style={styles.textVal}>{age}</Text>
-          <Icon name="edit" size={20} color="grey" />
-        </View>
+        <View style={styles.body}>
+          <View style={styles.textView}>
+            <Text style={styles.text}>Email:</Text>
+            <Text style={styles.textVal}>{email}</Text>
+            <Icon name="edit" size={20} color="grey" />
+          </View>
+          <View style={styles.textView}>
+            <Text style={styles.text}>Number:</Text>
+            <Text style={styles.textVal}>{phone}</Text>
+            <Icon name="edit" size={20} color="grey" />
+          </View>
+          <View style={styles.textView}>
+            <Text style={styles.text}>Address:</Text>
+            <Text style={styles.textVal}>{address}</Text>
+            <Icon name="edit" size={20} color="grey" />
+          </View>
+          <View style={styles.textView}>
+            <Text style={styles.text}>Age:</Text>
+            <Text style={styles.textVal}>{age}</Text>
+            <Icon name="edit" size={20} color="grey" />
+          </View>
 
-        <View style={styles.btns}>
-          <View style={styles.btn}>
-            <Button
-              onPress={() => {
-                navigation.navigate("Home");
-              }}
-              title="Home"
-              color="#FB081F"
-            ></Button>
-          </View>
-          <Text style={styles.ORtxt}>OR</Text>
-          <View style={styles.btn}>
-            <Button
-              onPress={() => {
-                {
-                  SignOut()
-                    .then(() => {
-                      console.log("sign out");
-                      navigation.navigate("FirstPage");
-                    })
-                    .catch((err) => {
-                      setError(err.message);
-                    });
-                }
-              }}
-              title="Log out"
-              color="#FB081F"
-            ></Button>
+          <View style={styles.btns}>
+            <View style={styles.btn}>
+              <Button
+                onPress={() => {
+                  navigation.navigate("Home");
+                }}
+                title="Home"
+                color="#FB081F"
+              ></Button>
+            </View>
+            <Text style={styles.ORtxt}>OR</Text>
+            <View style={styles.btn}>
+              <Button
+                onPress={() => {
+                  {
+                    SignOut()
+                      .then(() => {
+                        console.log("sign out");
+                        navigation.navigate("FirstPage");
+                      })
+                      .catch((err) => {
+                        setError(err.message);
+                      });
+                  }
+                }}
+                title="Log out"
+                color="#FB081F"
+              ></Button>
+            </View>
           </View>
         </View>
-      </View>
       </ScrollView>
     </View>
   );
@@ -115,9 +115,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F7F7F7",
-    alignItems: "center",
-    marginTop: 30,
-    marginBottom: 40,
+    margin: 10,
+    // alignItems: "center",
+    // marginTop: 30,
+    // marginBottom: 40,
   },
   header: {
     flexDirection: "row",

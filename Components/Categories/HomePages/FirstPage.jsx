@@ -11,14 +11,14 @@ import {
 export default function FirstPage({ navigation }) {
   return (
     <View style={styles.container}>
-      <ScrollView>
-      <View style={styles.header}>
-        <ImageBackground
-          source={{ uri: "https://i.ibb.co/0KmHhp2/chef.png" }}
-          resizeMode="contain"
-          style={styles.Background}
-        >
-          {/* <TouchableOpacity
+      <ScrollView contentContainerStyle={{ flex: 1 }}>
+        <View style={styles.header}>
+          <ImageBackground
+            source={{ uri: "https://i.ibb.co/0KmHhp2/chef.png" }}
+            resizeMode="contain"
+            style={styles.Background}
+          >
+            {/* <TouchableOpacity
             style={styles.item}
             onPress={() => {
               navigation.navigate("Home");
@@ -26,40 +26,40 @@ export default function FirstPage({ navigation }) {
           >
             <Text style={styles.Skiptxt}>Skip {">>"}</Text>
           </TouchableOpacity> */}
-        </ImageBackground>
-      </View>
-
-      <View style={styles.foot}>
-        <Text style={styles.Welcometxt}>WELCOME TO</Text>
-
-        <View style={styles.logoview}>
-          <Image
-            style={styles.logo}
-            source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
-          />
+          </ImageBackground>
         </View>
-        <View style={styles.btns}>
-          <View style={styles.btn}>
-            <Button
-              title="Log in"
-              color="#FB081F"
-              onPress={() => {
-                navigation.navigate("Log In");
-              }}
-            ></Button>
+
+        <View style={styles.foot}>
+          <Text style={styles.Welcometxt}>WELCOME TO</Text>
+
+          <View style={styles.logoview}>
+            <Image
+              style={styles.logo}
+              source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
+            />
           </View>
-          <Text style={styles.ORtxt}>OR</Text>
-          <View style={styles.btn}>
-            <Button
-              title="Sign up"
-              color="#FB081F"
-              onPress={() => {
-                navigation.navigate("Register");
-              }}
-            ></Button>
+          <View style={styles.btns}>
+            <View style={styles.btn}>
+              <Button
+                title="Log in"
+                color="#FB081F"
+                onPress={() => {
+                  navigation.navigate("Log In");
+                }}
+              ></Button>
+            </View>
+            <Text style={styles.ORtxt}>OR</Text>
+            <View style={styles.btn}>
+              <Button
+                title="Sign up"
+                color="#FB081F"
+                onPress={() => {
+                  navigation.navigate("Register");
+                }}
+              ></Button>
+            </View>
           </View>
         </View>
-      </View>
       </ScrollView>
     </View>
   );

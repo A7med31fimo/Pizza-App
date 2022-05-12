@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  ScrollView,
+} from "react-native";
 //import Icon from 'react-native-vector-icons/Entypo';
 // import { useState,useEffect } from "react";
 //import { RadioButton } from "react-native-paper"
@@ -8,31 +15,33 @@ import { deleteItemsCards } from "../../../db/Edit/CartItems";
 export default function Item({ id, image, label, size, price, number }) {
   return (
     <View style={styles.content}>
-      <View style={{ paddingHorizontal: 7 }}>
-        <View style={styles.footer}>
-          <Image source={{ uri: image }} style={styles.image} />
-          <View style={styles.header}>
-            <View style={styles.labelandicon}>
-              <Text style={styles.label}>{label}</Text>
-              <Icon
-                name="trash"
-                size={25}
-                color="grey"
-                onPress={() => {
-                  deleteItemsCards(id);
-                }}
-              />
+      <ScrollView contentContainerStyle={{ flex: 1 }}>
+        <View style={{ paddingHorizontal: 7 }}>
+          <View style={styles.footer}>
+            <Image source={{ uri: image }} style={styles.image} />
+            <View style={styles.header}>
+              <View style={styles.labelandicon}>
+                <Text style={styles.label}>{label}</Text>
+                <Icon
+                  name="trash"
+                  size={25}
+                  color="grey"
+                  onPress={() => {
+                    deleteItemsCards(id);
+                  }}
+                />
+              </View>
+              <Text style={styles.label2}>{size}</Text>
             </View>
-            <Text style={styles.label2}>{size}</Text>
           </View>
         </View>
-      </View>
 
-      <View style={styles.footer}>
-        <Text style={styles.number}>{number} Items</Text>
+        <View style={styles.footer}>
+          <Text style={styles.number}>{number} Items</Text>
 
-        <Text style={styles.price}> {price}.00 EGP </Text>
-      </View>
+          <Text style={styles.price}> {price}.00 EGP </Text>
+        </View>
+      </ScrollView>
     </View>
   );
 }
