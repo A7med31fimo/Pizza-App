@@ -9,7 +9,7 @@ import AddItem from"../../AdminManagement/Add"
 // import Pizza2 from "../../../assets/pizza/pizza2.png" ;
 // import Pizza3 from "../../../assets/pizza/pizza3.png" ;
 // import Pizza4 from "../../../assets/pizza/pizza4.png" ;
-export default function Pizza() {
+export default function Pizza({fuc1 , fuc2 , fuc3}) {
   const getItemlist = async () => {
     const c = await getItemPizza();
     setItem(c);
@@ -51,7 +51,15 @@ export default function Pizza() {
     }
       <ScrollView>
         {Items.map((e , index) => (
-          <Pizzaa ID={e.id} key = {index} label={e.label} desc={e.desc} image={e.image} price = {e.price} />
+          <Pizzaa ID={e.id} 
+          key = {index} 
+          label={e.label} 
+          desc={e.desc} 
+          image={e.image} 
+          price = {e.price} 
+          fu1 = {fuc1} 
+          fu2 = {fuc2}
+          fu3 = {fuc3} />
         ))}
       </ScrollView>
       <StatusBar style="auto" />

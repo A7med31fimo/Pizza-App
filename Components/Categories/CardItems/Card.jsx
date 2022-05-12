@@ -15,23 +15,25 @@ import {
 import Icon from "react-native-vector-icons/Entypo";
 import Carditem from "./ItemOfCard";
 
+
 import { useEffect, useState } from "react";
-export default function Cart({ navigation }) {
+export default function Cart({fuc1}) {
+
   const getCardslist = async () => {
     const c = await getCardItems();
    
     let sum = 0.0;
     function compare(a, b) {
-      if (a.Name < b.Name ) {
+      if (a.label < b.label ) {
         return -1;
       }
-      else if (a.Name > b.Name ) {
+      else if (a.label > b.label ) {
         return 1;
       }
       else {
-        if (a.Size < b.Size)
+        if (a.size < b.size)
           return -1 ;
-        else if (a.Size > b.Size) 
+        else if (a.size > b.size) 
           return 1  ;
         else 
           return 0 ;
@@ -41,25 +43,32 @@ export default function Cart({ navigation }) {
     c.sort(compare);
     
     let x=0;
+    let count = 1 ;
     c.map((a)=>{
+      
        if(x==0)
        x=a;
       else{
-         if(a.Name === x.Name && a.Size === x.Size)
+         if(a.label === x.label && a.size === x.size)
        {
-         editCard({id:a.id, Name: a.Name, Number:( x.Number+1), Price: a.Price + x.Price , Size : a.Size , Image : a.Image})
+         count++ ;
+         editCard({id:a.id, label: a.label, number: count , price: a.price*count  , size : a.size , image : a.image})
          deleteItemsCards(x.id)      
       }
+      else 
+          count = 1 ;
+       
        x=a
       }
     })
 
+  
+
 
     c.map((a) => {
-      sum = sum + parseInt(a.Price);
+      sum = sum + parseInt(a.price);
     });
     setCards(c);
-
     settotal(sum);
   };
   const [Cards, setCards] = useState([]);
@@ -105,7 +114,13 @@ export default function Cart({ navigation }) {
         <ScrollView style={{ flex: 1 }}>
           {Cards.map((a, index) => (
             <View key={index} style={styles.container}>
-              <Carditem id = {a.id} label = {a.Name} price = {a.Price} size = {a.Size} image = {a.Image} number ={a.Number}/>
+              <Carditem id = {a.id}
+               label = {a.label} 
+               price = {a.price} 
+               size = {a.size} 
+               image = {a.image} 
+               number ={a.number}
+               fu1 = {fuc1}/>
             </View>
           ))}
           <Text style={styles.texttotal}>Total Cost {total}</Text>

@@ -5,9 +5,13 @@ import { StyleSheet, Text, View, Image, Button } from "react-native";
 // import { AddItemsCards, getCardItems} from "../../../db/Edit/CartItems"
 import Icon from 'react-native-vector-icons/Entypo';
 import {deleteItemsCards} from "../../../db/Edit/CartItems";
-export default function Item({id ,image, label, size, price ,number }) {
+export default function Item({id ,image, label, size, price ,number , fu1 }) {
 
 
+  const de = () => {
+        fu1(label ,size);
+        deleteItemsCards(id);
+  }
 
 
     return (
@@ -22,7 +26,7 @@ export default function Item({id ,image, label, size, price ,number }) {
         name= 'trash'
         size = {25}
         color = 'grey'
-        onPress={()=>{deleteItemsCards(id)}}
+        onPress={de}
         
         />
       

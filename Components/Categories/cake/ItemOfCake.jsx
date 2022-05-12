@@ -8,10 +8,12 @@ import {AddItemsCards,getCardItems} from "../../../db/Edit/CartItems";
 import { auth } from "../../../db/Config";
 import {deleteItemscake} from  "../../../db/Edit/CakesEdit"
 import {deleteItemsDeals} from  "../../../db/Edit/DealEdit"
-export default function Item({str,ID,label , desc , image , price}) {
-  const [icon , seticon] = useState("heart-outlined");
+export default function Item({str,ID,label , desc , image , price , fu1 , fu2 , fu3}) {
+ 
 
-  const [number , setnumber] = useState(0);
+  const count = fu3(label);
+  const [icon , seticon] = useState("heart-outlined");
+  const [number , setnumber] = useState(count);
 
   const getCardslist = async () => {
     const c = await getCardItems();
@@ -44,21 +46,21 @@ export default function Item({str,ID,label , desc , image , price}) {
 
  
   const [user, setuser] = useState("");
-  const buttonHandler = () => {
-    AddItemsCards({ Name: label, Number: number+1, Price: price  , Image : image , Size : ''});
-    setnumber(number+1);
+  // const buttonHandler = () => {
+  //   AddItemsCards({ Name: label, Number: number+1, Price: price  , Image : image , Size : ''});
+  //   setnumber(number+1);
     
-  }
+  // }
 
-
+  const size = "" ;
   const plusHandler = () => {
-    
-    AddItemsCards({ Name: label, Number: number, Price: price , Image : image , Size : '' });
       setnumber(number+1);
+      fu1(label , image , price , size);
     }
 
   const minusHandler = () => {
     setnumber(number-1);
+    fu2(label , size); 
   }
   return (
         <View style={styles.content}>
@@ -91,7 +93,7 @@ export default function Item({str,ID,label , desc , image , price}) {
 <Text style = {styles.price} > {price}.00 EGP </Text>
 {number === 0 ? 
    <View style={styles.button}> 
-   <Button  title = '+ add' color = "crimson" onPress={buttonHandler}/>
+   <Button  title = '+ add' color = "crimson" onPress={plusHandler}/>
    </View>
    : number === 1 ?
    <View style = {styles.footer}>

@@ -1,3 +1,5 @@
+
+ //AddItemsCards({ Name: label, Number: smallNumber+1, Price: pric  , Image : image , Size : size});
 import { StyleSheet, Text, View, Image ,Button } from "react-native";
 import Icon from 'react-native-vector-icons/Entypo';
 import { useState,useEffect } from "react";
@@ -5,7 +7,7 @@ import { RadioButton } from "react-native-paper"
 import { AddItemsCards, getCardItems} from "../../../db/Edit/CartItems"
 import {deleteItemsDrinks } from  "../../../db/Edit/DrinksEdit"
 import { auth } from "../../../db/Config";
-export default function Item({ ID,image, label, price}) {
+export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3}) {
   let x = 0 , y = 0 ;
     const getCardslist = async () => {
       
@@ -34,26 +36,28 @@ export default function Item({ ID,image, label, price}) {
       })
     };
    
-    useEffect(() => {
-      getCardslist();
-    }, []);
+    // useEffect(() => {
+    //   getCardslist();
+    // }, []);
 
-
+    const count = fu3(label);
   const [icon , seticon] = useState("heart-outlined");
   const [small ,setsmall] = useState('checked');
   const [large ,setlarge] = useState('unchecked');
   const [pric , setprice] = useState(price);
-  const [number , setnumber] = useState(0);
+  const [number , setnumber] = useState(count);
   const [size ,setsize] = useState('330 ml');
   const [smallNumber , setsmallNumber] = useState(0);
   const [largeNumber , setlargeNumber] = useState(0);
- // const [Cards, setCards] = useState([]);
- const [user, setuser] = useState("");
-
+  const [Data, setData] = useState([]);
+  const [user, setuser] = useState("");
+    
 
  const handleRemove=()=>{
   deleteItemsDrinks(ID);
 }
+
+
 
   const clickHeart = () => {
     if (icon === "heart-outlined")
@@ -80,38 +84,46 @@ export default function Item({ ID,image, label, price}) {
     }
   } 
 
-  const buttonHandler = () => {
-    if (size === '330 ml'){
-      setsmallNumber(smallNumber+1);
-      AddItemsCards({ Name: label, Number: smallNumber+1, Price: pric  , Image : image , Size : size});
-    }
-    else {
-    setlargeNumber(largeNumber+1);
-    AddItemsCards({ Name: label, Number: largeNumber+1, Price: pric  , Image : image , Size : size});
-    }
-    setnumber(number+1);
-  }
+
+  
+  // const buttonHandler = () => {
+  //   if (size === '330 ml'){
+  //     setsmallNumber(smallNumber+1);
+
+  //   }
+  //   else {
+  //   setlargeNumber(largeNumber+1);
+  //   }
+  //   setnumber(number+1);
+  //   fuc1(label , image , pric , size);
+  // }
 
 
   const plusHandler = () => {
-    
     if (size === '330 ml'){
       setsmallNumber(smallNumber+1);
-      AddItemsCards({ Name: label, Number: smallNumber, Price: pric  , Image : image , Size : size});
     }
     else {
       setlargeNumber(largeNumber+1);
-    AddItemsCards({ Name: label, Number: largeNumber, Price: pric  , Image : image , Size : size});
     }
     setnumber(number+1);
+    fu1(label , image , pric , size);
     }
 
 
   const minusHandler = () => {
+    if (size === '330 ml'){
+      setsmallNumber(smallNumber-1);
+    }
+    else {
+      setlargeNumber(largeNumber-1);
+    }
     setnumber(number-1);
+    fu2(label , size);
+   
   }
 
-
+  
 
   return (
     <View style={styles.content}>
@@ -167,7 +179,7 @@ export default function Item({ ID,image, label, price}) {
 <Text style = {styles.price} > {pric}.00 EGP </Text>
 {number === 0 ? 
    <View style={styles.button}> 
-   <Button  title = '+ add' color = "crimson" onPress={buttonHandler}/>
+   <Button  title = '+ add' color = "crimson" onPress={plusHandler}/>
    </View>
    : number === 1 ?
    <View style = {styles.footer}>
@@ -204,6 +216,7 @@ export default function Item({ ID,image, label, price}) {
       onPress = {plusHandler}
       />
     </View>
+    
  }
  </View></View>
  )
