@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
 import { React, useState, useEffect } from "react";
 import { auth } from "../../db/Config";
@@ -31,6 +31,7 @@ const UserInfo = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <ScrollView>
       <View style={styles.header}>
         <View style={styles.square}>
           <Text style={styles.texticon}>{fName.charAt(0).toUpperCase()}</Text>
@@ -104,6 +105,7 @@ const UserInfo = ({ navigation }) => {
           </View>
         </View>
       </View>
+      </ScrollView>
     </View>
   );
 };

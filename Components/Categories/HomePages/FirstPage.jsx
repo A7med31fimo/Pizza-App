@@ -11,6 +11,7 @@ import {
 export default function FirstPage({ navigation }) {
   return (
     <View style={styles.container}>
+      <ScrollView>
       <View style={styles.header}>
         <ImageBackground
           source={{ uri: "https://i.ibb.co/0KmHhp2/chef.png" }}
@@ -59,6 +60,7 @@ export default function FirstPage({ navigation }) {
           </View>
         </View>
       </View>
+      </ScrollView>
     </View>
   );
 }

@@ -3,7 +3,7 @@ import {useState,useEffect} from 'react'
 import { getAllChats,subscribe } from '../../db/Edit/chat'
 import Item from './itemOfCard';
 
-export default function chatAdmin() {
+export default function ChatAdmin() {
   const[chat,setchats]=useState([]);
     const getChats = () => {
   getAllChats().then((data)=>{setchats(data)})}

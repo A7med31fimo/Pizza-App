@@ -9,7 +9,7 @@ import {
 import { auth } from "../../../db/Config";
 import { getCardItems } from "../../../db/Edit/CartItems";
 import { deleteItemsCards } from "../../../db/Edit/CartItems";
-export default function confirmation({ navigation }) {
+export default function Confirmation({ navigation }) {
   const [chat, setchats] = useState([]);
   const [card, setCard] = useState([]);
   const [id, setId] = useState();

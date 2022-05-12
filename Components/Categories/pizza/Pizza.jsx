@@ -161,7 +161,7 @@ export default function Item({ID,label , desc , image , price}) {
         <Text style={styles.desc}>{desc}</Text>
       </View> 
     
-    <Image source={image} style = {styles.image} />
+    <Image source={{uri: image}} style = {styles.image} />
 
 
     <View style={styles.footer}>
