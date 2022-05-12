@@ -11,28 +11,28 @@ import {
 //import { RadioButton } from "react-native-paper"
 // import { AddItemsCards, getCardItems} from "../../../db/Edit/CartItems"
 import Icon from "react-native-vector-icons/Entypo";
-import { deleteItemsCards } from "../../../db/Edit/CartItems";
-export default function Item({ id, image, label, size, price, number , fu1}) {
-
-  const de = () => {
-    fu1(label ,size);
-    deleteItemsCards(id);
-}
+import { deleteItem } from "../../db/Edit/chat";
+export default function Item({ id, image, label, size, price, number }) {
   return (
     <View style={styles.content}>
       <ScrollView contentContainerStyle={{ flex: 1 }}>
         <View style={{ paddingHorizontal: 7 }}>
           <View style={styles.footer}>
             <Image source={{ uri: image }} style={styles.image} />
+
             <View style={styles.header}>
               <View style={styles.labelandicon}>
                 <Text style={styles.label}>{label}</Text>
-                <Icon
-        name= 'trash'
-        size = {25}
-        color = 'grey'
-        onPress={de}
-        />
+                <View style={styles.icon}>
+                  <Icon
+                    name="trash"
+                    size={25}
+                    color="grey"
+                    onPress={() => {
+                      deleteItem(id);
+                    }}
+                  />
+                </View>
               </View>
               <Text style={styles.label2}>{size}</Text>
             </View>
@@ -41,7 +41,6 @@ export default function Item({ id, image, label, size, price, number , fu1}) {
 
         <View style={styles.footer}>
           <Text style={styles.number}>{number} Items</Text>
-
           <Text style={styles.price}> {price}.00 EGP </Text>
         </View>
       </ScrollView>
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
   image: {
     width: "30%",
     height: 100,
-    alignItems: "center",
+    // alignItems: "center",
   },
   header: {
     flexDirection: "column",
@@ -77,8 +76,11 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontWeight: "bold",
-    marginLeft: 10,
-    marginRight: 20,
+    width: "50%",
+    marginLeft: 15,
+  },
+  icon: {
+    width: "25%",
   },
   label2: {
     marginLeft: 10,
@@ -108,6 +110,3 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 });
-{
-  /* {<h4 style={{ color: "crimson" }}>{size}</h4>} */
-}

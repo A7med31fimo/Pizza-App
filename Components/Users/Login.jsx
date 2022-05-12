@@ -37,11 +37,13 @@ export default function Login({ navigation }) {
               placeholder="Email@Example.com"
             ></TextInput>
             <TextInput
-              onChangeText={setpassword}
-              keyboardType="visible-password"
-              secureTextEntry={true}
+              placeholder="password"
+              autoCapitalize="none"
+              autoCorrect={false}
+              textContentType="newPassword"
+              secureTextEntry
+              onChangeText={(text) => setpassword(text)}
               style={styles.inp}
-              placeholder="Password"
             ></TextInput>
           </View>
           <View style={styles.foot}>
@@ -53,8 +55,9 @@ export default function Login({ navigation }) {
                   login(email, password)
                     .then(() => {
                       navigation.navigate("Home");
+                      alert("Login Success!");
                     })
-                    .catch((e) => setError(e.message));
+                    .catch((e) => setError(e.message, alert("Login failed!")));
                 }}
                 color="#FB081F"
               ></Button>
@@ -62,11 +65,13 @@ export default function Login({ navigation }) {
             </View>
             <Text style={styles.ORtxt}>OR</Text>
             <View style={styles.btn}>
-              <Button 
-              onPress={() => {
-                navigation.navigate("Register");
-              }}
-              title="Sign up" color="#FB081F"></Button>
+              <Button
+                onPress={() => {
+                  navigation.navigate("Register");
+                }}
+                title="Sign up"
+                color="#FB081F"
+              ></Button>
             </View>
           </View>
         </View>

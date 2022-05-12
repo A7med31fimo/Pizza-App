@@ -1,83 +1,111 @@
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
 import { React, useState, useEffect } from "react";
 import { auth } from "../../db/Config";
-import { SignOut } from "../../db/auth/auth";
+import { SignOut, getUserUId } from "../../db/auth/auth";
+import { getUserById } from "../../db/Edit/Info";
 const UserInfo = ({ navigation }) => {
   const [email, setEmail] = useState("");
-  const [Name, setName] = useState("");
-  function getInfo() {
-    if (auth.currentUser != null) {
-      setName(auth.currentUser.displayName);
-      setEmail(auth.currentUser.email);
-    }
-  }
+  const [fName, setfName] = useState("");
+  const [lName, setlName] = useState("");
+  const [age, setage] = useState("");
+  const [phone, setphone] = useState("");
+  const [address, setaddress] = useState("");
+  const [error, setError] = useState("");
+
   useEffect(() => {
-    getInfo();
+    getUserUId().then((id) => {
+      //console.log(id);
+      if (id) {
+        getUserById(id).then((user) => {
+          setEmail(user[0].email);
+          setfName(user[0].fName);
+          setlName(user[0].lName);
+          setage(user[0].age);
+          setphone(user[0].phone);
+          setaddress(user[0].address);
+        });
+      }
+    });
   }, []);
+
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <ScrollView contentContainerStyle={{ flex: 1 }}>
+        <View style={styles.header}>
+          <View style={styles.square}>
+            <Text style={styles.texticon}>{fName.charAt(0).toUpperCase()}</Text>
+          </View>
+          <View style={styles.Nameview}>
+            <Text style={styles.Name}>
+              {fName} {lName}
+            </Text>
+            <Icon name="edit" size={25} color="grey" />
+          </View>
+        </View>
+        {/* <View style={styles.header}>
         <View style={styles.square}>
-          <Text style={styles.texticon}>{Name.charAt(0).toUpperCase()}</Text>
+          <Text style={styles.texticon}>{lName.charAt(0).toUpperCase()}</Text>
         </View>
         <View style={styles.Nameview}>
-          <Text style={styles.Name}>{Name}</Text>
+          <Text style={styles.Name}>{lName}</Text>
           <Icon name="edit" size={25} color="grey" />
         </View>
-      </View>
-      <View style={styles.body}>
-        <View style={styles.textView}>
-          <Text style={styles.text}>Email:</Text>
-          <Text style={styles.textVal}>{email}</Text>
-          <Icon name="edit" size={20} color="grey" />
-        </View>
-        <View style={styles.textView}>
-          <Text style={styles.text}>Number:</Text>
-          <Text style={styles.textVal}>010000000</Text>
-          <Icon name="edit" size={20} color="grey" />
-        </View>
-        <View style={styles.textView}>
-          <Text style={styles.text}>Address:</Text>
-          <Text style={styles.textVal}>Address Value</Text>
-          <Icon name="edit" size={20} color="grey" />
-        </View>
-        <View style={styles.textView}>
-          <Text style={styles.text}>Password:</Text>
-          <Text style={styles.textVal}>********</Text>
-          <Icon name="edit" size={20} color="grey" />
-        </View>
-        <View style={styles.btns}>
-          <View style={styles.btn}>
-            <Button
-              onPress={() => {
-                navigation.navigate("Home");
-              }}
-              title="Home"
-              color="#FB081F"
-            ></Button>
+      </View> */}
+        <View style={styles.body}>
+          <View style={styles.textView}>
+            <Text style={styles.text}>Email:</Text>
+            <Text style={styles.textVal}>{email}</Text>
+            <Icon name="edit" size={20} color="grey" />
           </View>
-          <Text style={styles.ORtxt}>OR</Text>
-          <View style={styles.btn}>
-            <Button
-              onPress={() => {
-                {
-                  SignOut()
-                    .then(() => {
-                      console.log("sign out");
-                      navigation.navigate("FirstPage");
-                    })
-                    .catch((err) => {
-                      setError(err.message);
-                    });
-                }
-              }}
-              title="Log out"
-              color="#FB081F"
-            ></Button>
+          <View style={styles.textView}>
+            <Text style={styles.text}>Number:</Text>
+            <Text style={styles.textVal}>{phone}</Text>
+            <Icon name="edit" size={20} color="grey" />
+          </View>
+          <View style={styles.textView}>
+            <Text style={styles.text}>Address:</Text>
+            <Text style={styles.textVal}>{address}</Text>
+            <Icon name="edit" size={20} color="grey" />
+          </View>
+          <View style={styles.textView}>
+            <Text style={styles.text}>Age:</Text>
+            <Text style={styles.textVal}>{age}</Text>
+            <Icon name="edit" size={20} color="grey" />
+          </View>
+
+          <View style={styles.btns}>
+            <View style={styles.btn}>
+              <Button
+                onPress={() => {
+                  navigation.navigate("Home");
+                }}
+                title="Home"
+                color="#FB081F"
+              ></Button>
+            </View>
+            <Text style={styles.ORtxt}>OR</Text>
+            <View style={styles.btn}>
+              <Button
+                onPress={() => {
+                  {
+                    SignOut()
+                      .then(() => {
+                        console.log("sign out");
+                        navigation.navigate("FirstPage");
+                      })
+                      .catch((err) => {
+                        setError(err.message);
+                      });
+                  }
+                }}
+                title="Log out"
+                color="#FB081F"
+              ></Button>
+            </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -87,9 +115,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F7F7F7",
-    alignItems: "center",
-    marginTop: 30,
-    marginBottom: 40,
+    margin: 10,
+    // alignItems: "center",
+    // marginTop: 30,
+    // marginBottom: 40,
   },
   header: {
     flexDirection: "row",
