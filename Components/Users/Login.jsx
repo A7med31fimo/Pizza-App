@@ -51,18 +51,58 @@ export default function Login({ navigation }) {
               <Button
                 title="Log in"
                 onPress={() => {
-                  // console.log(email, password);
                   login(email, password)
                     .then(() => {
                       navigation.navigate("Home");
                       alert("Login Success!");
                     })
-                    .catch((e) => setError(e.message, alert("Login failed!")));
+                    .catch((e) => {
+                      setError(e.message);
+                      if (
+                        e.message.includes("invalid-email") &&
+                        email === "" &&
+                        password === ""
+                      ) {
+                        setError("Please enter your email and password");
+                        alert("Please enter your email and password");
+                      } else if (
+                        e.message.includes("invalid-email") &&
+                        email === ""
+                      ) {
+                        setError("Please enter your email");
+                        alert("Please enter your email");
+                      } else if (
+                        e.message.includes("invalid-email") &&
+                        email !== ""
+                      ) {
+                        setError("The Email is incorrect");
+                        alert("The Email is incorrect");
+                      } else if (
+                        e.message.includes("internal-error") &&
+                        password === ""
+                      ) {
+                        setError("Please enter your password");
+                        alert("Please enter your password");
+                      } else if (
+                        e.message.includes("wrong-password") &&
+                        password !== ""
+                      ) {
+                        setError("The password is incorrect");
+                        alert("The password is incorrect");
+                      } else if (
+                        e.message.includes("user-not-found") &&
+                        email !== "" &&
+                        password !== ""
+                      ) {
+                        setError("The user is not exist");
+                        alert("The user is not exist");
+                      }
+                    });
                 }}
                 color="#FB081F"
               ></Button>
-              <Text>{error}</Text>
             </View>
+            <Text style={styles.errortxt}>{error}</Text>
             <Text style={styles.ORtxt}>OR</Text>
             <View style={styles.btn}>
               <Button
@@ -100,7 +140,7 @@ const styles = StyleSheet.create({
   },
   inp: {
     width: "90%",
-    height: 40,
+    height: 35,
     borderWidth: 2,
     borderColor: "#FB081F",
     borderRadius: 10,
@@ -112,16 +152,23 @@ const styles = StyleSheet.create({
   },
   foot: {
     flexDirection: "column",
-    alignItems: "center",
-    marginTop: 40,
+    marginTop: 10,
+    marginBottom: 25,
+  },
+  errortxt: {
+    marginLeft: 10,
+    color: "red",
+    fontSize: 15,
+    textAlign: "left",
   },
   ORtxt: {
     textAlign: "center",
-    fontSize: 30,
+    fontSize: 25,
     color: "#000000",
-    marginVertical: 10,
+    margin: 10,
   },
   btn: {
+    alignSelf: "center",
     width: "90%",
     borderRadius: 15,
     overflow: "hidden",

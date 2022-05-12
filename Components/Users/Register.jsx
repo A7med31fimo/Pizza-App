@@ -99,15 +99,53 @@ const Register = ({ navigation }) => {
                         });
                       })
                       .catch((err) => {
-                        setError(err.message, alert("Register failed!"));
+                        {
+                          setError(err.message);
+                          if (
+                            err.message.includes("invalid-email") &&
+                            fName === "" &&
+                            lName === "" &&
+                            phone === "" &&
+                            age === "" &&
+                            email === "" &&
+                            address === "" &&
+                            password === ""
+                          ) {
+                            setError("Please enter your data");
+                            alert("Please enter your data");
+                          } else if (
+                            err.message.includes("already-in-use") &&
+                            email !== "" &&
+                            password !== ""
+                          ) {
+                            setError("The email is already exist");
+                            alert("The email is already exist");
+                          } else if (
+                            err.message.includes("weak-password") &&
+                            password.length < 8
+                          ) {
+                            setError(
+                              "Password should includes at least 6 characters"
+                            );
+                            alert(
+                              "Password should includes at least 6 characters"
+                            );
+                          } else if (
+                            err.message.includes("invalid-email") &&
+                            email !== ""
+                          ) {
+                            setError("The Email is incorrect");
+                            alert("The Email is incorrect");
+                          }
+                        }
                       });
                   }
                 }}
                 color="#FB081F"
               ></Button>
-              <Text>{error}</Text>
             </View>
           </View>
+          <Text style={styles.errortxt}>{error}</Text>
         </View>
       </ScrollView>
     </View>
@@ -126,7 +164,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 400,
-    height: 400,
+    height: 380,
     marginTop: -80,
     marginBottom: -40,
   },
@@ -140,14 +178,20 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#FB081F",
     borderRadius: 10,
-    marginBottom: 30,
+    marginBottom: 15,
     fontSize: 20,
     fontStyle: "italic",
     padding: 6,
     color: "#000000",
   },
+  errortxt: {
+    marginLeft: 10,
+    color: "red",
+    fontSize: 15,
+    textAlign: "left",
+    marginBottom: 30,
+  },
   btn: {
-    marginVertical: 5,
     width: "90%",
     borderRadius: 15,
     overflow: "hidden",
