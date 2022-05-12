@@ -18,14 +18,9 @@ import DrinksPage from "../Drinks/Drinks";
 import CartPage from "../CardItems/Card";
 import UserInfo from "../../Users/UserInfo";
 import Icon from "react-native-vector-icons/AntDesign";
-<<<<<<< HEAD
-
-
-=======
 import Icon2 from "react-native-vector-icons/Octicons";
 import { SignOut } from "../../../db/auth/auth";
 import { auth } from "../../../db/Config";
->>>>>>> e07309a9593cfca18664847e0498a7de5bfa058d
 export default function Home({ navigation }) {
 
     useEffect(() => {
@@ -73,15 +68,6 @@ export default function Home({ navigation }) {
     setColorCard("black");
   };
   const clickCart = () => {
-<<<<<<< HEAD
-    setPage(4);
-    setColorDeal("black");
-    setColorPizza("black");
-    setColorCake("black");
-    setColorDrinks("black");
-    setColorCard("crimson");
-    AddToCart();
-=======
     // setPage(4);
     // setColorDeal("black");
     // setColorPizza("black");
@@ -91,7 +77,8 @@ export default function Home({ navigation }) {
     if (auth.currentUser.displayName === "admin")
       navigation.navigate("ChatAdmin");
     else navigation.navigate("Card");
->>>>>>> e07309a9593cfca18664847e0498a7de5bfa058d
+
+    AddToCart();
   };
 
 
@@ -362,12 +349,7 @@ const styles = StyleSheet.create({
 
   
   imageview: {
-<<<<<<< HEAD
-    
-    borderRadius: "50%",
-=======
     borderRadius: 50,
->>>>>>> e07309a9593cfca18664847e0498a7de5bfa058d
     borderColor: "red",
     shadowColor: "red",
     shadowOffset: { width: 3, height: 4 },

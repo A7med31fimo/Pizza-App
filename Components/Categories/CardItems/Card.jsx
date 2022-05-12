@@ -21,7 +21,7 @@ import { useEffect, useState } from "react";
 import { auth } from "../../../db/Config";
 import { addConversation, getDocument, sendMessage } from "../../../db/Edit/chat";
 import {} from "../../../db/Edit/Info"
-export default function Cart({ navigation , fuc1 }) {
+export default function Cart({navigation},{ fuc1 }) {
   const getCardslist = async () => {
     const c = await getCardItems();
    
@@ -67,8 +67,8 @@ export default function Cart({ navigation , fuc1 }) {
 
     let s=0;
     c.map((a) => {
-      sum = sum + parseInt(a.Price);
-      s+=a.Number;
+      sum = sum + parseInt(a.price);
+      s+=a.number;
     });
     setCards(c);
     setItems(s);
