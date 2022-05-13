@@ -36,9 +36,9 @@ export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3}) {
       })
     };
    
-    // useEffect(() => {
-    //   getCardslist();
-    // }, []);
+    useEffect(() => {
+      getCardslist();
+    }, []);
 
     const count = fu3(label);
   const [icon , seticon] = useState("heart-outlined");
