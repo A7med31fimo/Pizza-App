@@ -79,6 +79,7 @@ export default function Home({ navigation }) {
     else navigation.navigate("Card");
 
     AddToCart();
+    setData([])
   };
 
 
@@ -101,6 +102,17 @@ export default function Home({ navigation }) {
     
      console.log(c);
   }
+
+  useEffect(() => {
+    const unsubscribe = subscribe(({ change, snapshot }) => {
+      getCardslist()
+    });
+    return () => {
+      unsubscribe();
+    };
+
+  }, []);
+
 
 const AddToCart =  async () => {
   const c = await getCardItems();

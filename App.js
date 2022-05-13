@@ -12,7 +12,7 @@ import Deals from "./Components/Categories/Deals/Deals"
 import Card from "./Components/Categories/CardItems/Card";
 import INFO from "./Components/Users/UserInfo";
 import { auth } from "./db/Config";
-import ChatAdmin from "./Components/AdminManagement/ChatAdmin";
+import ChatAdmin from "./Components/AdminManagement/chatAdmin";
 import Confirmation from "./Components/Categories/CardItems/Confirmation";
 export default function App() {
 
