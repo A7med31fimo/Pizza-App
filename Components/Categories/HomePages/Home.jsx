@@ -8,7 +8,7 @@ import {
   Button
 } from "react-native";
 
-import {getCardItems , deleteItemsCards ,AddItemsCards ,subscribe} from "../../../db/Edit/CartItems"
+import {getCardItems , deleteItemsCards ,AddItemsCards } from "../../../db/Edit/CartItems"
 
 import { useState , useEffect} from "react";
 import DealsPage from "../Deals/Deals";
@@ -103,20 +103,10 @@ export default function Home({ navigation }) {
      console.log(c);
   }
 
-  useEffect(() => {
-    const unsubscribe = subscribe(({ change, snapshot }) => {
-      getCardslist()
-    });
-    return () => {
-      unsubscribe();
-    };
-
-  }, []);
-
 
 const AddToCart =  async () => {
   const c = await getCardItems();
-  c.map(a => deleteItemsCards(a.id));
+  //c.map(a => deleteItemsCards(a.id));
   //console.log(c);
   Data.map ( a => AddItemsCards({label : a.label , number : 1 , price : a.price , size : a.size , image : a.image }) )
   console.log(Data);

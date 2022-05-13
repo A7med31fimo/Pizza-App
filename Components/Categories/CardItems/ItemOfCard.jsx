@@ -15,7 +15,7 @@ import { deleteItemsCards } from "../../../db/Edit/CartItems";
 export default function Item({ id, image, label, size, price, number , fu1}) {
 
   const de = () => {
-    fu1(label ,size);
+    //fu1(label ,size);
     deleteItemsCards(id);
 }
   return (

@@ -51,6 +51,11 @@ export default function Login({ navigation }) {
               <Button
                 title="Log in"
                 onPress={() => {
+
+
+
+
+                  
                   login(email, password)
                     .then(() => {
                       navigation.navigate("Home");

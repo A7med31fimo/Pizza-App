@@ -55,7 +55,42 @@ export default function Item({
             <Text style={styles.price}> {price}.00 EGP </Text>
           </View>
         </View>
-      ) : (
+      ) :status === "not Confirmed" ? (
+        <View style={styles.content3}>
+          <View style={{ paddingHorizontal: 7 }}>
+            <View style={styles.footer}>
+              <Image source={{ uri: image }} style={styles.image} />
+              <View style={styles.header}>
+                <View style={styles.labelandicon}>
+                  <Text style={styles.status1}>
+                    user: {label}
+                    {"\n"}status: {status}
+                  </Text>
+                  <View style={styles.icon}>
+                    <Icon
+                      name="trash"
+                      size={25}
+                      color="grey"
+                      onPress={() => {
+                        deleteItem(id);
+                      }}
+                    />
+                  </View>
+                </View>
+                <Text style={styles.label2}>{size}</Text>
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.footer}>
+            <Text style={styles.number}>{number} Items</Text>
+            <Text style={styles.price}> {price}.00 EGP </Text>
+          </View>
+        </View>
+      ) : 
+      
+      
+      (
         <View style={styles.content2}>
           <View style={{ paddingHorizontal: 7 }}>
             <View style={styles.footer}>
@@ -98,8 +133,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     borderWidth: 1,
     borderRadius: 10,
-    borderColor: "blue",
-    shadowColor: "blue",
+    borderColor: "green",
+    shadowColor: "green",
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 4,
@@ -121,6 +156,23 @@ const styles = StyleSheet.create({
     padding: 7,
     marginVertical: 10,
   },
+  content3: {
+    margin: 10,
+    backgroundColor: "#FFF",
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: "#ffffff",
+    shadowColor: "#ffffff",
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 5,
+    padding: 7,
+    marginVertical: 10,
+  },
+
+
+
   image: {
     width: "25%",
     height: 80,
