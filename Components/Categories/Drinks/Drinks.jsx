@@ -9,7 +9,7 @@ import AddItem from "../../AdminManagement/Add"
 
 
 
-const Drinks = ({fuc1 , fuc2 , fuc3}) => {
+const Drinks = ({fuc1 , fuc2 , fuc3, fuc4}) => {
 
   // const getCardslist = async () => {
   //   const c = await getCardItems();
@@ -97,7 +97,15 @@ const Drinks = ({fuc1 , fuc2 , fuc3}) => {
         <ScrollView >
           {Drinks.map((a,index) => ( 
             <View key={index}>     
-              <Item ID={a.id} image={a.ref} label={a.name} price={a.cost} fu1 = {fuc1} fu2 = {fuc2} fu3 = {fuc3} />
+              <Item ID={a.id} 
+              image={a.ref} 
+              label={a.name} 
+              price={a.cost} 
+              fu1 = {fuc1} 
+              fu2 = {fuc2} 
+              fu3 = {fuc3} 
+              fu4 = {fuc4}
+              />
 
             </View>
           ))}

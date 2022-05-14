@@ -7,34 +7,34 @@ import { RadioButton } from "react-native-paper"
 import { AddItemsCards, getCardItems} from "../../../db/Edit/CartItems"
 import {deleteItemsDrinks } from  "../../../db/Edit/DrinksEdit"
 import { auth } from "../../../db/Config";
-export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3}) {
-  let x = 0 , y = 0 ;
-    const getCardslist = async () => {
+export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3 , fu4}) {
+  // let x = 0 , y = 0 ;
+  //   const getCardslist = async () => {
       
-      const c = await getCardItems();
-      if(auth.currentUser!==null)
-      setuser(auth.currentUser.displayName)
+  //     const c = await getCardItems();
+  //     if(auth.currentUser!==null)
+  //     setuser(auth.currentUser.displayName)
       
       
-      c.map((a)=>{
-        //console.log(a)
-        if(a.Name===label){
-          if (a.Size === '330 ml') {
-            x = a.Number;
-            setsmallNumber(a.Number);
-          }else {
-            y = a.Number ;
-            setlargeNumber(a.Number);
-          }  
+  //     c.map((a)=>{
+  //       //console.log(a)
+  //       if(a.Name===label){
+  //         if (a.Size === '330 ml') {
+  //           x = a.Number;
+  //           setsmallNumber(a.Number);
+  //         }else {
+  //           y = a.Number ;
+  //           setlargeNumber(a.Number);
+  //         }  
             
-            setnumber(x+y);
+  //           setnumber(x+y);
            
 
-        }
+  //       }
 
         
-      })
-    };
+  //     })
+  //   };
    
     // useEffect(() => {
     //   getCardslist();
@@ -47,9 +47,9 @@ export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3}) {
   const [pric , setprice] = useState(price);
   const [number , setnumber] = useState(count);
   const [size ,setsize] = useState('330 ml');
-  const [smallNumber , setsmallNumber] = useState(0);
-  const [largeNumber , setlargeNumber] = useState(0);
-  const [Data, setData] = useState([]);
+  // const [smallNumber , setsmallNumber] = useState(0);
+  // const [largeNumber , setlargeNumber] = useState(0);
+  // const [Data, setData] = useState([]);
   const [user, setuser] = useState("");
     
 
@@ -100,24 +100,25 @@ export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3}) {
 
 
   const plusHandler = () => {
-    if (size === '330 ml'){
-      setsmallNumber(smallNumber+1);
-    }
-    else {
-      setlargeNumber(largeNumber+1);
-    }
+    // if (size === '330 ml'){
+    //   setsmallNumber(smallNumber+1);
+    // }
+    // else {
+    //   setlargeNumber(largeNumber+1);
+    // }
+    if(!fu4())
     setnumber(number+1);
     fu1(label , image , pric , size);
     }
 
 
   const minusHandler = () => {
-    if (size === '330 ml'){
-      setsmallNumber(smallNumber-1);
-    }
-    else {
-      setlargeNumber(largeNumber-1);
-    }
+    // if (size === '330 ml'){
+    //   setsmallNumber(smallNumber-1);
+    // }
+    // else {
+    //   setlargeNumber(largeNumber-1);
+    // }
     setnumber(number-1);
     fu2(label , size);
    

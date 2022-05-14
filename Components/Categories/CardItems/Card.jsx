@@ -21,7 +21,7 @@ import { useEffect, useState } from "react";
 import { auth } from "../../../db/Config";
 import { addConversation, getDocument, sendMessage } from "../../../db/Edit/chat";
 import {} from "../../../db/Edit/Info"
-export default function Cart({navigation},{ fuc1 }) {
+export default function Cart({ fuc1  , fuc2 , fuc3}) {
   const getCardslist = async () => {
     const c = await getCardItems();
    
@@ -109,9 +109,7 @@ export default function Cart({navigation},{ fuc1 }) {
               style={styles.btn}
               title="Explore Menu"
               color="#FB081F"
-              onPress={() => {
-                navigation.navigate("Home");
-              }}
+              onPress= {fuc2}
             />
           </View>
         </View>
@@ -135,14 +133,16 @@ export default function Cart({navigation},{ fuc1 }) {
               title="Confirm"
               color="#FB081F"
               onPress={
+            
            async ()=>{
-           const s= await auth.currentUser!=null?auth.currentUser.email.split("@")[0]:"guest";
-           let f="not Confirmed";
+           
+           const s =  await auth.currentUser!=null?auth.currentUser.email.split("@")[0]:"guest";
+           let f = "not Confirmed";
             await  addConversation(s,total,numberOfItems,f)
-            navigation.navigate("Confirmation")
+            fuc3();
             }
-            }
-            ></Button>
+        }
+        />
           </View>
         </ScrollView>
       )}

@@ -9,7 +9,7 @@ import {
 import { auth } from "../../../db/Config";
 import { getCardItems } from "../../../db/Edit/CartItems";
 import { deleteItemsCards } from "../../../db/Edit/CartItems";
-export default function Confirmation({ navigation }) {
+export default function Confirmation({fuc1 , fuc2}) {
   const [chat, setchats] = useState([]);
   const [card, setCard] = useState([]);
   const [id, setId] = useState();
@@ -35,9 +35,9 @@ export default function Confirmation({ navigation }) {
 
   return (
     <View style={styles.body}>
-      <Text style={styles.text}>
+      <Text style={styles.text}> 
         Your order is Confirmed the Dlivery will call you soon on your phone
-        number and when he arrived please press arrived and if not press no.
+        number and when he arrived please press arrived .
       </Text>
       <View style={styles.btns}>
         <View style={styles.btn}>
@@ -47,15 +47,18 @@ export default function Confirmation({ navigation }) {
             onPress={() => {
               let status = "Arrived";
               editConversation(id, status);
-              card.map((a) => {
-                deleteItemsCards(a.id);
-              });
-              navigation.navigate("Card");
-              alert("Thanks for your time. \nGood luck!");
+              // card.map((a) => {
+              //   deleteItemsCards(a.id);
+              // });
+              // navigation.navigate("Card");
+              
+              fuc2();
+              fuc1();
+              
             }}
           ></Button>
         </View>
-        <View style={styles.btn}>
+        {/* <View style={styles.btn}>
           <Button
             title="No"
             color="#FB081F"
@@ -64,7 +67,8 @@ export default function Confirmation({ navigation }) {
               alert("Sorry for Delay order will arrived soon . . .");
             }}
           ></Button>
-        </View>
+        </View> */}
+        <Text>If face any problem please call 19999</Text>
       </View>
     </View>
   );

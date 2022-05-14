@@ -15,7 +15,7 @@ import { deleteItemsCards } from "../../../db/Edit/CartItems";
 export default function Item({ id, image, label, size, price, number , fu1}) {
 
   const de = () => {
-    //fu1(label ,size);
+    fu1(label ,size);
     deleteItemsCards(id);
 }
   return (
@@ -70,18 +70,21 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "column",
+    width : "100%"
   },
   labelandicon: {
     flexDirection: "row",
+    width : "70%"
   },
   label: {
     fontSize: 16,
     fontWeight: "bold",
-    marginLeft: 10,
+    marginLeft: 15,
     marginRight: 20,
+    width : "75%"
   },
   label2: {
-    marginLeft: 10,
+    marginLeft: 15,
     textAlign: "left",
     fontSize: 14,
     fontWeight: "bold",

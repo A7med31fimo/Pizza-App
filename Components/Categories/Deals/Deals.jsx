@@ -5,7 +5,7 @@ import Deal from "../cake/ItemOfCake"
 import {getItemDeals,subscribe} from "../../../db/Edit/DealEdit";
 import { auth } from "../../../db/Config";
 import AddItem from"../../AdminManagement/Add"
- export default function Deals({fuc1 , fuc2 , fuc3}) {
+ export default function Deals({fuc1 , fuc2 , fuc3 ,fuc4}) {
     const getItemlist = async () => {
       const c = await getItemDeals();
       setItem(c);
@@ -46,7 +46,8 @@ import AddItem from"../../AdminManagement/Add"
            price = {e.price} 
            fu1 = {fuc1} 
            fu2 = {fuc2}
-           fu3 = {fuc3}/>
+           fu3 = {fuc3}
+           fu4 = {fuc4}/>
         ))}
       </ScrollView>
       <StatusBar style="auto" />

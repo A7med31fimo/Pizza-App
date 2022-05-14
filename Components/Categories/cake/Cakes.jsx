@@ -5,7 +5,7 @@ import Cake from "./ItemOfCake";
 import { getItemCakes,subscribe } from "../../../db/Edit/CakesEdit";
 import { auth } from "../../../db/Config";
 import AddItem from "../../AdminManagement/Add"
-export default function Cakes({fuc1 , fuc2 , fuc3}) {
+export default function Cakes({fuc1 , fuc2 , fuc3 ,fuc4}) {
   const getItemlist = async () => {
     const c = await getItemCakes();
     setItem(c);
@@ -49,6 +49,7 @@ export default function Cakes({fuc1 , fuc2 , fuc3}) {
             fu1 = {fuc1}
             fu2 = {fuc2}
             fu3 = {fuc3}
+            fu4 = {fuc4}
           />
         ))}
       </ScrollView>

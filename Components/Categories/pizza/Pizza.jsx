@@ -5,7 +5,7 @@ import { auth } from "../../../db/Config";
 import Icon from 'react-native-vector-icons/Entypo';
 import {deleteItemsPizza}from "../../../db/Edit/PizzaEdit"
 import {AddItemsCards,getCardItems} from "../../../db/Edit/CartItems";
-export default function Item({ID,label , desc , image , price , fu1 ,fu2 , fu3}) {
+export default function Item({ID,label , desc , image , price , fu1 ,fu2 , fu3 , fu4}) {
 
   const count = fu3(label);
   const [icon , seticon] = useState("heart-outlined");
@@ -19,35 +19,35 @@ export default function Item({ID,label , desc , image , price , fu1 ,fu2 , fu3})
   const [largeNumber , setlargeNumber] = useState(0);
   const [number , setnumber] = useState(count);
   const [user, setuser] = useState("");
-  let x = 0 , y = 0  ,z = 0;
-  const getCardslist = async () => {
-    const c = await getCardItems();
-    if(auth.currentUser!==null)
-    setuser(auth.currentUser.displayName)
-    c.map((a)=>{
-      //console.log(a)
-      if(a.Name===label){
-        if (a.Size === 'small') {
-          x = a.Number;
-          setsmallNumber(a.Number);
-        }else if (a.Size === 'medium'){
-          y = a.Number ;
-          setmediumNumber(a.Number);
-        }else {
-          z = a.Number ;
-          setlargeNumber(a.Number);
-        }  
+  // let x = 0 , y = 0  ,z = 0;
+  // const getCardslist = async () => {
+  //   const c = await getCardItems();
+  //   if(auth.currentUser!==null)
+  //   setuser(auth.currentUser.displayName)
+  //   c.map((a)=>{
+  //     //console.log(a)
+  //     if(a.Name===label){
+  //       if (a.Size === 'small') {
+  //         x = a.Number;
+  //         setsmallNumber(a.Number);
+  //       }else if (a.Size === 'medium'){
+  //         y = a.Number ;
+  //         setmediumNumber(a.Number);
+  //       }else {
+  //         z = a.Number ;
+  //         setlargeNumber(a.Number);
+  //       }  
           
-          setnumber(x+y+z);
+  //         setnumber(x+y+z);
          
 
-      }
-    })
-  };
+  //     }
+  //   })
+  // };
  
-  useEffect(() => {
-    getCardslist();
-  }, []);
+  // useEffect(() => {
+  //   getCardslist();
+  // }, []);
   
   const clickHeart = () => {
     if (icon === "heart-outlined")
@@ -110,18 +110,20 @@ export default function Item({ID,label , desc , image , price , fu1 ,fu2 , fu3})
 
   const plusHandler = () => {
     
-    if (size === 'small'){
-      setsmallNumber(smallNumber+1);
+    // if (size === 'small'){
+    //   setsmallNumber(smallNumber+1);
 
-    }
-    else if (size === 'medium') {
-    setmediumNumber(mediumNumber+1);
-    }
-    else {
-      setlargeNumber(largeNumber+1);
+    // }
+    // else if (size === 'medium') {
+    // setmediumNumber(mediumNumber+1);
+    // }
+    // else {
+    //   setlargeNumber(largeNumber+1);
   
-    }
-    setnumber(number+1);
+    // }
+    if (!fu4())
+     setnumber(number+1);
+    
     fu1(label , image , pric , size);
   }
     

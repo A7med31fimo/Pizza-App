@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import {getCardItems , deleteItemsCards ,AddItemsCards } from "../../../db/Edit/CartItems"
-
+import Confirmation from "../CardItems/confirmation";
 import { useState , useEffect} from "react";
 import DealsPage from "../Deals/Deals";
 import PizzaPage from "../pizza/importPizza";
@@ -21,20 +21,25 @@ import Icon from "react-native-vector-icons/AntDesign";
 import Icon2 from "react-native-vector-icons/Octicons";
 import { SignOut } from "../../../db/auth/auth";
 import { auth } from "../../../db/Config";
-export default function Home({ navigation }) {
+export default function Home() {
 
     useEffect(() => {
     getCardslist();
   }, []);
 
   
-
-  const [Page, setPage] = useState(-1);
+  const [Data , setData] = useState([]);
+  const [Page, setPage] = useState(0);
   const [ColorDeal, setColorDeal] = useState("crimson");
   const [ColorPizza, setColorPizza] = useState("black");
   const [ColorCake, setColorCake] = useState("black");
   const [ColorDrinks, setColorDrinks] = useState("black");
   const [ColorCard, setColorCard] = useState("black");
+  const [viewCart,setViewCart] = useState(true);
+  const [deliver ,setDeliver] = useState(false);
+  const [deliverView , setDeliverView] = useState(false);
+  const [ countItems , setCountItems]  = useState(0);
+  
   const clickDeals = () => {
     setPage(0);
     setColorDeal("crimson");
@@ -42,6 +47,8 @@ export default function Home({ navigation }) {
     setColorCake("black");
     setColorDrinks("black");
     setColorCard("black");
+    setViewCart(true);
+    deliver ? setDeliverView(true) : setDeliverView(false) ;
   };
   const clickPizza = () => {
     setPage(1);
@@ -50,6 +57,8 @@ export default function Home({ navigation }) {
     setColorCake("black");
     setColorDrinks("black");
     setColorCard("black");
+    setViewCart(true);
+    deliver ? setDeliverView(true) : setDeliverView(false) ;
   };
   const clickCakes = () => {
     setPage(2);
@@ -58,6 +67,8 @@ export default function Home({ navigation }) {
     setColorCake("crimson");
     setColorDrinks("black");
     setColorCard("black");
+    setViewCart(true);
+    deliver ? setDeliverView(true) : setDeliverView(false) ;
   };
   const clickDrinks = () => {
     setPage(3);
@@ -66,9 +77,13 @@ export default function Home({ navigation }) {
     setColorCake("black");
     setColorDrinks("crimson");
     setColorCard("black");
+    setViewCart(true);
+    deliver ? setDeliverView(true) : setDeliverView(false) ;
   };
   const clickCart = () => {
-    // setPage(4);
+     AddToCart();
+     setPage(4);
+     setViewCart(false);
     // setColorDeal("black");
     // setColorPizza("black");
     // setColorCake("black");
@@ -76,18 +91,12 @@ export default function Home({ navigation }) {
     // setColorCard("crimson");
     if (auth.currentUser.displayName === "admin")
       navigation.navigate("ChatAdmin");
-    else navigation.navigate("Card");
+    
 
-    AddToCart();
-    setData([])
+    
   };
 
 
-
-
-
-  
-  const [Data , setData] = useState([]);
 
 
 
@@ -106,7 +115,7 @@ export default function Home({ navigation }) {
 
 const AddToCart =  async () => {
   const c = await getCardItems();
-  //c.map(a => deleteItemsCards(a.id));
+  c.map(a => deleteItemsCards(a.id));
   //console.log(c);
   Data.map ( a => AddItemsCards({label : a.label , number : 1 , price : a.price , size : a.size , image : a.image }) )
   console.log(Data);
@@ -114,18 +123,23 @@ const AddToCart =  async () => {
     
    
   const addPlus  = (label , image , price , size) => {
-    setData((prevdata) => {
+    if (!deliver ){ 
+    
+      setData((prevdata) => {
       return [
         {label , image , price , size  , number : 1 },
         ...prevdata
       ]
      
     });
-    
+    setCountItems(countItems+1)
+  }
+    else 
+     alert("wait order y ngm");
 }
 
 const mins = (label , size) => {
-
+  setCountItems(countItems-1)
   setData(prevTodos => {
     let flag = true ;
    for (let i = 0  ; i < prevTodos.length ; i++ )
@@ -157,6 +171,8 @@ const count = (label) => {
 }
 
 
+
+
 const trash = (label ,size) => {
   setData(prevTodos => {
     
@@ -180,9 +196,28 @@ const total = () =>{
 }
 
 
+const menu = () => {
+    setPage(0);
+    setViewCart(true);
+}
 
+const confirm = async () => {
+  const c = await getCardItems();
+  c.map(a => deleteItemsCards(a.id));
+  Data.splice(0, Data.length);
+  setPage(5);
+  setDeliver(true);
+}
 
+const arrived =  () => {
+  setDeliver(false);
+  setDeliverView(false);
+  alert("Have fun with your meal");
+}
 
+const deliv = () => {
+    return deliver;
+}
 
   return (
     <View style={{ flex: 1 }}>
@@ -231,7 +266,7 @@ const total = () =>{
               Drinks
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={clickCart}>
+          {/* <TouchableOpacity onPress={clickCart}>
             <View style={styles.imageview}>
               <Image
                 style={styles.image}
@@ -239,7 +274,7 @@ const total = () =>{
               ></Image>
             </View>
             <Text style={{ color: ColorCard, textAlign: "center" }}>Cart</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           {auth.currentUser !== null ? (
             <TouchableOpacity
@@ -282,34 +317,54 @@ const total = () =>{
       </View>
       <View style={styles.container}>
         <ScrollView style={{ backgroundColor: "#FFF" }}>
-          {Page === -1 ?
-            <View><Text> welcome </Text></View>
-          :Page === 0 ? (
+          {Page === 0 ? (
             <View>
-              <DealsPage fuc1 = {addPlus} fuc2 = {mins} fuc3 = {count}  />
+              <DealsPage fuc1 = {addPlus} fuc2 = {mins} fuc3 = {count} fuc4 = {deliv}  />
             </View>
           ) : Page === 1 ? (
             <View>
-              <PizzaPage fuc1 = {addPlus} fuc2 = {mins} fuc3 = {count}/>
+              <PizzaPage fuc1 = {addPlus} fuc2 = {mins} fuc3 = {count} fuc4 = {deliv}/>
             </View>
           ) : Page === 2 ? (
             <View>
-              <CakesPage fuc1 = {addPlus} fuc2 = {mins} fuc3  = {count} />
+              <CakesPage fuc1 = {addPlus} fuc2 = {mins} fuc3  = {count} fuc4 = {deliv} />
             </View>
           ) : Page === 3 ? (
             <View>
-              <DrinksPage fuc1 = {addPlus} fuc2 = {mins}  fuc3 = {count} />
+              <DrinksPage fuc1 = {addPlus} fuc2 = {mins}  fuc3 = {count} fuc4 = {deliv} />
             </View>
-          ) : (
+          ) : Page === 4 ? (
             <View>
-              <CartPage fuc1 = {trash} />
+              <CartPage fuc1 = {trash} fuc2 = {menu} fuc3 = {confirm} />
             </View>
-          )}
+          ):
+          <View>
+          <Confirmation fuc1 = {menu} fuc2 = {arrived}  />
+          </View>
+          }
         </ScrollView>
       </View>
       
+      {
+        deliverView ? 
+        <View style={styles.footer}>
 
-      {Data.length != 0 ? 
+        <View style={styles.footer3}>
+        <Image
+              style={{width: "15%", height: 45, borderWidth: 2,borderRadius: 10 ,backgroundColor : '#f7eceb', borderColor: "white", marginHorizontal: 10, marginVertical : 7}}
+              source={{ uri: "https://i.ibb.co/kSf9cpQ/deal4.jpg" }}
+            />
+            <Text style = {{fontSize : 12 , color : 'white' ,marginVertical : 4 , width : "48%" }}>  If you have problem {<h3> call 19999 </h3>}   </Text>
+            <View style = {styles.button}>
+            <Button  title = {<b style = {{color : 'crimson'}}> Arrived ?</b>} color= "white" onPress={arrived}  />
+            </View>
+        </View> 
+    </View>
+    :
+    <></>
+      }
+
+      {Data.length != 0 && viewCart ? 
       <View style={styles.footer}>
 
           <View style={styles.footer2}>
@@ -319,7 +374,7 @@ const total = () =>{
               />
               <Text style = {{fontSize : 12 , color : 'white' ,marginVertical : 4 , width : "48%" }}>  {Data.length} item {<h3> {total()}.00 EGP </h3>}   </Text>
               <View style = {styles.button}>
-              <Button  title = {<b style = {{color : 'crimson'}}> View Cart </b>} color= "white" onPress={clickCart} />
+              <Button  title = {<b style = {{color : 'crimson'}}> Add to cart </b>} color= "white" onPress={clickCart} />
               </View>
           </View> 
       </View>
@@ -392,6 +447,16 @@ const styles = StyleSheet.create({
   },
   footer2 : {
     backgroundColor : 'crimson' , 
+    marginHorizontal : 1 ,  
+    borderColor: "#f7eceb", 
+    borderWidth: 1, 
+    borderRadius: 5,
+    flexDirection  : "row",
+    width : "100%"
+  },
+
+  footer3 : {
+    backgroundColor : 'green' , 
     marginHorizontal : 1 ,  
     borderColor: "#f7eceb", 
     borderWidth: 1, 

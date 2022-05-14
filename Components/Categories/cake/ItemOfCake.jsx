@@ -8,27 +8,27 @@ import {AddItemsCards,getCardItems,subscribe} from "../../../db/Edit/CartItems";
 import { auth } from "../../../db/Config";
 import {deleteItemscake} from  "../../../db/Edit/CakesEdit"
 import {deleteItemsDeals} from  "../../../db/Edit/DealEdit"
-export default function Item({str,ID,label , desc , image , price , fu1 , fu2 , fu3}) {
+export default function Item({str,ID,label , desc , image , price , fu1 , fu2 , fu3 , fu4}) {
  
 
   const count = fu3(label);
   const [icon , seticon] = useState("heart-outlined");
   const [number , setnumber] = useState(count);
 
-  const getCardslist = async () => {
-    const c = await getCardItems();
-    c.map((a)=>{
-      //console.log(a)
-      if(a.Name===label)
-      setnumber(a.Number)
-    })
-    if(auth.currentUser!==null)
-    setuser(auth.currentUser.displayName);
-  };
+  // const getCardslist = async () => {
+  //   const c = await getCardItems();
+  //   c.map((a)=>{
+  //     //console.log(a)
+  //     if(a.Name===label)
+  //     setnumber(a.Number)
+  //   })
+  //   if(auth.currentUser!==null)
+  //   setuser(auth.currentUser.displayName);
+  // };
  
-  useEffect(() => {
-    getCardslist();
-  }, []);
+  // useEffect(() => {
+  //   getCardslist();
+  // }, []);
 
 
   const handleRemove=()=>{
@@ -54,8 +54,10 @@ export default function Item({str,ID,label , desc , image , price , fu1 , fu2 , 
 
   const size = "" ;
   const plusHandler = () => {
+    if (!fu4())
       setnumber(number+1);
-      fu1(label , image , price , size);
+      
+    fu1(label , image , price , size);
     }
 
   const minusHandler = () => {
