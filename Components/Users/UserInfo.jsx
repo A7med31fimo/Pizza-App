@@ -1,12 +1,20 @@
-import { StyleSheet, Text, View, Button, ScrollView,TextInput,TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
 import { React, useState, useEffect } from "react";
 import { SignOut, getUserUId } from "../../db/auth/auth";
-import { getUserById ,edituser,subscribe} from "../../db/Edit/Info";
+import { getUserById, edituser, subscribe } from "../../db/Edit/Info";
 const UserInfo = ({ navigation }) => {
   const [c, setc] = useState("");
-  const [user,setUser]=useState([])
-  const [edit,setEdit]=useState(undefined);
+  const [user, setUser] = useState([]);
+  const [edit, setEdit] = useState(undefined);
   const [fName, setfName] = useState("");
   const [lName, setlName] = useState("");
   const [age, setage] = useState("");
@@ -30,13 +38,12 @@ const UserInfo = ({ navigation }) => {
       
     }))}
   useEffect(() => {
-    getUser()
+    getUser();
   }, []);
 
   useEffect(() => {
     const unsubscribe = subscribe(({ change, snapshot }) => {
       getUser();
-  
     });
 
     return () => {
@@ -44,17 +51,44 @@ const UserInfo = ({ navigation }) => {
     };
   }, []);
 
-
-
-  return edit ?(<View style={styles.container}>
-      <ScrollView contentContainerStyle={{ flex: 1 }}>       
+  return edit ? (
+    <View style={styles.container}>
+      <ScrollView contentContainerStyle={{ flex: 1 }}>
         <View style={styles.body}>
-        <TextInput style={styles.Name} defaultValue={fName} placeholder={"first name"} onChangeText={setfName} />
-        <TextInput style={styles.Name} defaultValue={lName} placeholder={"last name"} onChangeText={setlName} />
-        <TextInput style={styles.Name} defaultValue={age} placeholder={"age"} onChangeText={setage} />
-        <TextInput style={styles.Name} defaultValue={phone} placeholder={"phone"} onChangeText={setphone} />
-        <TextInput style={styles.Name} defaultValue={address} placeholder={"address"} onChangeText={setaddress} />           
-            <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+          <View style={styles.inps}>
+            <TextInput
+              style={styles.inp}
+              defaultValue={fName}
+              placeholder={"first name"}
+              onChangeText={setfName}
+            />
+            <TextInput
+              style={styles.inp}
+              defaultValue={lName}
+              placeholder={"last name"}
+              onChangeText={setlName}
+            />
+            <TextInput
+              style={styles.inp}
+              defaultValue={age}
+              placeholder={"age"}
+              onChangeText={setage}
+            />
+            <TextInput
+              style={styles.inp}
+              defaultValue={phone}
+              placeholder={"phone"}
+              onChangeText={setphone}
+            />
+            <TextInput
+              style={styles.inp}
+              defaultValue={address}
+              placeholder={"address"}
+              onChangeText={setaddress}
+            />
+            <View
+              style={{ width: "90%", borderRadius: 15, overflow: "hidden" }}
+            >
               <Button
                 onPress={() => {
 
@@ -66,14 +100,14 @@ alert("invalid information")
 else
                   edituser( {...user,     
                     fName: fName,
-                    lName:lName,
-                    age:age,
-                    address:address,
-                    phone:phone
-                })
+                    lName: lName,
+                    age: age,
+                    address: address,
+                    phone: phone,
+                  })
                     .then(() => {
                       console.log("user updated");
-                      setEdit(undefined)
+                      setEdit(undefined);
                     })
                     .catch((e) => console.log(e));
                 }}
@@ -81,13 +115,11 @@ else
                 color="#FB081F"
               ></Button>
             </View>
-           
-            
           </View>
+        </View>
       </ScrollView>
     </View>
-  )
-  : (
+  ) : (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={{ flex: 1 }}>
         <View style={styles.header}>
@@ -98,42 +130,37 @@ else
             <Text style={styles.Name}>
               {user.fName} {user.lName}
             </Text>
-            
           </View>
         </View>
         <View style={styles.body}>
           <View style={styles.textView}>
             <Text style={styles.text}>Email:</Text>
             <Text style={styles.textVal}>{user.email}</Text>
-            
           </View>
           <View style={styles.textView}>
             <Text style={styles.text}>Number:</Text>
             <Text style={styles.textVal}>{user.phone}</Text>
-            
           </View>
           <View style={styles.textView}>
             <Text style={styles.text}>Address:</Text>
             <Text style={styles.textVal}>{user.address}</Text>
-            
           </View>
           <View style={styles.textView}>
             <Text style={styles.text}>Age:</Text>
             <Text style={styles.textVal}>{user.age}</Text>
-            
           </View>
-         
+
           <View style={styles.btns}>
-             <View style={styles.btn }>
+            <View style={styles.btn}>
               <Button
                 onPress={() => {
-                  setEdit("go")
+                  setEdit("go");
                 }}
                 title="Edit Info"
                 color="#FB081F"
               ></Button>
             </View>
-<View style={{padding:5}}></View>
+            <View style={{ padding: 5 }}></View>
 
             <View style={styles.btn}>
               <Button
@@ -144,7 +171,7 @@ else
                 color="#FB081F"
               ></Button>
             </View>
-            <Text style={styles.ORtxt}>OR</Text>
+            {/* <Text style={styles.ORtxt}>OR</Text> */}
             <View style={styles.btn}>
               <Button
                 onPress={() => {
@@ -167,7 +194,7 @@ else
         </View>
       </ScrollView>
     </View>
-  )
+  );
 };
 export default UserInfo;
 
@@ -195,6 +222,22 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     padding: 7,
+  },
+  inps: {
+    alignItems: "center",
+    marginTop: 30,
+  },
+  inp: {
+    width: "90%",
+    height: 40,
+    borderWidth: 2,
+    borderColor: "#FB081F",
+    borderRadius: 10,
+    marginBottom: 15,
+    fontSize: 20,
+    fontStyle: "italic",
+    padding: 6,
+    color: "#000000",
   },
   square: {
     width: 60,
@@ -269,6 +312,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   btn: {
+    margin: 10,
     width: "80%",
     borderRadius: 10,
     overflow: "hidden",

@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 
-import Icon from "react-native-vector-icons/Entypo";
+import Icon from "react-native-vector-icons/EvilIcons";
 import { deleteItem, editConversation } from "../../db/Edit/chat";
 export default function Item({
   id,
@@ -18,65 +18,106 @@ export default function Item({
   price,
   number,
 }) {
-
-
-  
   return (
-    <ScrollView contentContainerStyle={{ flex: 1 }}>
-
-      <View style={styles.content2}>
-        <View style={{ paddingHorizontal: 7 }}>
-          <View style={styles.footer}>
-            <Image source={{ uri: image }} style={styles.image} />
-            <View style={styles.header}>
-              <View style={styles.labelandicon}>
-                <Text style={styles.status2}>
-                  user: {label }
-                  {"\n"}status: {status}
-                </Text>
-
+    <View>
+      <View style={styles.header}>
+        <Text style={styles.headertext}>PreAdmin</Text>
+        <View style={styles.headericon}>
+          <Icon
+            name="user"
+            size={50}
+            color="blue"
+            onPress={() => {
+              navigation.navigate("INFO");
+            }}
+          ></Icon>
+        </View>
+      </View>
+      <ScrollView contentContainerStyle={{ flex: 1 }}>
+        <View style={styles.content2}>
+          <View style={{ paddingHorizontal: 7 }}>
+            <View style={styles.footer}>
+              <Image source={{ uri: image }} style={styles.image} />
+              <View style={styles.header2}>
+                <View style={styles.labelandicon}>
+                  <Text style={styles.status2}>
+                    user: {label}
+                    {"\n"}status: {status}
+                  </Text>
+                </View>
+                <Text style={styles.label2}>{size}</Text>
               </View>
-              <Text style={styles.label2}>{size}</Text>
+            </View>
+          </View>
+
+          <View style={styles.footer}>
+            <Text style={styles.number}>{number} Items</Text>
+            <Text style={styles.price}> {price}.00 EGP </Text>
+          </View>
+          <View style={styles.btns}>
+            <View style={styles.btn}>
+              <Button
+                title="ARRIVED"
+                onPress={() => {
+                  editConversation(id, "Arrived");
+                }}
+              />
+            </View>
+            <View style={styles.btn}>
+              <Button
+                title="NO"
+                color={"red"}
+                onPress={() => {
+                  editConversation(id, "No");
+                }}
+              />
             </View>
           </View>
         </View>
-
-        <View style={styles.footer}>
-          <Text style={styles.number}>{number} Items</Text>
-          <Text style={styles.price}> {price}.00 EGP </Text>
-        </View>
-        <Button title="ARRIVED" onPress={()=>{editConversation(id,"Arrived")}}/>
-        <Button title="NO" onPress={()=>{editConversation(id,"No")}}/>
-
-      </View>
-
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-
-  content2: {
+  header: {
+    backgroundColor: "#FFFFFF",
+    width: "100%",
+    height: "18%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  headertext: {
     margin: 10,
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "red",
+  },
+  headericon: {
+    margin: 15,
+  },
+  content2: {
+    // margin: 10,
     backgroundColor: "#FFF",
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderRadius: 10,
-    borderColor: "red",
-    shadowColor: "red",
+    borderColor: "#fff",
+    shadowColor: "#000000",
     shadowOffset: { width: 2, height: 2 },
-    shadowOpacity: 0.8,
+    shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
     padding: 7,
     marginVertical: 10,
-  }
-  ,
+  },
   image: {
     width: "25%",
     height: 80,
     // alignItems: "center",
   },
-  header: {
+  header2: {
     flexDirection: "column",
   },
   labelandicon: {
@@ -126,5 +167,15 @@ const styles = StyleSheet.create({
     //alignItems : 'center',
     marginTop: 15,
     flexDirection: "row",
+  },
+  btns: {
+    margin: 10,
+    flexDirection: "row-reverse",
+    justifyContent: "space-between",
+  },
+  btn: {
+    width: "45%",
+    borderRadius: 10,
+    overflow: "hidden",
   },
 });
