@@ -80,7 +80,10 @@ const Register = ({ navigation }) => {
                 title="Register"
                 onPress={() => {
                   {
-                    if(fName.length===0||age.length===0||phone.length===0||address.length===0|| isNaN(age)||isNaN(phone)||!email.includes("@")||!email.includes(".com"))
+                    if(fName.length===0||age.length===0||phone.length===0||address.length===0||
+                       isNaN(age)||isNaN(phone)||!email.includes("@")||!email.includes(".com")||
+                       password.length===0  
+                       )
                     alert("invalid information")
                     else
                     register(email, password, fName)

@@ -12,10 +12,10 @@ export default function FirstPage({ navigation }) {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={{ flex: 1 }}>
-        <View style={styles.header}>
-          <ImageBackground
+        {/* <View style={styles.header}> */}
+          <Image
             source={{ uri: "https://i.ibb.co/0KmHhp2/chef.png" }}
-            resizeMode="contain"
+            
             style={styles.Background}
           >
             {/* <TouchableOpacity
@@ -26,8 +26,8 @@ export default function FirstPage({ navigation }) {
           >
             <Text style={styles.Skiptxt}>Skip {">>"}</Text>
           </TouchableOpacity> */}
-          </ImageBackground>
-        </View>
+          </Image>
+        {/* </View> */}
 
         <View style={styles.foot}>
           <Text style={styles.Welcometxt}>WELCOME TO</Text>
@@ -69,10 +69,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   Background: {
-    flex: 2,
+     flex: 0.5,
+    resizeMode:"contain"
   },
   header: {
-    flex: 2,
+    flex: 0.5,
   },
   Skiptxt: {
     color: "#FB081F",

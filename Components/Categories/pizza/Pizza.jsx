@@ -289,7 +289,7 @@ number : {
 },
   
   radio :{
-    width : '27%'
+    width : '20%'
   }
 });
 

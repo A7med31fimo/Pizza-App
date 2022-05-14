@@ -106,7 +106,7 @@ else
                     phone: phone,
                   })
                     .then(() => {
-                      console.log("user updated");
+                      alert("user updated");
                       setEdit(undefined);
                     })
                     .catch((e) => console.log(e));

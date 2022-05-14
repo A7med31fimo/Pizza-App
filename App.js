@@ -16,7 +16,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="PreAdmin">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Log In" component={Login} />
         <Stack.Screen

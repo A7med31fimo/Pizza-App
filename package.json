@@ -10,6 +10,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@patternfly/react-core": "^4.214.1",
     "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-firebase/app": "^14.9.1",
     "@react-navigation/native": "^6.0.10",
