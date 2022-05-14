@@ -6,39 +6,27 @@ import { useState,useEffect } from "react";
 import { RadioButton } from "react-native-paper"
 import { AddItemsCards, getCardItems} from "../../../db/Edit/CartItems"
 import {deleteItemsDrinks } from  "../../../db/Edit/DrinksEdit"
+import { deleteFavItems , getFavItems ,AddFavItems} from "../../../db/Edit/FavEdit"
 import { auth } from "../../../db/Config";
+import { async } from "@firebase/util";
 export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3 , fu4}) {
   // let x = 0 , y = 0 ;
-  //   const getCardslist = async () => {
+    const getFavlist = async () => {
       
-  //     const c = await getCardItems();
-  //     if(auth.currentUser!==null)
-  //     setuser(auth.currentUser.displayName)
-      
-      
-  //     c.map((a)=>{
-  //       //console.log(a)
-  //       if(a.Name===label){
-  //         if (a.Size === '330 ml') {
-  //           x = a.Number;
-  //           setsmallNumber(a.Number);
-  //         }else {
-  //           y = a.Number ;
-  //           setlargeNumber(a.Number);
-  //         }  
-            
-  //           setnumber(x+y);
-           
+      const c = await getFavItems();
 
-  //       }
+      for (let i = 0 ; i< c.length ; i++){
+        if(c[i].label === label ){
+            seticon("heart");
+            break; 
+        }
+      }
 
-        
-  //     })
-  //   };
+    };
    
-    // useEffect(() => {
-    //   getCardslist();
-    // }, []);
+    useEffect(() => {
+      getFavlist();
+    }, []);
 
     const count = fu3(label);
   const [icon , seticon] = useState("heart-outlined");
@@ -53,6 +41,19 @@ export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3 , fu4})
   const [user, setuser] = useState("");
     
 
+
+  const dislike = async() => {
+    const c = await getFavItems();
+
+    for (let i = 0 ; i< c.length ; i++){
+      if(c[i].label === label ){
+      deleteFavItems(c[i].id);
+       break; 
+      }
+    }
+
+
+  }
  const handleRemove=()=>{
   deleteItemsDrinks(ID);
 }
@@ -60,11 +61,17 @@ export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3 , fu4})
 
 
   const clickHeart = () => {
-    if (icon === "heart-outlined")
-    seticon('heart');
-    else 
-    seticon("heart-outlined");
+    if (icon === "heart-outlined"){
+      seticon('heart');
+      AddFavItems({label , image , desc : ""});
+    }
+  
+    else {
+      dislike();
+      seticon("heart-outlined");
   }
+    }
+    
 
   const clicksmall = () => {
     if (small === "unchecked"){

@@ -16,6 +16,8 @@ import PizzaPage from "../pizza/importPizza";
 import CakesPage from "../cake/Cakes";
 import DrinksPage from "../Drinks/Drinks";
 import CartPage from "../CardItems/Card";
+import FavPage from "../Favourite/Fav";
+
 import UserInfo from "../../Users/UserInfo";
 import Icon from "react-native-vector-icons/AntDesign";
 import Icon2 from "react-native-vector-icons/Octicons";
@@ -95,6 +97,21 @@ export default function Home() {
 
     
   };
+
+  const clickFav = () => {
+  
+    setPage(5);
+   setColorDeal("black");
+   setColorPizza("black");
+   setColorCake("black");
+   setColorDrinks("black");
+   setColorCard("crimson");
+  //  if (auth.currentUser.displayName === "admin")
+  //    navigation.navigate("ChatAdmin");
+   
+
+   
+ };
 
 
 
@@ -205,7 +222,7 @@ const confirm = async () => {
   const c = await getCardItems();
   c.map(a => deleteItemsCards(a.id));
   Data.splice(0, Data.length);
-  setPage(5);
+  setPage(6);
   setDeliver(true);
 }
 
@@ -266,17 +283,17 @@ const deliv = () => {
               Drinks
             </Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity onPress={clickCart}>
+          <TouchableOpacity onPress={clickFav}>
             <View style={styles.imageview}>
               <Image
                 style={styles.image}
                 source={{ uri: "https://i.ibb.co/pKfswCx/cart.png" }}
               ></Image>
             </View>
-            <Text style={{ color: ColorCard, textAlign: "center" }}>Cart</Text>
-          </TouchableOpacity> */}
+            <Text style={{ color: ColorCard, textAlign: "center" }}>Favourite</Text>
+          </TouchableOpacity>
 
-          {auth.currentUser !== null ? (
+          {/* {auth.currentUser !== null ? (
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("INFO");
@@ -290,7 +307,7 @@ const deliv = () => {
               </View>
               <Text style={{ textAlign: "center" }}>Profile</Text>
             </TouchableOpacity>
-          ) : null}
+          ) : null} */}
           {/* 
           {auth.currentUser !== null ? (
             <TouchableOpacity
@@ -336,6 +353,10 @@ const deliv = () => {
           ) : Page === 4 ? (
             <View>
               <CartPage fuc1 = {trash} fuc2 = {menu} fuc3 = {confirm} />
+            </View>
+          ): Page === 5 ? (
+            <View>
+              <FavPage  fuc1 = {menu}/>
             </View>
           ):
           <View>

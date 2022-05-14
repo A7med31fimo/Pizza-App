@@ -8,6 +8,7 @@ import {AddItemsCards,getCardItems,subscribe} from "../../../db/Edit/CartItems";
 import { auth } from "../../../db/Config";
 import {deleteItemscake} from  "../../../db/Edit/CakesEdit"
 import {deleteItemsDeals} from  "../../../db/Edit/DealEdit"
+import { deleteFavItems , getFavItems ,AddFavItems} from "../../../db/Edit/FavEdit"
 export default function Item({str,ID,label , desc , image , price , fu1 , fu2 , fu3 , fu4}) {
  
 
@@ -15,21 +16,35 @@ export default function Item({str,ID,label , desc , image , price , fu1 , fu2 , 
   const [icon , seticon] = useState("heart-outlined");
   const [number , setnumber] = useState(count);
 
-  // const getCardslist = async () => {
-  //   const c = await getCardItems();
-  //   c.map((a)=>{
-  //     //console.log(a)
-  //     if(a.Name===label)
-  //     setnumber(a.Number)
-  //   })
-  //   if(auth.currentUser!==null)
-  //   setuser(auth.currentUser.displayName);
-  // };
- 
-  // useEffect(() => {
-  //   getCardslist();
-  // }, []);
+  const getFavlist = async () => {
+      
+    const c = await getFavItems();
 
+    for (let i = 0 ; i< c.length ; i++){
+      if(c[i].label === label ){
+          seticon("heart");
+          break; 
+      }
+    }
+
+  };
+ 
+  useEffect(() => {
+    getFavlist();
+  }, []);
+
+  const dislike = async() => {
+    const c = await getFavItems();
+
+    for (let i = 0 ; i< c.length ; i++){
+      if(c[i].label === label ){
+      deleteFavItems(c[i].id);
+       break; 
+      }
+    }
+
+
+  }
 
   const handleRemove=()=>{
     str === 'deal' ? 
@@ -38,19 +53,21 @@ export default function Item({str,ID,label , desc , image , price , fu1 , fu2 , 
   }
 
   const clickHeart = () => {
-    if (icon === "heart-outlined")
-    seticon('heart');
-    else 
-    seticon("heart-outlined");
+    if (icon === "heart-outlined"){
+      AddFavItems({label , image , desc });
+      seticon('heart');
+    }
+    
+    else {
+      dislike();
+      seticon("heart-outlined");
+    }
+    
   }
 
  
   const [user, setuser] = useState("");
-  // const buttonHandler = () => {
-  //   AddItemsCards({ Name: label, Number: number+1, Price: price  , Image : image , Size : ''});
-  //   setnumber(number+1);
-    
-  // }
+ 
 
   const size = "" ;
   const plusHandler = () => {
