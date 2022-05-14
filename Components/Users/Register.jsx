@@ -84,12 +84,13 @@ const Register = ({ navigation }) => {
                     register(email, password, fName)
                       .then(() => {
                         console.log("registerd");
-                       if(auth.currentUser.displayName==="preAdmin")
-                        navigation.navigate("PreAdmin")
-                        else
-                        navigation.navigate("Home")
+                        if (auth.currentUser.displayName === "preAdmin")
+                          navigation.navigate("PreAdmin");
+                        else {
+                          alert("Register Success!\nPlease Login");
+                          navigation.navigate("Log In");
+                        }
 
-                        alert("Register Success!");
                         getUserUId().then((id) => {
                           Addusers({
                             uid: id,

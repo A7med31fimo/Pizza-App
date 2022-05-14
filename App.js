@@ -1,4 +1,3 @@
-
 import Login from "./Components/Users/Login";
 import Register from "./Components/Users/Register";
 import Home from "./Components/Categories/HomePages/Home";
@@ -13,30 +12,32 @@ import { auth } from "./db/Config";
 import PreAdmin from "./Components/AdminManagement/PreAdmin";
 //import Confirmation from "./Components/Categories/CardItems/Confirmation";
 export default function App() {
+  const Stack = createNativeStackNavigator();
 
-
-  function User() {
-    const Stack = createNativeStackNavigator();
-    let inial = (getUserUId !== null ? "Home" : "FirstPage")
-    return <Stack.Navigator initialRouteName={inial} >
-      <Stack.Screen name="Register" component={Register} />
-      <Stack.Screen name="Log In" component={Login} />
-      <Stack.Screen name="FirstPage" component={FirstPage} options={{ title: "Getting Start" }} />
-      <Stack.Screen name="Home" component={Home} options={{ title: "Explore Menu" }} />
-      <Stack.Screen name="Card" component={Card} />
-      <Stack.Screen name="INFO" component={INFO} />
-      <Stack.Screen name="ChatAdmin" component={ChatAdmin} />
-      <Stack.Screen name="PreAdmin" component={PreAdmin} />  
-    </Stack.Navigator>
-
-  }
   return (
     <NavigationContainer>
-      {
-     
-     User()
-       
-      }
+      <Stack.Navigator initialRouteName="PreAdmin">
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Log In" component={Login} />
+        <Stack.Screen
+          name="FirstPage"
+          component={FirstPage}
+          options={{ title: "Getting Start" }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ title: "Explore Menu", headerShown: false }}
+        />
+        <Stack.Screen name="Card" component={Card} />
+        <Stack.Screen name="INFO" component={INFO} />
+        <Stack.Screen name="ChatAdmin" component={ChatAdmin} />
+        <Stack.Screen
+          name="PreAdmin"
+          component={PreAdmin}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
