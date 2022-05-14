@@ -56,9 +56,9 @@ function subscribe(callback) {
   return unsubscribe;
 }
 
-async function getUserById(id) {
+async function getUserById(uid) {
   const usersRef = collection(db, "users");
-  const q = query(usersRef, where("id", "==", id));
+  const q = query(usersRef, where("uid", "==", uid));
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map((doc) => {
       return {id: doc.id, ...doc.data()};

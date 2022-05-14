@@ -87,7 +87,7 @@ const Register = ({ navigation }) => {
                         alert("Register Success!");
                         getUserUId().then((id) => {
                           Addusers({
-                            id: id,
+                            uid: id,
                             fName: fName,
                             lName: lName,
                             phone: phone,
