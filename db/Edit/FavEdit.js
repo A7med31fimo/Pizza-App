@@ -14,7 +14,7 @@ import { getUserUId} from "../auth/auth"
 // Get a list of cities from your database
 var s;
 async function getFavItems() {
-s= await auth.currentUser!=null?auth.currentUser.email.split("@")[1]:"guest";
+s= await auth.currentUser!=null?auth.currentUser.email.split(".")[0]+"fav":"guest";
   if(s){
   const CardCol = collection(db, s);
   const CardSnapshot = await getDocs(CardCol);

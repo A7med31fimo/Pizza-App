@@ -9,7 +9,7 @@ import {deleteItemsDrinks } from  "../../../db/Edit/DrinksEdit"
 import { deleteFavItems , getFavItems ,AddFavItems} from "../../../db/Edit/FavEdit"
 import { auth } from "../../../db/Config";
 import { async } from "@firebase/util";
-export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3 , fu4}) {
+export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3 }) {
   // let x = 0 , y = 0 ;
     const getFavlist = async () => {
       
@@ -113,7 +113,7 @@ export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3 , fu4})
     // else {
     //   setlargeNumber(largeNumber+1);
     // }
-    if(!fu4())
+  
     setnumber(number+1);
     fu1(label , image , pric , size);
     }
@@ -142,7 +142,7 @@ export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3 , fu4})
   
   {
  
-  user==="admin"?
+  auth.currentUser.displayName==="admin"?
   <Icon
         name='circle-with-minus'
         size = {20}
@@ -183,7 +183,7 @@ export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3 , fu4})
 
     </View> 
  
-    <View style = {styles.footer}>
+    {auth.currentUser.displayName!=="admin"?<View style = {styles.footer}>
 <Text style = {styles.price} > {pric}.00 EGP </Text>
 {number === 0 ? 
    <View style={styles.button}> 
@@ -226,7 +226,9 @@ export default function Item({ ID,image, label, price  , fu1 , fu2 , fu3 , fu4})
     </View>
     
  }
- </View></View>
+ </View>:<></>}
+ 
+ </View>
  )
 }
  

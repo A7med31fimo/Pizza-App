@@ -8,31 +8,7 @@ import {
 } from "../../../db/Edit/chat";
 import { auth } from "../../../db/Config";
 import { getCardItems } from "../../../db/Edit/CartItems";
-import { deleteItemsCards } from "../../../db/Edit/CartItems";
-export default function Confirmation({fuc1 , fuc2}) {
-  const [chat, setchats] = useState([]);
-  const [card, setCard] = useState([]);
-  const [id, setId] = useState();
-  const getChats = async () => {
-    const c = await getAllChats();
-    const cards = await getCardItems();
-    setCard(cards);
-    setchats(c);
-    const s =
-      (await auth.currentUser) != null
-        ? auth.currentUser.email.split("@")[0]
-        : "guest";
-    c.map((a) => {
-      if (a.title === s) {
-        setId(a.id);
-        console.log(a.id);
-      }
-    });
-  };
-  useEffect(() => {
-    getChats();
-  }, []);
-
+export default function Confirmation() {
   return (
     <View style={styles.body}>
       <Text style={styles.text}> 
@@ -41,33 +17,7 @@ export default function Confirmation({fuc1 , fuc2}) {
       </Text>
       <View style={styles.btns}>
         <View style={styles.btn}>
-          <Button
-            title="arrived"
-            // color="#FB081F"
-            onPress={() => {
-              let status = "Arrived";
-              editConversation(id, status);
-              // card.map((a) => {
-              //   deleteItemsCards(a.id);
-              // });
-              // navigation.navigate("Card");
-              
-              fuc2();
-              fuc1();
-              
-            }}
-          ></Button>
         </View>
-        {/* <View style={styles.btn}>
-          <Button
-            title="No"
-            color="#FB081F"
-            onPress={() => {
-              editConversation(id, "No");
-              alert("Sorry for Delay order will arrived soon . . .");
-            }}
-          ></Button>
-        </View> */}
         <Text>If face any problem please call 19999</Text>
       </View>
     </View>

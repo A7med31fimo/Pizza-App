@@ -11,6 +11,7 @@ import { React, useState } from "react";
 import { register } from "../../db/auth/auth";
 import { Addusers } from "../../db/Edit/Info";
 import { getUserUId } from "../../db/auth/auth";
+import { auth } from "../../db/Config";
 const Register = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
@@ -83,7 +84,11 @@ const Register = ({ navigation }) => {
                     register(email, password, fName)
                       .then(() => {
                         console.log("registerd");
-                        navigation.navigate("Home");
+                       if(auth.currentUser.displayName==="preAdmin")
+                        navigation.navigate("PreAdmin")
+                        else
+                        navigation.navigate("Home")
+
                         alert("Register Success!");
                         getUserUId().then((id) => {
                           Addusers({

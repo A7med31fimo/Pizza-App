@@ -9,7 +9,7 @@ import { auth } from "../../../db/Config";
 import {deleteItemscake} from  "../../../db/Edit/CakesEdit"
 import {deleteItemsDeals} from  "../../../db/Edit/DealEdit"
 import { deleteFavItems , getFavItems ,AddFavItems} from "../../../db/Edit/FavEdit"
-export default function Item({str,ID,label , desc , image , price , fu1 , fu2 , fu3 , fu4}) {
+export default function Item({str,ID,label , desc , image , price , fu1 , fu2 , fu3 }) {
  
 
   const count = fu3(label);
@@ -71,7 +71,7 @@ export default function Item({str,ID,label , desc , image , price , fu1 , fu2 , 
 
   const size = "" ;
   const plusHandler = () => {
-    if (!fu4())
+    
       setnumber(number+1);
       
     fu1(label , image , price , size);
@@ -86,7 +86,7 @@ export default function Item({str,ID,label , desc , image , price , fu1 , fu2 , 
         <View style={{paddingHorizontal:7}} >
         <View style={styles.footer}>
         <Text style={styles.label}>{label}</Text>
-        { user==="admin"?
+        { auth.currentUser.displayName==="admin"?
        <Icon
         name='circle-with-minus'
         size = {20}
@@ -108,7 +108,7 @@ export default function Item({str,ID,label , desc , image , price , fu1 , fu2 , 
       </View> 
       <Image source={{uri : image}} style = {styles.image} />
       
-      <View style = {styles.footer}>
+     {auth.currentUser.displayName!=="admin"? <View style = {styles.footer}>
 <Text style = {styles.price} > {price}.00 EGP </Text>
 {number === 0 ? 
    <View style={styles.button}> 
@@ -152,8 +152,8 @@ export default function Item({str,ID,label , desc , image , price , fu1 , fu2 , 
  }
 
 
-</View>   
-
+</View>  :<></> 
+}
    
       
     </View>

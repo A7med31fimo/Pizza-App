@@ -8,7 +8,7 @@ import {
   } from "react-native";
 
   import { useState, useEffect } from "react";
-  import { deleteFavItems , getFavItems} from "../../../db/Edit/FavEdit"
+  import { deleteFavItems , getFavItems,subscribe} from "../../../db/Edit/FavEdit"
   import Icon from "react-native-vector-icons/Entypo";
 
   export default function Item({ id , label , desc, image }) {
@@ -29,7 +29,7 @@ import {
 
   } 
 
-    
+   
     
     return (
       

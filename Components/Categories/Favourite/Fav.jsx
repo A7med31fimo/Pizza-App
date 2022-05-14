@@ -31,14 +31,14 @@ export default function Favorites({fuc1}) {
     getFavslist();
   }, []);
 
-//   useEffect(() => {
-//     const unsubscribe = subscribe(({ change, snapshot }) => {
-//         getFavslist(); 
-//     });
-//     return () => {
-//       unsubscribe();
-//     };
-//   }, []);
+  useEffect(() => {
+    const unsubscribe = subscribe(({ change, snapshot }) => {
+        getFavslist(); 
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
 
   
@@ -83,14 +83,14 @@ export default function Favorites({fuc1}) {
           ))}
         </ScrollView>
       )}
-       <View style={styles.btnview}>
+       {/* <View style={styles.btnview}>
             <Button
               style={styles.btn}
               title="Explore Menu"
               color="#FB081F"
               onPress= {fuc1}
             />
-          </View>
+          </View> */}
     </View>
   );
 }

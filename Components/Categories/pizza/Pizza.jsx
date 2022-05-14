@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import {deleteItemsPizza}from "../../../db/Edit/PizzaEdit"
 import {AddItemsCards,getCardItems} from "../../../db/Edit/CartItems";
 import { deleteFavItems , getFavItems ,AddFavItems} from "../../../db/Edit/FavEdit"
-export default function Item({ID,label , desc , image , price , fu1 ,fu2 , fu3 , fu4}) {
+export default function Item({ID,label , desc , image , price , fu1 ,fu2 , fu3 }) {
 
   const count = fu3(label);
   const [icon , seticon] = useState("heart-outlined");
@@ -103,7 +103,6 @@ export default function Item({ID,label , desc , image , price , fu1 ,fu2 , fu3 ,
   const plusHandler = () => {
     
     
-    if (!fu4())
      setnumber(number+1);
     
     fu1(label , image , pric , size);
@@ -123,7 +122,7 @@ export default function Item({ID,label , desc , image , price , fu1 ,fu2 , fu3 ,
         <Text style={styles.label}>{label}</Text>
         
         
-  { user==="admin"?
+  { auth.currentUser.displayName==="admin"?
   <Icon
         name='circle-with-minus'
         size = {20}
@@ -178,7 +177,7 @@ export default function Item({ID,label , desc , image , price , fu1 ,fu2 , fu3 ,
         </View> 
 
 
-<View style = {styles.footer}>
+{auth.currentUser.displayName!=="admin"?<View style = {styles.footer}>
 <Text style = {styles.price} > {pric}.00 EGP </Text>
 {number === 0 ? 
    <View style={styles.button}> 
@@ -223,7 +222,7 @@ export default function Item({ID,label , desc , image , price , fu1 ,fu2 , fu3 ,
     </View>
  }
 
-</View>   
+</View> :<></>}  
 
   </View>
 

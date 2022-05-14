@@ -58,7 +58,10 @@ export default function Login({ navigation }) {
                   
                   login(email, password)
                     .then(() => {
-                      navigation.navigate("Home");
+                      if(auth.currentUser.displayName==="preAdmin")
+                      navigation.navigate("PreAdmin")
+                      else
+                      navigation.navigate("Home")
                       alert("Login Success!");
                     })
                     .catch((e) => {

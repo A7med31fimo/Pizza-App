@@ -9,7 +9,7 @@ import AddItem from"../../AdminManagement/Add"
 // import Pizza2 from "../../../assets/pizza/pizza2.png" ;
 // import Pizza3 from "../../../assets/pizza/pizza3.png" ;
 // import Pizza4 from "../../../assets/pizza/pizza4.png" ;
-export default function Pizza({fuc1 , fuc2 , fuc3 , fuc4}) {
+export default function Pizza({fuc1 , fuc2 , fuc3}) {
   const getItemlist = async () => {
     const c = await getItemPizza();
     setItem(c);
@@ -60,7 +60,7 @@ export default function Pizza({fuc1 , fuc2 , fuc3 , fuc4}) {
           fu1 = {fuc1} 
           fu2 = {fuc2}
           fu3 = {fuc3}
-          fu4 = {fuc4} />
+          />
         ))}
       </ScrollView>
       <StatusBar style="auto" />

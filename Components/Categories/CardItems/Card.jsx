@@ -19,7 +19,7 @@ import Carditem from "./ItemOfCard";
 import { useEffect, useState } from "react";
 
 import { auth } from "../../../db/Config";
-import { addConversation, getDocument, sendMessage } from "../../../db/Edit/chat";
+import { addConversation} from "../../../db/Edit/chat";
 import {} from "../../../db/Edit/Info"
 export default function Cart({ fuc1  , fuc2 , fuc3}) {
   const getCardslist = async () => {
