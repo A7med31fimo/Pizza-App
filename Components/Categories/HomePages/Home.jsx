@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Button,
 } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
 import {
   getCardItems,
@@ -198,7 +199,7 @@ export default function Home({ navigation }) {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
       <View style={styles.header}>
         <Text style={styles.headertext}>Explor Menue</Text>
         <View style={styles.headericon}>
@@ -392,6 +393,7 @@ export default function Home({ navigation }) {
       ) : (
         <></>
       )}
+      <StatusBar style="auto" />
     </View>
   );
 }
@@ -416,9 +418,10 @@ const styles = StyleSheet.create({
     // marginTop: 2,
   },
   header: {
+    marginTop:12,
     backgroundColor: "#FFFFFF",
     width: "100%",
-    height: 60,
+    height: "10%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
