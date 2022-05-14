@@ -13,10 +13,12 @@ const UserInfo = ({ navigation }) => {
   const [phone, setphone] = useState("");
   const [address, setaddress] = useState("");
 
+
      function getUser(){
        return (getUserUId().then((uid) => {   
         getUserById(uid).then((user) => {
           setUser(user[0])
+          
           setc(user[0].fName)
           setfName(user[0].fName);
           setlName(user[0].lName);
@@ -55,6 +57,13 @@ const UserInfo = ({ navigation }) => {
             <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
               <Button
                 onPress={() => {
+
+                  
+                 
+                  
+if(fName.length===0||age.length===0||phone.length===0||address.length===0|| isNaN(age)||isNaN(phone))
+alert("invalid information")
+else
                   edituser( {...user,     
                     fName: fName,
                     lName:lName,

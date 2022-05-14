@@ -80,7 +80,9 @@ const Register = ({ navigation }) => {
                 title="Register"
                 onPress={() => {
                   {
-                    // console.log(email, password,Name);
+                    if(fName.length===0||age.length===0||phone.length===0||address.length===0|| isNaN(age)||isNaN(phone)||!email.includes("@")||!email.includes(".com"))
+                    alert("invalid information")
+                    else
                     register(email, password, fName)
                       .then(() => {
                         console.log("registerd");

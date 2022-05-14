@@ -51,11 +51,7 @@ export default function Login({ navigation }) {
               <Button
                 title="Log in"
                 onPress={() => {
-
-
-
-
-                  
+                  if(!email.includes("@")||!email.includes(".com"))
                   login(email, password)
                     .then(() => {
                       if(auth.currentUser.displayName==="preAdmin")

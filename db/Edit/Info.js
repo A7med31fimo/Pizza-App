@@ -38,6 +38,7 @@ async function Addusers(user) {
   }
 }
 async function edituser(user) {
+  
   await setDoc(doc(db, "users", user.id), user);
 }
 
