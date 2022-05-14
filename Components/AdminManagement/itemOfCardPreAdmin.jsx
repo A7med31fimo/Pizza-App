@@ -7,7 +7,6 @@ import {
   ScrollView,
 } from "react-native";
 
-import Icon from "react-native-vector-icons/EvilIcons";
 import { deleteItem, editConversation } from "../../db/Edit/chat";
 export default function Item({
   id,
@@ -20,19 +19,7 @@ export default function Item({
 }) {
   return (
     <View>
-      <View style={styles.header}>
-        <Text style={styles.headertext}>PreAdmin</Text>
-        <View style={styles.headericon}>
-          <Icon
-            name="user"
-            size={50}
-            color="blue"
-            onPress={() => {
-              navigation.navigate("INFO");
-            }}
-          ></Icon>
-        </View>
-      </View>
+
       <ScrollView contentContainerStyle={{ flex: 1 }}>
         <View style={styles.content2}>
           <View style={{ paddingHorizontal: 7 }}>
@@ -80,24 +67,6 @@ export default function Item({
 }
 
 const styles = StyleSheet.create({
-  header: {
-    backgroundColor: "#FFFFFF",
-    width: "100%",
-    height: "18%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  headertext: {
-    margin: 10,
-    textAlign: "center",
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "red",
-  },
-  headericon: {
-    margin: 15,
-  },
   content2: {
     // margin: 10,
     backgroundColor: "#FFF",
@@ -110,7 +79,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     padding: 7,
-    marginVertical: 10,
+    // marginVertical: 10,
   },
   image: {
     width: "25%",
