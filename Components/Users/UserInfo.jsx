@@ -56,30 +56,35 @@ const UserInfo = ({ navigation }) => {
       <ScrollView contentContainerStyle={{ flex: 1 }}>
         <View style={styles.body}>
           <View style={styles.inps}>
+            <Text style = {styles.text2}> First Name </Text>
             <TextInput
               style={styles.inp}
               defaultValue={fName}
               placeholder={"first name"}
               onChangeText={setfName}
             />
+             <Text style = {styles.text2}> Last Name </Text>
             <TextInput
               style={styles.inp}
               defaultValue={lName}
               placeholder={"last name"}
               onChangeText={setlName}
             />
+             <Text style = {styles.text2}> Age </Text>
             <TextInput
               style={styles.inp}
               defaultValue={age}
               placeholder={"age"}
               onChangeText={setage}
             />
+             <Text style = {styles.text2}> Phone </Text>
             <TextInput
               style={styles.inp}
               defaultValue={phone}
               placeholder={"phone"}
               onChangeText={setphone}
             />
+             <Text style = {styles.text2}> Address </Text>
             <TextInput
               style={styles.inp}
               defaultValue={address}
@@ -87,7 +92,7 @@ const UserInfo = ({ navigation }) => {
               onChangeText={setaddress}
             />
             <View
-              style={{ width: "90%", borderRadius: 15, overflow: "hidden" }}
+              style={{ width: "90%", borderRadius: 15, overflow: "hidden" , marginVertical : 20 }}
             >
               <Button
                 onPress={() => {
@@ -224,8 +229,9 @@ const styles = StyleSheet.create({
     padding: 7,
   },
   inps: {
-    alignItems: "center",
+    // alignItems: "center",
     marginTop: 30,
+    marginHorizontal : 15 ,
   },
   inp: {
     width: "90%",
@@ -233,7 +239,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#FB081F",
     borderRadius: 10,
-    marginBottom: 15,
+    marginBottom: 5,
     fontSize: 20,
     fontStyle: "italic",
     padding: 6,
@@ -266,7 +272,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   body: {
-    paddingTop: 30,
+    paddingTop: 10,
     margin: 10,
     backgroundColor: "#FFFFFF",
     width: "95%",
@@ -317,4 +323,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: "hidden",
   },
+  text2 : {
+    textAlign : "left",
+    fontSize : 16 ,
+    fontStyle : "italic" ,
+    fontWeight : "bold",
+    paddingVertical : 10 ,
+    
+  }
 });

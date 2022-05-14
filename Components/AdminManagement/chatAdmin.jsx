@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { getAllChats, subscribe } from "../../db/Edit/chat";
 import Item from "./itemOfCard";
 
-export default function ChatAdmin({ navigation }) {
+export default function ChatAdmin({ fuc1 }) {
   const [chat, setchats] = useState([]);
   const getChats = () => {
     getAllChats().then((data) => {
@@ -45,9 +45,7 @@ export default function ChatAdmin({ navigation }) {
             style={styles.btn}
             title="Menu"
             color="#FB081F"
-            onPress={() => {
-              navigation.navigate("Home");
-            }}
+            onPress={() => fuc1()}
           />
         </View>
       </ScrollView>

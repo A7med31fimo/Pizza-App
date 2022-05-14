@@ -201,7 +201,7 @@ export default function Home({ navigation }) {
   return (
     <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
       <View style={styles.header}>
-        <Text style={styles.headertext}>Explor Menue</Text>
+        <Text style={styles.headertext}>Explore Menu  🍕</Text>
         <View style={styles.headericon}>
           <Icon
             name="user"
@@ -251,7 +251,7 @@ export default function Home({ navigation }) {
             <View style={styles.imageview}>
               <Image
                 style={styles.image}
-                source={{ uri: "https://i.ibb.co/nn7v6MP/images-1.jpg" }}
+                source={{ uri: "https://i.ibb.co/G79CmW4/pepsi3.jpg" }}
               />
             </View>
             <Text style={{ color: ColorDrinks, textAlign: "center" }}>
@@ -341,7 +341,7 @@ export default function Home({ navigation }) {
           ) : Page === 5 ? (
             <View>
               {auth.currentUser.displayName === "admin" ? (
-                <ChatAdmin />
+                <ChatAdmin fuc1 = {menu} />
               ) : (
                 <FavPage fuc1={menu} />
               )}
