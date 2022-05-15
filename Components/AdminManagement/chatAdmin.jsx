@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import { View, Text, ScrollView, Button, StyleSheet , Image } from "react-native";
 import { useState, useEffect } from "react";
 import { getAllChats, subscribe } from "../../db/Edit/chat";
@@ -56,54 +57,32 @@ export default function ChatAdmin({ fuc1 }) {
     
       <ScrollView>
         {chat.map((a, index) => (
-          <View key={index} style={{ flex: 1, padding: 10 }}>
             <Item
+            key = {index}
               id={a.id}
-              number={a.numberOfItems}
-              label={a.title}
+              numberOfItems={a.numberOfItems}
+              user={a.title}
               status={a.status}
-              price={a.totalCost}
-              size={""}
-              image={
-                "https://miro.medium.com/max/1080/1*4c6WJXtj5OYfq6d7ON4j0A.png"
-              }
+              totalCost={a.totalCost}
+              Cart = {a.cardslist}
             />
-               <View>
-
-              
-
-{
-    a.cardslist.map((e,i)=>(
-       <View key={i}>
-         <Text style={{fontWeight:16}}> {e.label} </Text> 
-         <Text style={{fontWeight:16}}>Number : {e.number}</Text>
-       </View>
-    ))
-
-}
+            ))}
+            </ScrollView>   
 
 
 
-</View>
-          </View>
-        ))}
-        <View style={styles.btnview}>
-          <Button
-            style={styles.btn}
-            title="Menu"
-            color="#FB081F"
-            onPress={() => fuc1()}
-          />
-        </View>
-      </ScrollView>
+        
+        
+        
+        
+      
       }
+      <StatusBar style="auto" />
     </View>
   );
 }
 const styles = StyleSheet.create({
   btnview: {
-    // marginTop: -5,
-    // margin: 50,
     marginTop: 5,
     marginBottom: 15,
     borderRadius: 10,
