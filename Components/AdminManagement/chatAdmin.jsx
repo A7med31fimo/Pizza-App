@@ -64,6 +64,7 @@ export default function ChatAdmin({ fuc1 }) {
               user={a.title}
               status={a.status}
               totalCost={a.totalCost}
+              phone = "01005004007"
               Cart = {a.cardslist}
             />
             ))}

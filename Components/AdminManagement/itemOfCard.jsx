@@ -14,6 +14,7 @@ export default function Item({
   numberOfItems,
   user,
   totalCost,
+  phone,
   Cart
 }) {
 
@@ -39,7 +40,7 @@ export default function Item({
        <Text style = {{color : "crimson" , fontSize : 16 , fontWeight : "bold" , textAlign : "center" , padding : 7}}> Information </Text>
         
         <Text style = {{fontWeight : "bold" }}> User : {user}</Text>
-        <Text style = {{fontWeight : "bold" }}> Phone :  01005004007 </Text>
+        <Text style = {{fontWeight : "bold" }}> Phone :  {phone} </Text>
         <Text style = {{ fontWeight : "bold"  }}> Status : {status} </Text>
        <Text> ---------------------------------------------------------- </Text>
        
