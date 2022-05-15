@@ -8,6 +8,7 @@ import Card from "./Components/Categories/CardItems/Card";
 import INFO from "./Components/Users/UserInfo";
 import { getUserUId } from "./db/auth/auth";
 import ChatAdmin from "./Components/AdminManagement/chatAdmin";
+import FeedBack from "./Components/Users/FeedBack";
 import { auth } from "./db/Config";
 import PreAdmin from "./Components/AdminManagement/PreAdmin";
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
           component={PreAdmin}
           options={{ headerShown: false }}
         />
+          <Stack.Screen name="FeedBack" component={FeedBack} />
        
       </Stack.Navigator>
     </NavigationContainer>

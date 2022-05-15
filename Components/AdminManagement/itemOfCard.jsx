@@ -49,7 +49,7 @@ export default function Item({
             <View key = {index} style = {styles.footer}>
             <Text style={{fontWeight: "bold"  , color : "red"}}> {e.number}  </Text>
             <Text style={{fontWeight: "bold" , width : "80%"}}> {e.label} </Text>
-            <Text style={{fontWeight: "bold" ,color : "coral"}}> {e.size} </Text>
+            <Text style={{fontWeight: "bold" ,color : "red"}}> {e.size} </Text>
 
             </View>
           ))
@@ -60,7 +60,7 @@ export default function Item({
 <View style={styles.footer}>
 
 <Text style={{fontWeight:"bold" , fontSize : 16 , width : "50%"  , color : "blue"  , marginBottom : 10}}> Total number : {numberOfItems} items </Text> 
-<Text style={{fontWeight:"bold" ,fontSize : 16 , color : "red" , marginBottom : 10}}> Total price : {totalCost}.00 EGP </Text> 
+<Text style={{fontWeight:"bold" ,fontSize : 16 , color : "green" , marginBottom : 10}}> Total price : {totalCost}.00 EGP </Text> 
 </View>
       </View> 
       

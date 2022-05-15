@@ -176,7 +176,18 @@ else
                 color="#FB081F"
               ></Button>
             </View>
-            {/* <Text style={styles.ORtxt}>OR</Text> */}
+
+
+            <View style={styles.btn}>
+              <Button
+                onPress={() => {
+                  navigation.navigate("FeedBack");
+                }}
+                title="FeedBack"
+                color="#FB081F"
+              ></Button>
+            </View>
+
             <View style={styles.btn}>
               <Button
                 onPress={() => {
