@@ -1,4 +1,4 @@
-import { View, ScrollView, Button, StyleSheet, Text } from "react-native";
+import { View, ScrollView, Button, StyleSheet, Text ,Image} from "react-native";
 import { useState, useEffect } from "react";
 import { getAllChats, subscribe } from "../../db/Edit/chat";
 import Item from "./itemOfCardPreAdmin";
@@ -87,6 +87,9 @@ export default function PreAdmin({ navigation }) {
     ))
 
 }
+<View>
+  <Text>phone :{a.phone} </Text>
+</View>
           </View>
         ))}
       </ScrollView>
