@@ -38,6 +38,23 @@ export default function ChatAdmin({ fuc1 }) {
                 "https://miro.medium.com/max/1080/1*4c6WJXtj5OYfq6d7ON4j0A.png"
               }
             />
+               <View>
+
+              
+
+{
+    a.cardslist.map((e,i)=>(
+       <View key={i}>
+         <Text style={{fontWeight:16}}> {e.label} </Text> 
+         <Text style={{fontWeight:16}}>Number : {e.number}</Text>
+       </View>
+    ))
+
+}
+
+
+
+</View>
           </View>
         ))}
         <View style={styles.btnview}>

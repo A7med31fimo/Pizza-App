@@ -25,8 +25,8 @@ const UserInfo = ({ navigation }) => {
      function getUser(){
        return (getUserUId().then((uid) => {   
         getUserById(uid).then((user) => {
-          setUser(user[0])
           
+          setUser(user[0])
           setc(user[0].fName)
           setfName(user[0].fName);
           setlName(user[0].lName);

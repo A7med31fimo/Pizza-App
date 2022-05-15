@@ -39,13 +39,13 @@ export default function Add({ name }) {
 
 
                             if (name === "drink")
-                                AddItemsDrinks({ ref: photo, name: Name, cost: Price })
+                                AddItemsDrinks({ ref: photo, name: Name, cost: parseInt(Price) })
                             if (name === "cake")
-                                AddItemscakes({ desc:desc,image: photo, label: Name, price: Price })
+                                AddItemscakes({ desc:desc,image: photo, label: Name, price: parseInt(Price) })
                             if (name === "deal")
-                                AddItemsDeals({ desc:desc,image: photo, label: Name, price: Price })
+                                AddItemsDeals({ desc:desc,image: photo, label: Name, price: parseInt(Price) })
                             if (name === "pizza")
-                                AddItemsPizza({ desc:desc,image: photo, label: Name, price: Price })
+                                AddItemsPizza({ desc:desc,image: photo, label: Name, price: parseInt(Price) })
 
                         }}
                         color="#FB081F"

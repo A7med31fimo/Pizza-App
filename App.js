@@ -10,7 +10,6 @@ import { getUserUId } from "./db/auth/auth";
 import ChatAdmin from "./Components/AdminManagement/chatAdmin";
 import { auth } from "./db/Config";
 import PreAdmin from "./Components/AdminManagement/PreAdmin";
-//import Confirmation from "./Components/Categories/CardItems/Confirmation";
 export default function App() {
   const Stack = createNativeStackNavigator();
 
@@ -19,6 +18,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="FirstPage">
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Log In" component={Login} />
+        
         <Stack.Screen
           name="FirstPage"
           component={FirstPage}
@@ -37,6 +37,7 @@ export default function App() {
           component={PreAdmin}
           options={{ headerShown: false }}
         />
+       
       </Stack.Navigator>
     </NavigationContainer>
   );

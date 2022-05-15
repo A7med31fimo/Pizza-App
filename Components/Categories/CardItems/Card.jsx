@@ -138,7 +138,7 @@ export default function Cart({ fuc1  , fuc2 , fuc3}) {
            
            const s =  await auth.currentUser!=null?auth.currentUser.email.split("@")[0]:"guest";
            let f = "not Confirmed";
-            await  addConversation(s,total,numberOfItems,f)
+            await  addConversation(s,total,numberOfItems,f,Cards)
             fuc3();
             }
         }

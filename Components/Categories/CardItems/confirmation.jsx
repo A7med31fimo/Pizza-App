@@ -13,7 +13,7 @@ export default function Confirmation() {
     <View style={styles.body}>
       <Text style={styles.text}> 
         Your order is Confirmed the Dlivery will call you soon on your phone
-        number and when he arrived please press arrived .
+        number thanks for using my app.
       </Text>
       <View style={styles.btns}>
         <View style={styles.btn}>

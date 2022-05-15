@@ -7,8 +7,6 @@ import {
     query,
     onSnapshot,
     updateDoc,deleteDoc,
-    arrayUnion,
-    arrayRemove,
 } from "firebase/firestore";
 
 async function getAllChats() {
@@ -34,9 +32,9 @@ async function getAllChats() {
     }
 }
 
-async function addConversation(title,totalCost,numberOfItems,status) {
+async function addConversation(title,totalCost,numberOfItems,status,cards) {
     try {
-        const docRef = await addDoc(collection(db, "Chats"),{title: title,totalCost:totalCost, numberOfItems:numberOfItems,status:status,id:''});    
+        const docRef = await addDoc(collection(db, "Chats"),{title: title,totalCost:totalCost, numberOfItems:numberOfItems,status:status,id:'',cardslist:cards});    
         updateDoc(docRef, {
             id:docRef.id
         }).then(
