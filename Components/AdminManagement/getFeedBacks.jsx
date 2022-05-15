@@ -17,16 +17,19 @@ import {
 } from "../../db/Edit/FeedBackEdit";
 import Icon from "react-native-vector-icons/Entypo";
 import { useState, useEffect } from "react";
+import { auth } from "../../db/Config";
 
 export default function FeedFeedBackList() {
   const getFeedBacksList = async () => {
     const c = await getItemFeedBack();
     setFeedBacks(c);
     console.log("FeedBacks", c);
+    setname(auth.currentUser.displayName)
   };
   useEffect(() => {
     getFeedBacksList();
   }, []);
+  const [name, setname] = useState([]);
 
   const [FeedBacks, setFeedBacks] = useState([]);
 
@@ -34,7 +37,7 @@ export default function FeedFeedBackList() {
     <View style={{ flex: 1 }}>
       {FeedBacks.map((c) => (
         <View key={c.id} style={styles.FeedBacksview}>
-          <Text style={styles.FeedBacksuser}>user:</Text>
+          <Text style={styles.FeedBacksuser}>{name}:</Text>
           <Text style={styles.FeedBacks}>{c.conatnt}</Text>
         </View>
       ))}
