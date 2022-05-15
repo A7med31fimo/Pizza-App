@@ -47,7 +47,8 @@ export default function Item({
           x.map((e , index) => (
             <View key = {index} style = {styles.footer}>
             <Text style={{fontWeight: "bold"  , color : "red"}}> {e.number}  </Text>
-            <Text style={{fontWeight: "bold"}}> {e.label} </Text>
+            <Text style={{fontWeight: "bold" , width : "80%"}}> {e.label} </Text>
+            <Text style={{fontWeight: "bold" ,color : "coral"}}> {e.size} </Text>
 
             </View>
           ))
