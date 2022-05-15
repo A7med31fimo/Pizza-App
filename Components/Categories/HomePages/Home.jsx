@@ -202,35 +202,36 @@ export default function Home({ navigation }) {
   return (
     <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
       <View style={styles.header}>
-        <Text style={styles.headertext}>Explore Menu  🍕</Text>
+        <Text style={styles.headertext}>Explore Menu 🍕</Text>
         <View style={styles.headericon}>
-        {auth.currentUser !== null
-                ? auth.currentUser.displayName != "admin"
-                  ?  <Icon
-                  name="user"
-                  size={50}
-                  color="blue"
-                  onPress={() => {
-                    navigation.navigate("INFO");
-                  }}
-                />
-                  :  <Icon3
-                  name="log-out"
-                  size={30}
-                  color="crimson"
-                  onPress={() => {
-                    SignOut()
-                      .then(() => {
-                        console.log("sign out");
-                        navigation.navigate("FirstPage");
-                      })
-                      .catch((err) => {
-                        setError(err.message);
-                      });
-                  }}
-                />
-                : null}
-
+          {auth.currentUser !== null ? (
+            auth.currentUser.displayName != "admin" ? (
+              <Icon
+                name="user"
+                size={50}
+                color="blue"
+                onPress={() => {
+                  navigation.navigate("INFO");
+                }}
+              />
+            ) : (
+              <Icon3
+                name="log-out"
+                size={30}
+                color="crimson"
+                onPress={() => {
+                  SignOut()
+                    .then(() => {
+                      console.log("sign out");
+                      navigation.navigate("FirstPage");
+                    })
+                    .catch((err) => {
+                      setError(err.message);
+                    });
+                }}
+              />
+            )
+          ) : null}
         </View>
       </View>
       <View style={styles.categories}>
@@ -296,7 +297,22 @@ export default function Home({ navigation }) {
                 : null}
             </Text>
           </TouchableOpacity>
-
+          {auth.currentUser.displayName === "admin" ? (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("getFeedBack");
+              }}
+            >
+              <View style={styles.imageview}>
+               <Icon2 name="feedback"
+               size={50}
+               color="#000000"/>
+              </View>
+              <Text style={{ color: ColorDrinks, textAlign: "center" }}>
+              FeedBacks
+              </Text>
+            </TouchableOpacity>
+          ) : null}
           {/* {
             <TouchableOpacity
               onPress={() => {
@@ -361,7 +377,7 @@ export default function Home({ navigation }) {
           ) : Page === 5 ? (
             <View>
               {auth.currentUser.displayName === "admin" ? (
-                <ChatAdmin fuc1 = {menu} />
+                <ChatAdmin fuc1={menu} />
               ) : (
                 <FavPage fuc1={menu} />
               )}
@@ -438,7 +454,7 @@ const styles = StyleSheet.create({
     // marginTop: 2,
   },
   header: {
-    marginTop:12,
+    marginTop: 12,
     backgroundColor: "#FFFFFF",
     width: "100%",
     height: "10%",

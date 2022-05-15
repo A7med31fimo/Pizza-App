@@ -9,6 +9,7 @@ import INFO from "./Components/Users/UserInfo";
 import { getUserUId } from "./db/auth/auth";
 import ChatAdmin from "./Components/AdminManagement/chatAdmin";
 import FeedBack from "./Components/Users/FeedBack";
+import getFeedBack from "./Components/AdminManagement/getFeedBacks";
 import { auth } from "./db/Config";
 import PreAdmin from "./Components/AdminManagement/PreAdmin";
 export default function App() {
@@ -19,7 +20,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="FirstPage">
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Log In" component={Login} />
-        
+
         <Stack.Screen
           name="FirstPage"
           component={FirstPage}
@@ -38,8 +39,8 @@ export default function App() {
           component={PreAdmin}
           options={{ headerShown: false }}
         />
-          <Stack.Screen name="FeedBack" component={FeedBack} />
-       
+        <Stack.Screen name="FeedBack" component={FeedBack} />
+        <Stack.Screen name="getFeedBack" component={getFeedBack} />
       </Stack.Navigator>
     </NavigationContainer>
   );
