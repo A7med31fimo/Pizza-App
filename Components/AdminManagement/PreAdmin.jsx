@@ -7,9 +7,11 @@ import { SignOut } from "../../db/auth/auth";
 import Icon from "react-native-vector-icons/Entypo";
 export default function PreAdmin({ navigation }) {
   const [chat, setchats] = useState([]);
+  const [empty , setEmpty] = useState(0);
   const getChats = () => {
     getAllChats().then((data) => {
       setchats(data);
+      setEmpty(data.length);
     });
   };
   useEffect(() => {
@@ -43,10 +45,26 @@ export default function PreAdmin({ navigation }) {
                   setError(err.message);
                 });
             }}
-          ></Icon>
+          />
         </View>
       </View>
-      <ScrollView>
+
+{empty === 0 ? (
+        <View>
+          <View style={{ alignItems: "center",}}>
+            <Image
+              style={{width: 350, height: 350,}}
+              source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
+            />
+          </View>
+          <Text style={{textAlign: "center", fontSize: 20,fontWeight : "400" ,marginVertical: 10 ,color : "red"}}> 
+            There are no orders now ... 
+            </Text>
+            <Text style ={{textAlign: "center", fontSize: 20, marginVertical: 10}}> have a break </Text>
+        </View>
+      )   
+
+     : <ScrollView>
         {chat.map((a, index) => (
           <View key={index} style={{ flex: 1, padding: 10 }}>
             <Item
@@ -72,6 +90,7 @@ export default function PreAdmin({ navigation }) {
           </View>
         ))}
       </ScrollView>
+}
     </View>
   );
 }

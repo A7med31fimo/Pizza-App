@@ -25,6 +25,7 @@ import FavPage from "../Favourite/Fav";
 import Icon from "react-native-vector-icons/EvilIcons";
 // import Icon2 from "react-native-vector-icons/Octicons";
 import Icon2 from "react-native-vector-icons/MaterialIcons";
+import Icon3 from "react-native-vector-icons/Entypo";
 import { SignOut } from "../../../db/auth/auth";
 import { auth } from "../../../db/Config";
 import ChatAdmin from "../../AdminManagement/chatAdmin";
@@ -203,14 +204,33 @@ export default function Home({ navigation }) {
       <View style={styles.header}>
         <Text style={styles.headertext}>Explore Menu  🍕</Text>
         <View style={styles.headericon}>
-          <Icon
-            name="user"
-            size={50}
-            color="blue"
-            onPress={() => {
-              navigation.navigate("INFO");
-            }}
-          ></Icon>
+        {auth.currentUser !== null
+                ? auth.currentUser.displayName != "admin"
+                  ?  <Icon
+                  name="user"
+                  size={50}
+                  color="blue"
+                  onPress={() => {
+                    navigation.navigate("INFO");
+                  }}
+                />
+                  :  <Icon3
+                  name="log-out"
+                  size={30}
+                  color="crimson"
+                  onPress={() => {
+                    SignOut()
+                      .then(() => {
+                        console.log("sign out");
+                        navigation.navigate("FirstPage");
+                      })
+                      .catch((err) => {
+                        setError(err.message);
+                      });
+                  }}
+                />
+                : null}
+
         </View>
       </View>
       <View style={styles.categories}>
