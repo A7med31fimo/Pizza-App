@@ -32,9 +32,9 @@ async function getAllChats() {
     }
 }
 
-async function addConversation(title,totalCost,numberOfItems,status,cards) {
+async function addConversation(title,totalCost,numberOfItems,status,cards,phone) {
     try {
-        const docRef = await addDoc(collection(db, "Chats"),{title: title,totalCost:totalCost, numberOfItems:numberOfItems,status:status,id:'',cardslist:cards});    
+        const docRef = await addDoc(collection(db, "Chats"),{title: title,totalCost:totalCost, numberOfItems:numberOfItems,status:status,id:'',cardslist:cards,phone:phone});    
         updateDoc(docRef, {
             id:docRef.id
         }).then(

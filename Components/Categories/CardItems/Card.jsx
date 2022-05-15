@@ -15,16 +15,17 @@ import {
 
 import Carditem from "./ItemOfCard";
 
-
+import { getUserById } from "../../../db/Edit/Info";
 import { useEffect, useState } from "react";
 
 import { auth } from "../../../db/Config";
 import { addConversation} from "../../../db/Edit/chat";
-import {} from "../../../db/Edit/Info"
 export default function Cart({ fuc1  , fuc2 , fuc3}) {
   const getCardslist = async () => {
     const c = await getCardItems();
-   
+    getUserById(auth.currentUser.uid).then((user)=>(
+      setphone(user[0].phone)
+    ))
     let sum = 0.0;
     function compare(a, b) {
       if (a.label < b.label ) {
@@ -77,7 +78,7 @@ export default function Cart({ fuc1  , fuc2 , fuc3}) {
   const [Cards, setCards] = useState([]);
   const [total, settotal] = useState(0);
   const [numberOfItems, setItems] = useState(0);
-
+  const [phone, setphone] = useState(0);
   useEffect(() => {
     getCardslist();
   }, []);
@@ -136,9 +137,9 @@ export default function Cart({ fuc1  , fuc2 , fuc3}) {
             
            async ()=>{
            
-           const s =  await auth.currentUser!=null?auth.currentUser.email.split("@")[0]:"guest";
-           let f = "not Confirmed";
-            await  addConversation(s,total,numberOfItems,f,Cards)
+           const name =  await auth.currentUser!=null?auth.currentUser.email.split("@")[0]:"guest";
+           let status = "not Confirmed";
+            await  addConversation(name,total,numberOfItems,status,Cards,phone)
             fuc3();
             }
         }

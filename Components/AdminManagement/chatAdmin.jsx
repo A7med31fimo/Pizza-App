@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getAllChats, subscribe } from "../../db/Edit/chat";
 import Item from "./itemOfCard";
 
+
 export default function ChatAdmin({ fuc1 }) {
   const [chat, setchats] = useState([]);
   const [empty, setEmpty] = useState(0);
@@ -12,6 +13,7 @@ export default function ChatAdmin({ fuc1 }) {
     getAllChats().then((data) => {
       setchats(data);
       setEmpty(data.length);
+     
     });
   };
   useEffect(() => {
@@ -64,7 +66,7 @@ export default function ChatAdmin({ fuc1 }) {
               user={a.title}
               status={a.status}
               totalCost={a.totalCost}
-              phone = "01005004007"
+              phone = {a.phone}
               Cart = {a.cardslist}
             />
             ))}
