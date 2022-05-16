@@ -11,7 +11,7 @@ import {
 import { editFeedBack, AddItemsFeedBack } from "../../db/Edit/FeedBackEdit";
 import Icon from "react-native-vector-icons/Entypo";
 import { useState, useEffect } from "react";
-
+import { auth } from "../../db/Config";
 export default function FeedBack({ navigation }) {
   const [icon1, setIcon1] = useState("heart-outlined");
   const [icon2, setIcon2] = useState("heart-outlined");
@@ -126,7 +126,11 @@ export default function FeedBack({ navigation }) {
           color="#FB081F"
           // onPress= {fuc2}
           onPress={() => {
-            AddItemsFeedBack({ conatnt: FeedBack });
+            AddItemsFeedBack({
+              conatnt: auth.currentUser.displayName + ": " + FeedBack,
+            });
+            navigation.navigate("Home");
+            alert("thanks for your FeedBack");
             console.log("feedback");
           }}
         />

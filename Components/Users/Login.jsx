@@ -51,7 +51,7 @@ export default function Login({ navigation }) {
               <Button
                 title="Log in"
                 onPress={() => {
-                  if(!email.includes("@")||!email.includes(".com")||password.length===0)
+                  if(!email.includes("@")||!email.includes(".com")||password.length===0||password.length<6)
                   alert("invalid information")
                   else
                   login(email, password)

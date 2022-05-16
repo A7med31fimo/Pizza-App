@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
 import { deleteItem } from "../../db/Edit/chat";
+import { useState, useEffect } from "react";
 export default function Item({
   id,
   status,
@@ -18,9 +19,28 @@ export default function Item({
   Cart
 }) {
 
+  useEffect(() => {
+    setcolor();
+  }, []);
+const [color ,setColor] = useState("red");
+function setcolor(){
+  status === "Arrived" ? setColor("green") : setColor("red");
+}
+
   const x = Cart ;
   return (
-    <View style={styles.content}>
+    <View style={{marginHorizontal : 7 ,
+      backgroundColor: "#FFF",
+      borderWidth: 1,
+      borderRadius: 10,
+      borderColor: color,
+      shadowColor: "#000", 
+      shadowOffset:{ width: 2,height: 2},
+      shadowOpacity: 0.3,
+      shadowRadius: 4,
+      elevation: 5,
+     padding: 7,
+      marginBottom: 20,}}>
         <View style={{paddingHorizontal:7}} >
         <View style={styles.footer}>
           <View style = {{width : "90%"}}>

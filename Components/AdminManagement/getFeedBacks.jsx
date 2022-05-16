@@ -18,16 +18,27 @@ import {
 import Icon from "react-native-vector-icons/Entypo";
 import { useState, useEffect } from "react";
 import { auth } from "../../db/Config";
+// import Icon from "react-native-vector-icons/Entypo";
 
 export default function FeedFeedBackList() {
   const getFeedBacksList = async () => {
     const c = await getItemFeedBack();
     setFeedBacks(c);
     console.log("FeedBacks", c);
-    setname(auth.currentUser.displayName)
+    //setname(auth.currentUser.displayName);
   };
   useEffect(() => {
     getFeedBacksList();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = subscribe(({ change, snapshot }) => {
+      getFeedBacksList();
+    });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
   const [name, setname] = useState([]);
 
@@ -37,8 +48,13 @@ export default function FeedFeedBackList() {
     <View style={{ flex: 1 }}>
       {FeedBacks.map((c) => (
         <View key={c.id} style={styles.FeedBacksview}>
-          <Text style={styles.FeedBacksuser}>{name}:</Text>
           <Text style={styles.FeedBacks}>{c.conatnt}</Text>
+          <Icon
+            name="trash"
+            size={25}
+            color="grey"
+            onPress={() => deleteItemsFeedBack(c.id)}
+          />
         </View>
       ))}
     </View>
@@ -48,8 +64,7 @@ export default function FeedFeedBackList() {
 const styles = StyleSheet.create({
   FeedBacksview: {
     width: "100%",
-    height: 100,
-    flexDirection: "row",
+    flexDirection: "column",
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
     borderRadius: 10,
@@ -69,7 +84,7 @@ const styles = StyleSheet.create({
   },
   FeedBacks: {
     fontSize: 18,
-    // fontWeight: "bold",
+    fontWeight: "bold",
   },
   btnview: {
     margin: 50,

@@ -13,12 +13,11 @@ export default function FirstPage({ navigation }) {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={{ flex: 1 }}>
         {/* <View style={styles.header}> */}
-          <Image
-            source={{ uri: "https://i.ibb.co/0KmHhp2/chef.png" }}
-            
-            style={styles.Background}
-          >
-            {/* <TouchableOpacity
+        <Image
+          source={{ uri: "https://i.ibb.co/0KmHhp2/chef.png" }}
+          style={styles.Background}
+        >
+          {/* <TouchableOpacity
             style={styles.item}
             onPress={() => {
               navigation.navigate("Home");
@@ -26,7 +25,7 @@ export default function FirstPage({ navigation }) {
           >
             <Text style={styles.Skiptxt}>Skip {">>"}</Text>
           </TouchableOpacity> */}
-          </Image>
+        </Image>
         {/* </View> */}
 
         <View style={styles.foot}>
@@ -69,8 +68,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   Background: {
-     flex: 0.5,
-    resizeMode:"contain"
+    flex: 2,
+    resizeMode: "contain",
   },
   header: {
     flex: 0.5,

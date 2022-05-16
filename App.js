@@ -12,9 +12,13 @@ import FeedBack from "./Components/Users/FeedBack";
 import getFeedBack from "./Components/AdminManagement/getFeedBacks";
 import { auth } from "./db/Config";
 import PreAdmin from "./Components/AdminManagement/PreAdmin";
+import { LogBox } from "react-native";
+
 export default function App() {
   const Stack = createNativeStackNavigator();
-
+  LogBox.ignoreLogs([
+    "Warning: Async Storage has been extracted from react-native core",
+  ]);
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="FirstPage">

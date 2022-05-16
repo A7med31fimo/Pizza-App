@@ -96,8 +96,6 @@ export default function Home({ navigation }) {
     setColorCake("black");
     setColorDrinks("black");
     setColorCard("crimson");
-    //  if (auth.currentUser.displayName === "admin")
-    //    navigation.navigate("ChatAdmin");
   };
 
   const getCardslist = async () => {
@@ -281,12 +279,6 @@ export default function Home({ navigation }) {
           </TouchableOpacity>
           <TouchableOpacity onPress={clickFav}>
             <View style={styles.imageview}>
-              {/* <Image
-                style={styles.image}
-                source={{
-                  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmE3CcWID-fFcJ8MyHDZ0mh21xKkaebRK7lY7SGCIu7NAfs2Kx8032HcZRzbR9zWRJrUI&usqp=CAU",
-                }}
-              ></Image> */}
               <Icon2 name="favorite" size={50} color="red" />
             </View>
             <Text style={{ color: ColorCard, textAlign: "center" }}>
@@ -304,52 +296,13 @@ export default function Home({ navigation }) {
               }}
             >
               <View style={styles.imageview}>
-               <Icon2 name="feedback"
-               size={50}
-               color="#000000"/>
+                <Icon2 name="feedback" size={50} color="#000000" />
               </View>
               <Text style={{ color: ColorDrinks, textAlign: "center" }}>
-              FeedBacks
+                FeedBacks
               </Text>
             </TouchableOpacity>
           ) : null}
-          {/* {
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("INFO");
-              }}
-            >
-              <View style={styles.imageview}>
-                <Image
-                  style={styles.image}
-                  source={{ uri: "https://i.ibb.co/1q25n5P/profile1.png" }}
-                ></Image>
-              </View>
-              <Text style={{ textAlign: "center" }}>Profile</Text>
-            </TouchableOpacity>
-          } */}
-
-          {/* {auth.currentUser !== null ? (
-            <TouchableOpacity
-              onPress={() => {
-                {
-                  SignOut()
-                    .then(() => {
-                      console.log("sign out");
-                      navigation.navigate("FirstPage");
-                    })
-                    .catch((err) => {
-                      setError(err.message);
-                    });
-                }
-              }}
-            >
-              <View style={styles.imageview}>
-                <Icon2 name="sign-out" size={50} color="crimson" />
-              </View>
-              <Text style={{ color: ColorCard, marginLeft: 10 }}>sign-out</Text>
-            </TouchableOpacity>
-          ) : null} */}
         </ScrollView>
       </View>
       <View style={styles.container}>

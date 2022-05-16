@@ -1,13 +1,21 @@
-import { View, ScrollView, Button, StyleSheet, Text ,Image} from "react-native";
+import {
+  View,
+  ScrollView,
+  Button,
+  StyleSheet,
+  Text,
+  Image,
+} from "react-native";
 import { useState, useEffect } from "react";
 import { getAllChats, subscribe } from "../../db/Edit/chat";
 import Item from "./itemOfCardPreAdmin";
 import { SignOut } from "../../db/auth/auth";
+import { StatusBar } from "expo-status-bar";
 
 import Icon from "react-native-vector-icons/Entypo";
 export default function PreAdmin({ navigation }) {
   const [chat, setchats] = useState([]);
-  const [empty , setEmpty] = useState(0);
+  const [empty, setEmpty] = useState(0);
   const getChats = () => {
     getAllChats().then((data) => {
       setchats(data);
@@ -49,52 +57,60 @@ export default function PreAdmin({ navigation }) {
         </View>
       </View>
 
-{empty === 0 ? (
+      {empty === 0 ? (
         <View>
-          <View style={{ alignItems: "center",}}>
+          <View style={{ alignItems: "center" }}>
             <Image
-              style={{width: 350, height: 350,}}
+              style={{ width: 350, height: 350 }}
               source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
             />
           </View>
-          <Text style={{textAlign: "center", fontSize: 20,fontWeight : "400" ,marginVertical: 10 ,color : "red"}}> 
-            There are no orders now ... 
-            </Text>
-            <Text style ={{textAlign: "center", fontSize: 20, marginVertical: 10}}> have a break </Text>
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 20,
+              fontWeight: "400",
+              marginVertical: 10,
+              color: "red",
+            }}
+          >
+            There are no orders now ...
+          </Text>
+          <Text
+            style={{ textAlign: "center", fontSize: 20, marginVertical: 10 }}
+          >
+            {" "}
+            have a break{" "}
+          </Text>
         </View>
-      )   
-
-     : <ScrollView>
+      ) : 
+        <ScrollView>
         {chat.map((a, index) => (
-          <View key={index} style={{ flex: 1, padding: 10 }}>
             <Item
+            key = {index}
               id={a.id}
-              number={a.numberOfItems}
-              label={a.title}
+              numberOfItems={a.numberOfItems}
+              user={a.title}
               status={a.status}
-              price={a.totalCost}
-              size={""}
-              image={
-                "https://miro.medium.com/max/1080/1*4c6WJXtj5OYfq6d7ON4j0A.png"
-              }
+              totalCost={a.totalCost}
+              phone = {a.phone}
+              Cart = {a.cardslist}
             />
-            {
-    a.cardslist.map((e,i)=>(
-       <View key={i}>
-         <Text style={{fontWeight:16}}> {e.label} </Text> 
-         <Text style={{fontWeight:16}}>Number : {e.number}</Text>
-       </View>
-    ))
+            ))}
+            </ScrollView>   
 
-}
-<View>
-  <Text>phone :{a.phone} </Text>
-</View>
-          </View>
-        ))}
-      </ScrollView>
-}
+
+
+        
+        
+        
+        
+      
+      }
+      <StatusBar style="auto" />
     </View>
+
+
   );
 }
 const styles = StyleSheet.create({
@@ -117,8 +133,6 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   btnview: {
-    // marginTop: -5,
-    // margin: 50,
     marginTop: 5,
     marginBottom: 15,
     borderRadius: 10,
@@ -128,4 +142,5 @@ const styles = StyleSheet.create({
   btn: {
     width: "50%",
   },
+ 
 });

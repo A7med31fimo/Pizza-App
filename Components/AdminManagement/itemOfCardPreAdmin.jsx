@@ -10,141 +10,131 @@ import {
 import { deleteItem, editConversation } from "../../db/Edit/chat";
 export default function Item({
   id,
-  image,
-  label,
   status,
-  size,
-  price,
-  number,
+  numberOfItems,
+  user,
+  totalCost,
+  phone,
+  Cart,
 }) {
+  const x = Cart;
   return (
-    <View>
-
-      <ScrollView contentContainerStyle={{ flex: 1 }}>
-        <View style={styles.content2}>
-          <View style={{ paddingHorizontal: 7 }}>
-            <View style={styles.footer}>
-              <Image source={{ uri: image }} style={styles.image} />
-              <View style={styles.header2}>
-                <View style={styles.labelandicon}>
-                  <Text style={styles.status2}>
-                    user: {label}
-                    {"\n"}status: {status}
-                  </Text>
-                </View>
-                <Text style={styles.label2}>{size}</Text>
-              </View>
-            </View>
+    <View style={styles.content}>
+      <View style={{ paddingHorizontal: 7 }}>
+        <View style={styles.footer}>
+          <View style={{ width: "90%" }}>
+            <Image
+              style={styles.image}
+              source={{
+                uri: "https://miro.medium.com/max/1080/1*4c6WJXtj5OYfq6d7ON4j0A.png",
+              }}
+            />
           </View>
-
-          <View style={styles.footer}>
-            <Text style={styles.number}>{number} Items</Text>
-            <Text style={styles.price}> {price}.00 EGP </Text>
-          </View>
-          <View style={styles.btns}>
-            <View style={styles.btn}>
-              <Button
-                title="ARRIVED"
-                onPress={() => {
-                  editConversation(id, "Arrived");
-                }}
-              />
-            </View>
-            <View style={styles.btn}>
-              <Button
-                title="NO"
-                color={"red"}
-                onPress={() => {
-                  editConversation(id, "No");
-                }}
-              />
-            </View>
-          </View>
+          {/* <Icon
+        name='trash'
+        size = {25}
+        color = 'grey'
+        onPress = {() => {
+          deleteItem(id);
+        }}
+        />  */}
         </View>
-      </ScrollView>
+
+        <Text
+          style={{
+            color: "crimson",
+            fontSize: 16,
+            fontWeight: "bold",
+            textAlign: "center",
+            padding: 7,
+          }}
+        >
+          {" "}
+          Information{" "}
+        </Text>
+
+        <Text style={{ fontWeight: "bold" }}> User : {user}</Text>
+        <Text style={{ fontWeight: "bold" }}> Phone : {phone} </Text>
+        <Text style={{ fontWeight: "bold" }}> Status : {status} </Text>
+        <Text>
+          {" "}
+          ----------------------------------------------------------{" "}
+        </Text>
+
+        {x.map((e, index) => (
+          <View key={index} style={styles.footer}>
+            <Text style={{ fontWeight: "bold", color: "red" }}>
+              {" "}
+              {e.number}{" "}
+            </Text>
+            <Text style={{ fontWeight: "bold", width: "80%" }}>
+              {" "}
+              {e.label}{" "}
+            </Text>
+            <Text style={{ fontWeight: "bold", color: "red" }}> {e.size} </Text>
+          </View>
+        ))}
+
+        <View style={styles.footer}>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 16,
+              width: "50%",
+              color: "blue",
+              marginBottom: 10,
+            }}
+          >
+            {" "}
+            Total number : {numberOfItems} items{" "}
+          </Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 16,
+              color: "green",
+              marginBottom: 10,
+            }}
+          >
+            {" "}
+            Total price : {totalCost}.00 EGP{" "}
+          </Text>
+        </View>
+      </View>
+
+      <Button
+        title=" Arrived "
+        color="black"
+        onPress={() => {
+          editConversation(id, "Arrived");
+        }}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  content2: {
-    // margin: 10,
+  content: {
+    marginHorizontal: 7,
     backgroundColor: "#FFF",
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderRadius: 10,
-    borderColor: "#fff",
-    shadowColor: "#000000",
+    borderColor: "red",
+    shadowColor: "#000",
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
     padding: 7,
-    // marginVertical: 10,
+    marginBottom: 20,
   },
   image: {
-    width: "25%",
-    height: 80,
-    // alignItems: "center",
-  },
-  header2: {
-    flexDirection: "column",
-  },
-  labelandicon: {
-    flexDirection: "column",
-  },
-  status1: {
-    fontSize: 16,
-    fontWeight: "bold",
-    width: "50%",
-    marginLeft: 15,
-    color: "blue",
-  },
-  status2: {
-    fontSize: 16,
-    fontWeight: "bold",
-    width: "50%",
-    marginLeft: 15,
-    color: "red",
-  },
-  icon: {
-    // width: "25%",
-    margin: 20,
-  },
-  label2: {
-    marginLeft: 10,
-    textAlign: "left",
-    fontSize: 14,
-    fontWeight: "bold",
-    color: "red",
-  },
-  price: {
-    // color: "crimson",
-    width: "25%",
-    fontSize: 16,
-    fontWeight: "bold",
-    paddingBottom: 10,
-  },
-
-  number: {
-    width: "75%",
-    fontSize: 14,
-    fontWeight: "bold",
-    paddingHorizontal: 7,
-    //paddingBottom : 10
+    width: "30%",
+    height: 20,
   },
   footer: {
-    //alignItems : 'center',
+    alignItems: "center",
     marginTop: 15,
     flexDirection: "row",
-  },
-  btns: {
-    margin: 10,
-    flexDirection: "row-reverse",
-    justifyContent: "space-between",
-  },
-  btn: {
-    width: "45%",
-    borderRadius: 10,
-    overflow: "hidden",
   },
 });

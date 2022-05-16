@@ -1,9 +1,15 @@
 import { StatusBar } from "expo-status-bar";
-import { View, Text, ScrollView, Button, StyleSheet , Image } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Button,
+  StyleSheet,
+  Image,
+} from "react-native";
 import { useState, useEffect } from "react";
 import { getAllChats, subscribe } from "../../db/Edit/chat";
 import Item from "./itemOfCard";
-
 
 export default function ChatAdmin({ fuc1 }) {
   const [chat, setchats] = useState([]);
@@ -13,7 +19,6 @@ export default function ChatAdmin({ fuc1 }) {
     getAllChats().then((data) => {
       setchats(data);
       setEmpty(data.length);
-     
     });
   };
   useEffect(() => {
@@ -29,20 +34,32 @@ export default function ChatAdmin({ fuc1 }) {
     };
   }, []);
   return (
-<View style={{ flex: 1 }}>
-    {
-      empty === 0 ? (
+    <View style={{ flex: 1 }}>
+      {empty === 0 ? (
         <View>
-          <View style={{ alignItems: "center",}}>
+          <View style={{ alignItems: "center" }}>
             <Image
-              style={{width: 350, height: 350,}}
+              style={{ width: 350, height: 350 }}
               source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
             />
           </View>
-          <Text style={{textAlign: "center", fontSize: 20,fontWeight : "400" ,marginVertical: 10 ,color : "red"}}> 
-            There are no orders now ... 
-            </Text>
-            <Text style ={{textAlign: "center", fontSize: 20, marginVertical: 10}}> have a break </Text>
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 20,
+              fontWeight: "400",
+              marginVertical: 10,
+              color: "red",
+            }}
+          >
+            There are no orders now ...
+          </Text>
+          <Text
+            style={{ textAlign: "center", fontSize: 20, marginVertical: 10 }}
+          >
+            {" "}
+            have a break{" "}
+          </Text>
           <View style={styles.btnview}>
             <Button
               style={styles.btn}
@@ -52,34 +69,22 @@ export default function ChatAdmin({ fuc1 }) {
             />
           </View>
         </View>
-      )   
-    
-
-      :
-    
-      <ScrollView>
-        {chat.map((a, index) => (
+      ) : (
+        <ScrollView>
+          {chat.map((a, index) => (
             <Item
-            key = {index}
+              key={index}
               id={a.id}
               numberOfItems={a.numberOfItems}
               user={a.title}
               status={a.status}
               totalCost={a.totalCost}
-              phone = {a.phone}
-              Cart = {a.cardslist}
+              phone={a.phone}
+              Cart={a.cardslist}
             />
-            ))}
-            </ScrollView>   
-
-
-
-        
-        
-        
-        
-      
-      }
+          ))}
+        </ScrollView>
+      )}
       <StatusBar style="auto" />
     </View>
   );
@@ -95,5 +100,4 @@ const styles = StyleSheet.create({
   btn: {
     width: "50%",
   },
- 
 });
