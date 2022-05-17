@@ -44,9 +44,9 @@ export default function Add({ name }) {
               }else{
                 if (name === "drink")
                   AddItemsDrinks({
-                    ref: photo,
-                    name: Name,
-                    cost: parseInt(Price),
+                    image: photo,
+                    label: Name,
+                    price: parseInt(Price),
                   });
 
               if (name === "cake")

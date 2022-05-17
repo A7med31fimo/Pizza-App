@@ -29,7 +29,7 @@ const Drinks = ({fuc1 , fuc2 , fuc3}) => {
   }, []);
   
   useEffect(() => {
-    const unsubscribe = subscribe(({ change, snapshot }) => {
+    const unsubscribe = subscribe(({ change, snapshot } , Drinks) => {
       getDrinkslist(); 
     });
     return () => {
@@ -98,9 +98,9 @@ const Drinks = ({fuc1 , fuc2 , fuc3}) => {
           {Drinks.map((a,index) => ( 
             <View key={index}>     
               <Item ID={a.id} 
-              image={a.ref} 
-              label={a.name} 
-              price={a.cost} 
+              image={a.image} 
+              label={a.label} 
+              price={a.price} 
               fu1 = {fuc1} 
               fu2 = {fuc2} 
               fu3 = {fuc3} 
