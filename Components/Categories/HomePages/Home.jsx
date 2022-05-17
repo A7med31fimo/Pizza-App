@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   Button,
+  Pressable,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
@@ -233,7 +234,7 @@ export default function Home({ navigation }) {
         </View>
       </View>
       <View style={styles.categories}>
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} contentContainerStyle = {styles.x}>
           <TouchableOpacity onPress={clickDeals}>
             <View style={styles.imageview}>
               <Image
@@ -365,18 +366,12 @@ export default function Home({ navigation }) {
                 color: "white",
                 marginVertical: 4,
                 width: "48%",
+                fontWeight : "bold"
               }}
-            >
-              {" "}
-              {Data.length} item {<h3> {total()}.00 EGP </h3>}{" "}
-            </Text>
-            <View style={styles.button}>
-              <Button
-                title={<b style={{ color: "crimson" }}> Add to cart </b>}
-                color="white"
-                onPress={clickCart}
-              />
-            </View>
+            > {Data.length} item {"\n\n"} {total()}.00 EGP  </Text>
+            <Pressable style={styles.button} onPress = {clickCart} >
+                <Text style={styles.textButton}> View Cart </Text>
+           </Pressable>
           </View>
         </View>
       ) : (
@@ -392,6 +387,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 100,
     // flexDirection: "row",
+    
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
     borderRadius: 10,
@@ -486,10 +482,26 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "30%",
-    // borderWidth : 1 ,
+    borderWidth : 1 ,
     borderRadius: 10,
     overflow: "hidden",
-    //marginHorizontal: 5,
+    marginHorizontal: 5,
     marginVertical: 12,
+    padding : 5 ,
+    backgroundColor : "white",
+    borderColor : "white" ,
   },
+  textButton : {
+    fontWeight : "bold" ,
+    fontSize : 16,
+    color : "crimson" , 
+    textAlign : "center",
+    textAlignVertical : "center" ,
+
+  }, 
+  x : {
+    flexDirection : "row" ,
+    justifyContent : "space-between",
+    alignContent : "space-between"
+  }
 });
