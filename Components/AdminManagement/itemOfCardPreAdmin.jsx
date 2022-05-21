@@ -6,6 +6,7 @@ import {
   Button,
   ScrollView,
 } from "react-native";
+import { useState, useEffect } from "react";
 
 import { deleteItem, editConversation } from "../../db/Edit/chat";
 export default function Item({
@@ -15,8 +16,28 @@ export default function Item({
   user,
   totalCost,
   phone,
+  address,
+  comment,
   Cart,
+  Date
 }) {
+  let A, B;
+  // const [received, setReceived] = useState(A);
+  // const [arrived, setArrived] = useState(B);
+  if (status === "In kitchen") {
+    A = false;
+    B = true;
+  } else if (status === "Received") {
+    A = true;
+    B = false;
+  } else {
+    A = true;
+    B = true;
+  }
+  // setReceived(true);
+  // setArrived(false);
+  // status === "Received" ? (A = true) : false;
+
   const x = Cart;
   return (
     <View style={styles.content}>
@@ -55,7 +76,10 @@ export default function Item({
 
         <Text style={{ fontWeight: "bold" }}> User : {user}</Text>
         <Text style={{ fontWeight: "bold" }}> Phone : {phone} </Text>
+        <Text style={{ fontWeight: "bold" }}> Address : {address} </Text>
+        <Text style={{ fontWeight: "bold" }}> Comment : {comment} </Text>
         <Text style={{ fontWeight: "bold" }}> Status : {status} </Text>
+        <Text style={{ fontWeight: "bold" }}> Date : {Date} </Text>
         <Text>
           {" "}
           ----------------------------------------------------------{" "}
@@ -101,14 +125,94 @@ export default function Item({
           </Text>
         </View>
       </View>
-
-      <Button
-        title=" Arrived "
-        color="black"
-        onPress={() => {
-          editConversation(id, "Arrived");
-        }}
-      />
+      <View style={styles.foot}>
+        <View style={styles.btn}>
+          <Button
+            title="Received"
+            disabled={A}
+            onPress={() => {
+              editConversation(id, "Received");
+            }}
+          />
+        </View>
+        <View style={styles.btn}>
+          <Button
+            title="Arrived"
+            color="green"
+            disabled={B}
+            onPress={() => {
+              editConversation(id, "Arrived");
+            }}
+          />
+        </View>
+      </View>
+      {/* {status === "In kitchen" ? (
+        <View style={styles.foot}>
+          <View style={styles.btn}>
+            <Button
+              title="Received"
+              disabled={false}
+              onPress={() => {
+                editConversation(id, "Received");
+              }}
+            />
+          </View>
+          <View style={styles.btn}>
+            <Button
+              title="Arrived"
+              color="green"
+              disabled={true}
+              onPress={() => {
+                editConversation(id, "Arrived");
+              }}
+            />
+          </View>
+        </View>
+      ) : status === "Received" ? (
+        <View style={styles.foot}>
+          <View style={styles.btn}>
+            <Button
+              title="Received"
+              disabled={true}
+              onPress={() => {
+                editConversation(id, "Received");
+              }}
+            />
+          </View>
+          <View style={styles.btn}>
+            <Button
+              title="Arrived"
+              color="green"
+              disabled={false}
+              onPress={() => {
+                editConversation(id, "Arrived");
+              }}
+            />
+          </View>
+        </View>
+      ) : (
+        <View style={styles.foot}>
+          <View style={styles.btn}>
+            <Button
+              title="Received"
+              disabled={true}
+              onPress={() => {
+                editConversation(id, "Received");
+              }}
+            />
+          </View>
+          <View style={styles.btn}>
+            <Button
+              title="Arrived"
+              color="green"
+              disabled={true}
+              onPress={() => {
+                editConversation(id, "Arrived");
+              }}
+            />
+          </View>
+        </View>
+      )} */}
     </View>
   );
 }
@@ -136,5 +240,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 15,
     flexDirection: "row",
+  },
+  foot: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 6,
+  },
+  btn: {
+    alignSelf: "center",
+    width: "48%",
+    borderRadius: 10,
+    overflow: "hidden",
   },
 });

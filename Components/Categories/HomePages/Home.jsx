@@ -30,6 +30,7 @@ import Icon3 from "react-native-vector-icons/Entypo";
 import { SignOut } from "../../../db/auth/auth";
 import { auth } from "../../../db/Config";
 import ChatAdmin from "../../AdminManagement/chatAdmin";
+import CheckOut from "../CardItems/CheckOut";
 export default function Home({ navigation }) {
   useEffect(() => {
     getCardslist();
@@ -195,6 +196,10 @@ export default function Home({ navigation }) {
     const c = await getCardItems();
     c.map((a) => deleteItemsCards(a.id));
     Data.splice(0, Data.length);
+    setPage(7);
+  };
+
+  const CheckOutfun = () => {
     setPage(6);
   };
 
@@ -234,7 +239,7 @@ export default function Home({ navigation }) {
         </View>
       </View>
       <View style={styles.categories}>
-        <ScrollView horizontal={true} contentContainerStyle = {styles.x}>
+        <ScrollView horizontal={true} contentContainerStyle={styles.x}>
           <TouchableOpacity onPress={clickDeals}>
             <View style={styles.imageview}>
               <Image
@@ -326,7 +331,7 @@ export default function Home({ navigation }) {
             </View>
           ) : Page === 4 ? (
             <View>
-              <CartPage fuc1={trash} fuc2={menu} fuc3={confirm} />
+              <CartPage fuc1={trash} fuc2={menu} fuc3={CheckOutfun} />
             </View>
           ) : Page === 5 ? (
             <View>
@@ -335,6 +340,10 @@ export default function Home({ navigation }) {
               ) : (
                 <FavPage fuc1={menu} />
               )}
+            </View>
+          ) : Page === 6 ? (
+            <View>
+              <CheckOut fuc1={confirm} />
             </View>
           ) : (
             <View>
@@ -366,12 +375,15 @@ export default function Home({ navigation }) {
                 color: "white",
                 marginVertical: 4,
                 width: "48%",
-                fontWeight : "bold"
+                fontWeight: "bold",
               }}
-            > {Data.length} item {"\n\n"} {total()}.00 EGP  </Text>
-            <Pressable style={styles.button} onPress = {clickCart} >
-                <Text style={styles.textButton}> View Cart </Text>
-           </Pressable>
+            >
+              {" "}
+              {Data.length} item {"\n\n"} {total()}.00 EGP{" "}
+            </Text>
+            <Pressable style={styles.button} onPress={clickCart}>
+              <Text style={styles.textButton}> View Cart </Text>
+            </Pressable>
           </View>
         </View>
       ) : (
@@ -387,7 +399,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 100,
     // flexDirection: "row",
-    
+
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
     borderRadius: 10,
@@ -482,26 +494,25 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "30%",
-    borderWidth : 1 ,
+    borderWidth: 1,
     borderRadius: 10,
     overflow: "hidden",
     marginHorizontal: 5,
     marginVertical: 12,
-    padding : 5 ,
-    backgroundColor : "white",
-    borderColor : "white" ,
+    padding: 5,
+    backgroundColor: "white",
+    borderColor: "white",
   },
-  textButton : {
-    fontWeight : "bold" ,
-    fontSize : 16,
-    color : "crimson" , 
-    textAlign : "center",
-    textAlignVertical : "center" ,
-
-  }, 
-  x : {
-    flexDirection : "row" ,
-    justifyContent : "space-between",
-    alignContent : "space-between"
-  }
+  textButton: {
+    fontWeight: "bold",
+    fontSize: 16,
+    color: "crimson",
+    textAlign: "center",
+    textAlignVertical: "center",
+  },
+  x: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignContent: "space-between",
+  },
 });

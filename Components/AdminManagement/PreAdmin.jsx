@@ -83,34 +83,27 @@ export default function PreAdmin({ navigation }) {
             have a break{" "}
           </Text>
         </View>
-      ) : 
+      ) : (
         <ScrollView>
-        {chat.map((a, index) => (
+          {chat.map((a, index) => (
             <Item
-            key = {index}
+              key={index}
               id={a.id}
               numberOfItems={a.numberOfItems}
               user={a.title}
               status={a.status}
               totalCost={a.totalCost}
-              phone = {a.phone}
-              Cart = {a.cardslist}
+              phone={a.phone}
+              address={a.address}
+              comment={a.comment}
+              Cart={a.cardslist}
+              Date={a.Date}
             />
-            ))}
-            </ScrollView>   
-
-
-
-        
-        
-        
-        
-      
-      }
+          ))}
+        </ScrollView>
+      )}
       <StatusBar style="auto" />
     </View>
-
-
   );
 }
 const styles = StyleSheet.create({
@@ -142,5 +135,4 @@ const styles = StyleSheet.create({
   btn: {
     width: "50%",
   },
- 
 });

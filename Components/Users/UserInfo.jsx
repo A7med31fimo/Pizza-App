@@ -21,22 +21,20 @@ const UserInfo = ({ navigation }) => {
   const [phone, setphone] = useState("");
   const [address, setaddress] = useState("");
 
-
-     function getUser(){
-       return (getUserUId().then((uid) => {   
-        getUserById(uid).then((user) => {
-          
-          setUser(user[0])
-          setc(user[0].fName)
-          setfName(user[0].fName);
-          setlName(user[0].lName);
-          setage(user[0].age);
-          setphone(user[0].phone);
-          setaddress(user[0].address);
-          console.log(user[0].id)
-        });
-      
-    }))}
+  function getUser() {
+    return getUserUId().then((uid) => {
+      getUserById(uid).then((user) => {
+        setUser(user[0]);
+        setc(user[0].fName);
+        setfName(user[0].fName);
+        setlName(user[0].lName);
+        setage(user[0].age);
+        setphone(user[0].phone);
+        setaddress(user[0].address);
+        console.log(user[0].id);
+      });
+    });
+  }
   useEffect(() => {
     getUser();
   }, []);
@@ -56,35 +54,35 @@ const UserInfo = ({ navigation }) => {
       <ScrollView contentContainerStyle={{ flex: 1 }}>
         <View style={styles.body}>
           <View style={styles.inps}>
-            <Text style = {styles.text2}> First Name </Text>
+            <Text style={styles.text2}> First Name </Text>
             <TextInput
               style={styles.inp}
               defaultValue={fName}
               placeholder={"first name"}
               onChangeText={setfName}
             />
-             <Text style = {styles.text2}> Last Name </Text>
+            <Text style={styles.text2}> Last Name </Text>
             <TextInput
               style={styles.inp}
               defaultValue={lName}
               placeholder={"last name"}
               onChangeText={setlName}
             />
-             <Text style = {styles.text2}> Age </Text>
+            <Text style={styles.text2}> Age </Text>
             <TextInput
               style={styles.inp}
               defaultValue={age}
               placeholder={"age"}
               onChangeText={setage}
             />
-             <Text style = {styles.text2}> Phone </Text>
+            <Text style={styles.text2}> Phone </Text>
             <TextInput
               style={styles.inp}
               defaultValue={phone}
               placeholder={"phone"}
               onChangeText={setphone}
             />
-             <Text style = {styles.text2}> Address </Text>
+            <Text style={styles.text2}> Address </Text>
             <TextInput
               style={styles.inp}
               defaultValue={address}
@@ -92,29 +90,38 @@ const UserInfo = ({ navigation }) => {
               onChangeText={setaddress}
             />
             <View
-              style={{ width: "90%", borderRadius: 15, overflow: "hidden" , marginVertical : 20 }}
+              style={{
+                width: "90%",
+                borderRadius: 15,
+                overflow: "hidden",
+                marginVertical: 20,
+              }}
             >
               <Button
                 onPress={() => {
-
-                  
-                 
-                  
-if(fName.length===0||age.length===0||phone.length===0||address.length===0|| isNaN(age)||isNaN(phone))
-alert("invalid information")
-else
-                  edituser( {...user,     
-                    fName: fName,
-                    lName: lName,
-                    age: age,
-                    address: address,
-                    phone: phone,
-                  })
-                    .then(() => {
-                      alert("user updated");
-                      setEdit(undefined);
+                  if (
+                    fName.length === 0 ||
+                    age.length === 0 ||
+                    phone.length === 0 ||
+                    address.length === 0 ||
+                    isNaN(age) ||
+                    isNaN(phone)
+                  )
+                    alert("invalid information");
+                  else
+                    edituser({
+                      ...user,
+                      fName: fName,
+                      lName: lName,
+                      age: age,
+                      address: address,
+                      phone: phone,
                     })
-                    .catch((e) => console.log(e));
+                      .then(() => {
+                        alert("user updated");
+                        setEdit(undefined);
+                      })
+                      .catch((e) => console.log(e));
                 }}
                 title="Save"
                 color="#FB081F"
@@ -176,7 +183,6 @@ else
                 color="#FB081F"
               ></Button>
             </View>
-
 
             <View style={styles.btn}>
               <Button
@@ -242,7 +248,7 @@ const styles = StyleSheet.create({
   inps: {
     // alignItems: "center",
     marginTop: 30,
-    marginHorizontal : 15 ,
+    marginHorizontal: 15,
   },
   inp: {
     width: "90%",
@@ -334,12 +340,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: "hidden",
   },
-  text2 : {
-    textAlign : "left",
-    fontSize : 16 ,
-    fontStyle : "italic" ,
-    fontWeight : "bold",
-    paddingVertical : 10 ,
-    
-  }
+  text2: {
+    textAlign: "left",
+    fontSize: 16,
+    fontStyle: "italic",
+    fontWeight: "bold",
+    paddingVertical: 10,
+  },
 });

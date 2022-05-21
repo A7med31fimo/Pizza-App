@@ -80,6 +80,9 @@ export default function ChatAdmin({ fuc1 }) {
               status={a.status}
               totalCost={a.totalCost}
               phone={a.phone}
+              address={a.address}
+              comment={a.comment}
+              Date={a.Date}
               Cart={a.cardslist}
             />
           ))}
