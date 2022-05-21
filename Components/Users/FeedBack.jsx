@@ -258,7 +258,7 @@ let y = 0 ;
             let hour = (today.getHours() < 10 ? '0' : '') + today.getHours();
             let minute = (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
             let second = (today.getSeconds() < 10 ? '0' : '') + today.getSeconds();
-            let month =  today.getMonth();
+            let month =  today.getMonth()+1;
             console.log(today + " \n " + date + " \n " + hour + " \n " + minute + " \n " + second + " \n" + month);
             if (feedBack === "" && x === "")
                 alert("sorry, no feedBack");

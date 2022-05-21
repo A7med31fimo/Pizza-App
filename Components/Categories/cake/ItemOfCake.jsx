@@ -254,7 +254,7 @@ export default function Item({
             <Text style={styles.price}> {pric}.00 EGP </Text>
             <View style={styles.button}>
               <Button
-                title="Edite"
+                title="Edit"
                 color="crimson"
                 onPress={() => {
                   setEdit("go");

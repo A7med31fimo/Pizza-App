@@ -275,7 +275,7 @@ export default function Item({ ID, image, label, price, fu1, fu2, fu3 }) {
             <Text style={styles.price}> {pric}.00 EGP </Text>
             <View style={styles.button}>
               <Button
-                title="Edite"
+                title="Edit"
                 color="crimson"
                 onPress={() => {
                   setEdit("go");
