@@ -16,21 +16,20 @@ async function getItemDeals() {
   const ItemList = photoSnapshot.docs.map((doc) => {
     return { id: doc.id, ...doc.data() };
   });
-return ItemList;
+  return ItemList;
 }
 
 async function deleteItemsDeals(id) {
   try {
-  await deleteDoc(doc(db, "deals", id));
-  console.log("Document deleted with ID: ", id);
-} catch (error) {
-  console.error("Error deleting document: ", error);
-}
+    await deleteDoc(doc(db, "deals", id));
+    console.log("Document deleted with ID: ", id);
+  } catch (error) {
+    console.error("Error deleting document: ", error);
+  }
 }
 
 async function AddItemsDeals(Itemdeal) {
   try {
-
     const docRef = await addDoc(collection(db, "deals"), Itemdeal);
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
@@ -38,23 +37,16 @@ async function AddItemsDeals(Itemdeal) {
   }
 }
 async function editdeal(Itemdeal) {
-  await setDoc(doc(db, "deals", cake.id), Itemdeal);
+  await setDoc(doc(db, "deals", Itemdeal.id), Itemdeal);
 }
 
-
 function subscribe(callback) {
-  const unsubscribe = onSnapshot(
-    query(collection(db, "deals")),
-    (snapshot) => {
-      snapshot.docChanges().forEach((change) => {
-        
-        if (callback) callback({ change, snapshot});
-      });
-     
-    }
-  );
+  const unsubscribe = onSnapshot(query(collection(db, "deals")), (snapshot) => {
+    snapshot.docChanges().forEach((change) => {
+      if (callback) callback({ change, snapshot });
+    });
+  });
   return unsubscribe;
 }
 
-
-export { getItemDeals,AddItemsDeals,deleteItemsDeals,editdeal,subscribe};
+export { getItemDeals, AddItemsDeals, deleteItemsDeals, editdeal, subscribe };
