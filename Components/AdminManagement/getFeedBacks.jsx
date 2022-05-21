@@ -15,6 +15,7 @@ import {
   subscribe,
   deleteItemsFeedBack,
 } from "../../db/Edit/FeedBackEdit";
+import FeedBack from "./feedbackItem";
 import Icon from "react-native-vector-icons/Entypo";
 import { useState, useEffect } from "react";
 import { auth } from "../../db/Config";
@@ -23,13 +24,55 @@ import { auth } from "../../db/Config";
 export default function FeedFeedBackList() {
   const getFeedBacksList = async () => {
     const c = await getItemFeedBack();
+    function compare(a, b) {
+     
+      if (a.user < b.user ) 
+        return -1;
+      
+      else if (a.user > b.user ) 
+        return 1 ;
+
+      else { 
+         
+       
+          if (a.month < b.month)
+          return -1 ; 
+          else if (a.month > b.month) 
+          return 1  ;
+       
+          else {
+            if (a.date < b.date)
+          return -1 ; 
+          else if (a.date > b.date) 
+          return 1  ;
+       else {
+        if (a.hour < b.hour)
+        return -1 ; 
+        else if (a.hour > b.hour) 
+        return 1  ;
+        else {
+          if (a.minute < b.minute)
+          return -1 ; 
+          else if (a.minute > b.minute) 
+          return 1  ;
+        
+          else 
+          return 0 ; 
+        }
+       }
+       
+       
+      
+    }
+  }
+}
+
+    c.sort(compare);
     setFeedBacks(c);
+    setEmpty(c.length);
     console.log("FeedBacks", c);
     //setname(auth.currentUser.displayName);
   };
-  useEffect(() => {
-    getFeedBacksList();
-  }, []);
 
   useEffect(() => {
     const unsubscribe = subscribe(({ change, snapshot }) => {
@@ -40,23 +83,48 @@ export default function FeedFeedBackList() {
       unsubscribe();
     };
   }, []);
-  const [name, setname] = useState([]);
+
 
   const [FeedBacks, setFeedBacks] = useState([]);
+  const [empty, setEmpty] = useState(0);
+
 
   return (
+
+
+
+
+
+
+
+
     <View style={{ flex: 1 }}>
-      {FeedBacks.map((c) => (
-        <View key={c.id} style={styles.FeedBacksview}>
-          <Text style={styles.FeedBacks}>{c.conatnt}</Text>
-          <Icon
-            name="trash"
-            size={25}
-            color="grey"
-            onPress={() => deleteItemsFeedBack(c.id)}
+      {empty === 0 ? 
+      
+      (
+        <View>
+        <View style={{ alignItems: "center"}}>
+          <Image
+            style={{ width: 350, height: 350}}
+            source={{ uri: "https://i.ibb.co/DKzryP5/logo.png" }}
           />
         </View>
-      ))}
+        <Text style={styles.text}> No FeedBack yet </Text>
+        <Text style ={{color : "red" , fontSize : 12 , fontWeight : 'bold' , textAlign : "center" , fontStyle : "italic"}}> Wait, the comments will be sent to you soon </Text> 
+   
+      </View>
+    )
+: <View style={{ flex: 1 }}>
+{FeedBacks.map((c) => (
+  <View key={c.id} >
+   <FeedBack id = {c.id} user = {c.user} feedback = {c.feedBack} number = {c.number} 
+   date = {c.date} month = {c.month} hour =  {c.hour} minute = {c.minute}
+   />
+  </View>
+))}
+</View>
+
+}
     </View>
   );
 }
@@ -64,7 +132,7 @@ export default function FeedFeedBackList() {
 const styles = StyleSheet.create({
   FeedBacksview: {
     width: "100%",
-    flexDirection: "column",
+    // flexDirection: "column",
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
     borderRadius: 10,
@@ -75,7 +143,8 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     padding: 7,
-    marginBottom: 10,
+    marginVertical: 10,
+    marginHorizontal : 10 ,
   },
   FeedBacksuser: {
     fontSize: 15,
@@ -103,4 +172,10 @@ const styles = StyleSheet.create({
     // marginHorizontal : 135 ,
     width: "90%",
   },
+  text:{
+    textAlign : "center" ,
+    fontSize : 16 , 
+    fontStyle : "italic" ,
+    fontWeight : 'bold' , 
+  }
 });
