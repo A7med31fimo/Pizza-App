@@ -146,73 +146,7 @@ export default function Item({
           />
         </View>
       </View>
-      {/* {status === "In kitchen" ? (
-        <View style={styles.foot}>
-          <View style={styles.btn}>
-            <Button
-              title="Received"
-              disabled={false}
-              onPress={() => {
-                editConversation(id, "Received");
-              }}
-            />
-          </View>
-          <View style={styles.btn}>
-            <Button
-              title="Arrived"
-              color="green"
-              disabled={true}
-              onPress={() => {
-                editConversation(id, "Arrived");
-              }}
-            />
-          </View>
-        </View>
-      ) : status === "Received" ? (
-        <View style={styles.foot}>
-          <View style={styles.btn}>
-            <Button
-              title="Received"
-              disabled={true}
-              onPress={() => {
-                editConversation(id, "Received");
-              }}
-            />
-          </View>
-          <View style={styles.btn}>
-            <Button
-              title="Arrived"
-              color="green"
-              disabled={false}
-              onPress={() => {
-                editConversation(id, "Arrived");
-              }}
-            />
-          </View>
-        </View>
-      ) : (
-        <View style={styles.foot}>
-          <View style={styles.btn}>
-            <Button
-              title="Received"
-              disabled={true}
-              onPress={() => {
-                editConversation(id, "Received");
-              }}
-            />
-          </View>
-          <View style={styles.btn}>
-            <Button
-              title="Arrived"
-              color="green"
-              disabled={true}
-              onPress={() => {
-                editConversation(id, "Arrived");
-              }}
-            />
-          </View>
-        </View>
-      )} */}
+    
     </View>
   );
 }

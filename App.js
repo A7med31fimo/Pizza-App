@@ -10,6 +10,7 @@ import ChatAdmin from "./Components/AdminManagement/chatAdmin";
 import FeedBack from "./Components/Users/FeedBack";
 import getFeedBack from "./Components/AdminManagement/getFeedBacks";
 import PreAdmin from "./Components/AdminManagement/PreAdmin";
+import OldCart from "./Components/Categories/Old/OldCart";
 import { LogBox } from "react-native";
 
 export default function App() {
@@ -41,6 +42,7 @@ export default function App() {
         />
         <Stack.Screen name="FeedBack" component={FeedBack} />
         <Stack.Screen name="getFeedBack" component={getFeedBack} />
+        <Stack.Screen name="OldCart" component={OldCart} />
       </Stack.Navigator>
     </NavigationContainer>
   );

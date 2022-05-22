@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet ,Image } from "react-native";
 import React from "react";
 import { useState, useEffect } from "react";
 import {
@@ -11,23 +11,28 @@ import { getCardItems } from "../../../db/Edit/CartItems";
 export default function Confirmation() {
   return (
     <View style={styles.body}>
+
+          
       <Text style={styles.text}> 
         Your order is Confirmed the Dlivery will call you soon on your phone
-        number thanks for using my app.
+        number thanks for using  app.
       </Text>
       <View style={styles.btns}>
         <View style={styles.btn}>
         </View>
         <Text>If face any problem please call 19999</Text>
       </View>
+     
     </View>
   );
 }
 const styles = StyleSheet.create({
   body: {
     padding: 20,
+    alignItems: "center"
   },
   text: {
+    marginTop : 30,
     textAlign: "left",
     fontSize: 20,
     fontWeight: "bold",

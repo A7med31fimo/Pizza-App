@@ -31,6 +31,7 @@ import { SignOut } from "../../../db/auth/auth";
 import { auth } from "../../../db/Config";
 import ChatAdmin from "../../AdminManagement/chatAdmin";
 import CheckOut from "../CardItems/CheckOut";
+import {AddOldCards} from "../../../db/Edit/OldCard"
 export default function Home({ navigation }) {
   useEffect(() => {
     getCardslist();
@@ -192,8 +193,27 @@ export default function Home({ navigation }) {
     setViewCart(true);
   };
 
+
+
+    
   const confirm = async () => {
     const c = await getCardItems();
+    let today = new Date();
+    let day = today.getDate();
+    let month = today.getMonth() + 1;
+    let hour = (today.getHours() < 10 ? '0' : '') + today.getHours();
+    let minute = (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
+
+    // {date}/{month} - {hour}:{minute}
+    
+    let time = day + "/" + month + " - " + hour + ":" + minute ;
+    let totalCost = 0 ;
+    let numberOfItems = 0 ;
+    c.map((a) => {
+      totalCost += a.price;
+      numberOfItems += a.number ;
+    });
+    AddOldCards({Cards : c  , time , numberOfItems  , totalCost   }) ;
     c.map((a) => deleteItemsCards(a.id));
     Data.splice(0, Data.length);
     setPage(7);

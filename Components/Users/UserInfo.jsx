@@ -197,6 +197,16 @@ const UserInfo = ({ navigation }) => {
             <View style={styles.btn}>
               <Button
                 onPress={() => {
+                  navigation.navigate("OldCart");
+                }}
+                title="Order History"
+                color="#FB081F"
+              ></Button>
+            </View>
+
+            <View style={styles.btn}>
+              <Button
+                onPress={() => {
                   {
                     SignOut()
                       .then(() => {
