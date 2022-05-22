@@ -19,6 +19,7 @@ import {
   getFavItems,
   AddFavItems,
 } from "../../../db/Edit/FavEdit";
+import * as ImagePicker from 'expo-image-picker';
 export default function Item({ ID, label, desc, image, price, fu1, fu2, fu3 }) {
   const count = fu3(label);
   const [icon, seticon] = useState("heart-outlined");
@@ -46,7 +47,21 @@ export default function Item({ ID, label, desc, image, price, fu1, fu2, fu3 }) {
   useEffect(() => {
     getFavlist();
   }, []);
+  const selectFile = async () => {
 
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      console.log(result)
+      setphoto1(result.uri)
+    
+    }
+
+  }
   const dislike = async () => {
     const c = await getFavItems();
 
@@ -131,13 +146,10 @@ export default function Item({ ID, label, desc, image, price, fu1, fu2, fu3 }) {
               placeholder={"dec"}
               onChangeText={setdesc1}
             />
-            <Text style={styles.text2}>Photo</Text>
-            <TextInput
-              style={styles.inp}
-              defaultValue={photo1}
-              placeholder={"photo"}
-              onChangeText={setphoto1}
-            />
+               <View style={styles.btn}>
+            <Button title="select photo" onPress={selectFile}
+          color="#FB081F" />
+          </View>
             <Text style={styles.text2}>Price</Text>
             <TextInput
               style={styles.inp}
@@ -387,7 +399,12 @@ const styles = StyleSheet.create({
 
   radio: {
     width: "30%",
-  },
+  }, btn: {
+    marginVertical: 5,
+    width: "90%",
+    borderRadius: 15,
+    overflow: "hidden",
+  }
 });
 
 {

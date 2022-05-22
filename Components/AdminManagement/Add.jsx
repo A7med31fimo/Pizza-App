@@ -5,10 +5,6 @@ import { AddItemsDrinks } from "../../db/Edit/DrinksEdit";
 import { AddItemscakes } from "../../db/Edit/CakesEdit";
 import { AddItemsDeals } from "../../db/Edit/DealEdit";
 import { AddItemsPizza } from "../../db/Edit/PizzaEdit";
-import { storage } from "../../db/Config";
-
-import { ref, uploadString, getDownloadURL } from "firebase/storage";
-import { async } from "@firebase/util";
 export default function Add({ name }) {
 
   const [Price, setprice] = useState("");
@@ -77,14 +73,14 @@ export default function Add({ name }) {
                   alert("invalid inputs")
                 } else {
                   if (name === "drink")
-                    AddItemsDrinks({
+                   { AddItemsDrinks({
                       image: photo,
                       label: Name,
                       price: parseInt(Price),
                     });
-
-                  if (name === "cake")
-                    if (desc === "")
+}
+               else  if (name === "cake")
+                   { if (desc === "")
                       alert("invalid inputs")
                     else
                       AddItemscakes({
@@ -92,19 +88,21 @@ export default function Add({ name }) {
                         image: photo,
                         label: Name,
                         price: parseInt(Price),
-                      });
-                  if (desc === "")
-                    alert("invalid inputs")
-                  else
-                    if (name === "deal")
+                      });}
+                  
+                  
+                  
+                  else  if (name === "deal")
+                  {  if (desc === "")
+                  alert("invalid inputs")
                       AddItemsDeals({
                         desc: desc,
                         image: photo,
                         label: Name,
                         price: parseInt(Price),
-                      });
-                  if (name === "pizza")
-                    if (desc === "")
+                      });}
+                 else if (name === "pizza")
+                   { if (desc === "")
                       alert("invalid inputs")
                     else
                       AddItemsPizza({
@@ -112,7 +110,7 @@ export default function Add({ name }) {
                         image: photo,
                         label: Name,
                         price: parseInt(Price),
-                      });
+                      });}
                 }
                 setloading(false)
               }}

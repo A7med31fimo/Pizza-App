@@ -11,6 +11,7 @@ import {
 import Icon from "react-native-vector-icons/Entypo";
 import { useState, useEffect } from "react";
 import { RadioButton } from "react-native-paper";
+import * as ImagePicker from 'expo-image-picker';
 import { AddItemsCards, getCardItems } from "../../../db/Edit/CartItems";
 import { deleteItemsDrinks, editDrink } from "../../../db/Edit/DrinksEdit";
 import {
@@ -32,7 +33,21 @@ export default function Item({ ID, image, label, price, fu1, fu2, fu3 }) {
       }
     }
   };
+  const selectFile = async () => {
 
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      console.log(result)
+      setphoto1(result.uri)
+    
+    }
+
+  }
   useEffect(() => {
     getFavlist();
   }, []);
@@ -141,13 +156,10 @@ export default function Item({ ID, image, label, price, fu1, fu2, fu3 }) {
               placeholder={"label"}
               onChangeText={setlabel1}
             />
-            <Text style={styles.text2}>Photo</Text>
-            <TextInput
-              style={styles.inp}
-              defaultValue={photo1}
-              placeholder={"photo"}
-              onChangeText={setphoto1}
-            />
+              <View style={styles.btn}>
+            <Button title="select photo" onPress={selectFile}
+          color="#FB081F" />
+          </View>
             <Text style={styles.text2}>Price</Text>
             <TextInput
               style={styles.inp}
@@ -375,5 +387,10 @@ const styles = StyleSheet.create({
 
   radio: {
     width: "45%",
-  },
+  }, btn: {
+    marginVertical: 5,
+    width: "90%",
+    borderRadius: 15,
+    overflow: "hidden",
+  }
 });

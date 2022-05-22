@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { RadioButton } from "react-native-paper";
 import Blank from "../../../assets/draft/blank_heart.png";
-import Love from "../../../assets/draft/love.png";
+import * as ImagePicker from 'expo-image-picker';
 import Icon from "react-native-vector-icons/Entypo";
 import {
   AddItemsCards,
@@ -100,6 +100,23 @@ export default function Item({
     setnumber(number - 1);
     fu2(label, size);
   };
+
+
+  const selectFile = async () => {
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      console.log(result)
+      setphoto1(result.uri)
+    
+    }
+
+  }
   return edit ? (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={{ flex: 1 }}>
@@ -119,13 +136,10 @@ export default function Item({
               placeholder={"dec"}
               onChangeText={setdesc1}
             />
-            <Text style={styles.text2}>Photo</Text>
-            <TextInput
-              style={styles.inp}
-              defaultValue={photo1}
-              placeholder={"photo"}
-              onChangeText={setphoto1}
-            />
+           <View style={styles.btn}>
+            <Button title="select photo" onPress={selectFile}
+          color="#FB081F" />
+          </View>
             <Text style={styles.text2}>Price</Text>
             <TextInput
               style={styles.inp}
@@ -353,5 +367,10 @@ const styles = StyleSheet.create({
     borderColor: "#f7eceb",
     fontSize: 16,
     paddingHorizontal: 12,
-  },
+  }, btn: {
+    marginVertical: 5,
+    width: "90%",
+    borderRadius: 15,
+    overflow: "hidden",
+  }
 });
