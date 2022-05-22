@@ -15,7 +15,10 @@ import { LogBox } from "react-native";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
-  LogBox.ignoreLogs(['AsyncStorage has been extracted from react-native core and will be removed in a future release']);
+  LogBox.ignoreLogs(['AsyncStorage has been extracted from react-native core and will be removed in a future release',
+'Setting a timer for a long period of time'
+
+]);
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="FirstPage">

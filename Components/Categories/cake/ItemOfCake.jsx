@@ -87,7 +87,6 @@ export default function Item({
     }
   };
 
-  const [user, setuser] = useState("");
 
   const size = "";
   const plusHandler = () => {
@@ -143,7 +142,7 @@ export default function Item({
             <Text style={styles.text2}>Price</Text>
             <TextInput
               style={styles.inp}
-              defaultValue={pric}
+              defaultValue={price+""}
               placeholder={"price"}
               onChangeText={setprice}
             />
@@ -265,7 +264,7 @@ export default function Item({
       ) : (
         <View>
           <View style={styles.footer}>
-            <Text style={styles.price}> {pric}.00 EGP </Text>
+            <Text style={styles.price}> {price}.00 EGP </Text>
             <View style={styles.button}>
               <Button
                 title="Edit"
