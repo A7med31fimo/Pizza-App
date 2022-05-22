@@ -28,14 +28,14 @@ import {
     useEffect(() => {
         getCart();
     }, []);
-    // useEffect(() => {
-    //   const unsubscribe = subscribe(({ change, snapshot }) => {
-    //     getCart();
-    //   });
-    //   return () => {
-    //     unsubscribe();
-    //   };
-    // }, []);
+    useEffect(() => {
+      const unsubscribe = subscribe(({ change, snapshot }) => {
+       return getCart();
+      });
+      return () => {
+        unsubscribe();
+      };
+    }, []);
 
     return (
       <View style={{ flex: 1 }}>

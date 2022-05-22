@@ -13,8 +13,8 @@ import {
 import { getUserUId} from "../auth/auth"
 // Get a list of cities from your database
 var s;
+s= auth.currentUser!=null?auth.currentUser.email.split(".")[0]+"OldCard":"guest";
 async function getOldCardItems() {
-s= await auth.currentUser!=null?auth.currentUser.email.split(".")[0]+"OldCard":"guest";
   if(s){
   const CardCol = collection(db, s);
   const CardSnapshot = await getDocs(CardCol);
