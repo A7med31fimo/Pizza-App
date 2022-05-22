@@ -187,7 +187,8 @@ let y = 0 ;
  
 
   return (
-    <View style = {{flex : 1}}>
+    <ScrollView style = {{flex : 1}}>
+
       <View style={styles.logoview}>
         <Image
           style={styles.logo}
@@ -239,6 +240,7 @@ let y = 0 ;
           borderWidth: 1,
           borderRadius: 10,
           borderColor: "crimson",
+          textAlign : "left"
         }}
         placeholder="Leave comment"
         defaultValue = {x}
@@ -272,7 +274,7 @@ let y = 0 ;
           }}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

@@ -517,7 +517,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     overflow: "hidden",
-    marginHorizontal: 5,
+   // marginHorizontal: 3,
     marginVertical: 12,
     padding: 5,
     backgroundColor: "white",

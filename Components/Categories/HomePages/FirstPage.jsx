@@ -50,7 +50,7 @@ export default function FirstPage({ navigation }) {
                 }}
               ></Button>
             </View>
-            <Text style={styles.ORtxt}>OR</Text>
+            {/* <Text style={styles.ORtxt}>OR</Text> */}
             <View style={styles.btn}>
               <Button
                 title="Sign up"
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   Background: {
-    flex: 0.5,
+    flex: 1,
     resizeMode: "contain",
   },
   header: {
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
   },
   btns: {
     marginTop: -40,
+ 
     backgroundColor: "#FFECD4",
     flexDirection: "column",
     alignItems: "center",
@@ -124,5 +125,6 @@ const styles = StyleSheet.create({
     width: 250,
     borderRadius: 10,
     overflow: "hidden",
+    marginBottom : 10 ,
   },
 });

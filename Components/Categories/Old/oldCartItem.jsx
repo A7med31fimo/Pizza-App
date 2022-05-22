@@ -42,20 +42,20 @@ import {
     <Text
       style={{
         fontWeight: "bold",
-        fontSize: 16,
-        width: "50%",
+        fontSize: 14,
+        width: "60%",
         color: "blue",
         marginBottom: 10,
       }}
-    > Total number : {numberOfItems} items </Text>
+    > Number : {numberOfItems} items </Text>
     <Text
       style={{
         fontWeight: "bold",
-        fontSize: 16,
+        fontSize: 14,
         color: "green",
         marginBottom: 10,
       }}
-    > Total price : {totalCost}.00 EGP </Text>
+    >  Price : {totalCost}.00 EGP </Text>
   </View>
 </View>
       </View> 
