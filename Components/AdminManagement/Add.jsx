@@ -13,7 +13,6 @@ export default function Add({ name }) {
   const [desc, setdesc] = useState("");
   const [loading, setloading] = useState(false)
   const selectFile = async () => {
-    setloading(true)
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
     });
@@ -23,9 +22,8 @@ export default function Add({ name }) {
     if (!result.cancelled) {
       console.log(result)
       setphoto(result.uri)
-      setloading(false)
+      
     }
-
   }
 
   return (
@@ -77,7 +75,9 @@ export default function Add({ name }) {
                       image: photo,
                       label: Name,
                       price: parseInt(Price),
-                    });
+                    }).then(()=>(
+                      setloading(false)
+                    ));
 }
                else  if (name === "cake")
                    { if (desc === "")
@@ -88,7 +88,9 @@ export default function Add({ name }) {
                         image: photo,
                         label: Name,
                         price: parseInt(Price),
-                      });}
+                      }).then(()=>(
+                        setloading(false)
+                      ));}
                   
                   
                   
@@ -100,7 +102,9 @@ export default function Add({ name }) {
                         image: photo,
                         label: Name,
                         price: parseInt(Price),
-                      });}
+                      }).then(()=>(
+                        setloading(false)
+                      ));}
                  else if (name === "pizza")
                    { if (desc === "")
                       alert("invalid inputs")
@@ -110,9 +114,11 @@ export default function Add({ name }) {
                         image: photo,
                         label: Name,
                         price: parseInt(Price),
-                      });}
+                      }).then(()=>(
+                        setloading(false)
+                      ));}
                 }
-                setloading(false)
+                
               }}
               color="#FB081F"
             ></Button>

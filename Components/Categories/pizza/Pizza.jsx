@@ -153,7 +153,7 @@ export default function Item({ ID, label, desc, image, price, fu1, fu2, fu3 }) {
             <Text style={styles.text2}>Price</Text>
             <TextInput
               style={styles.inp}
-              defaultValue={pric}
+              defaultValue={price+""}
               placeholder={"price"}
               onChangeText={setprice}
             />
@@ -291,7 +291,7 @@ export default function Item({ ID, label, desc, image, price, fu1, fu2, fu3 }) {
       ) : (
         <View>
           <View style={styles.footer}>
-            <Text style={styles.price}> {pric}.00 EGP </Text>
+            <Text style={styles.price}> {price}.00 EGP </Text>
             <View style={styles.button}>
               <Button
                 title="Edit"
