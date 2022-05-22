@@ -6,13 +6,16 @@ import {
   View,
   Button,
   TouchableOpacity,
-  ScrollView,
+  ScrollView
 } from "react-native";
 export default function FirstPage({ navigation }) {
   return (
     <View style={styles.container}>
+      
       <ScrollView contentContainerStyle={{ flex: 1 }}>
         {/* <View style={styles.header}> */}
+ 
+
         <Image
           source={{ uri: "https://i.ibb.co/0KmHhp2/chef.png" }}
           style={styles.Background}
@@ -59,8 +62,10 @@ export default function FirstPage({ navigation }) {
             </View>
           </View>
         </View>
+        
       </ScrollView>
     </View>
+
   );
 }
 const styles = StyleSheet.create({
@@ -68,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   Background: {
-    flex: 2,
+    flex: 0.5,
     resizeMode: "contain",
   },
   header: {

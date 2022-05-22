@@ -10,9 +10,7 @@ import {
   updateProfile,signOut
 } from "firebase/auth";
 
-import {deleteItemsCards,getCardItems} from "../Edit/CartItems";
-import { async } from "@firebase/util";
-// Listen for authentication state to change.
+
 onAuthStateChanged(auth, (user) => {
   if (user != null) {
     user.providerData.forEach((profile) => {

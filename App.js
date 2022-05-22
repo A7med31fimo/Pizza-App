@@ -6,19 +6,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import FirstPage from "./Components/Categories/HomePages/FirstPage";
 import Card from "./Components/Categories/CardItems/Card";
 import INFO from "./Components/Users/UserInfo";
-import { getUserUId } from "./db/auth/auth";
 import ChatAdmin from "./Components/AdminManagement/chatAdmin";
 import FeedBack from "./Components/Users/FeedBack";
 import getFeedBack from "./Components/AdminManagement/getFeedBacks";
-import { auth } from "./db/Config";
 import PreAdmin from "./Components/AdminManagement/PreAdmin";
 import { LogBox } from "react-native";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
-  LogBox.ignoreLogs([
-    "Warning: Async Storage has been extracted from react-native core",
-  ]);
+  LogBox.ignoreLogs(['AsyncStorage has been extracted from react-native core and will be removed in a future release']);
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="FirstPage">
