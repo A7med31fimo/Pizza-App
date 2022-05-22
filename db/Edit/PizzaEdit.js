@@ -21,16 +21,15 @@ async function getItemPizza() {
 
 async function deleteItemsPizza(id) {
   try {
-  await deleteDoc(doc(db, "Pizza", id));
-  console.log("Document deleted with ID: ", id);
-} catch (error) {
-  console.error("Error deleting document: ", error);
-}
+    await deleteDoc(doc(db, "Pizza", id));
+    console.log("Document deleted with ID: ", id);
+  } catch (error) {
+    console.error("Error deleting document: ", error);
+  }
 }
 
 async function AddItemsPizza(Itemdeal) {
   try {
-
     const docRef = await addDoc(collection(db, "Pizza"), Itemdeal);
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
@@ -38,22 +37,16 @@ async function AddItemsPizza(Itemdeal) {
   }
 }
 async function editPizza(Itemdeal) {
-  await setDoc(doc(db, "Pizza", cake.id), Itemdeal);
+  await setDoc(doc(db, "Pizza", Itemdeal.id), Itemdeal);
 }
 
-
 function subscribe(callback) {
-  const unsubscribe = onSnapshot(
-    query(collection(db, "Pizza")),
-    (snapshot) => {
-      snapshot.docChanges().forEach((change) => {
-        
-        if (callback) callback({ change, snapshot});
-      });
-     
-    }
-  );
+  const unsubscribe = onSnapshot(query(collection(db, "Pizza")), (snapshot) => {
+    snapshot.docChanges().forEach((change) => {
+      if (callback) callback({ change, snapshot });
+    });
+  });
   return unsubscribe;
 }
 
-export { getItemPizza,subscribe,AddItemsPizza,deleteItemsPizza,editPizza };
+export { getItemPizza, subscribe, AddItemsPizza, deleteItemsPizza, editPizza };
