@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   Background: {
-    flex: 1,
+    flex: 0.5,
     resizeMode: "contain",
   },
   header: {

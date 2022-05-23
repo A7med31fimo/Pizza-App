@@ -373,7 +373,7 @@ export default function Home({ navigation }) {
         </ScrollView>
       </View>
 
-      {Data.length != 0 && viewCart ? (
+      {Data.length != 0 && viewCart&&auth.currentUser.displayName!=="admin" ? (
         <View style={styles.footer}>
           <View style={styles.footer2}>
             <Image

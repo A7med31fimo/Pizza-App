@@ -4,8 +4,11 @@ and preAdmin recive too to communicate with user to deliver the order
 to check the the process:
 1-please sign up and make order and do not forget make feedback about app
 2-login with admin:
+
+
 email   :  admin@gmail.com
 passward:  admin123
+
 3-login with preAdmin:
 email   :  preAdmin@gmail.com
 passward:  admin123 
